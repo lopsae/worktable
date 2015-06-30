@@ -4,15 +4,15 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow!
+    var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds);
-        window.tintColor = UIColor.redColor()
+        window!.tintColor = UIColor.redColor()
         
         let navControler = UINavigationController()
-        window.rootViewController = navControler;
+        window!.rootViewController = navControler;
         
         let viewController = UIViewController()
         viewController.navigationItem.title = "Title"
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        navControler.pushViewController(navControler, animated: true)
         navControler.viewControllers = [viewController, anotherView]
         
-        window.makeKeyAndVisible()
+        window!.makeKeyAndVisible()
         
         return true
     }
