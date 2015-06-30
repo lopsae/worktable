@@ -1,6 +1,7 @@
 
 # xcode stuff
 xcuserdata
+DerivedData
 *.xcworkspace/
 
 # osx stuff
