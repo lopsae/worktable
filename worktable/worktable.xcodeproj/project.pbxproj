@@ -405,6 +405,7 @@
 				2DF1011A1AC231B300CCCB7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2DF1011B1AC231B300CCCB7F /* Build configuration list for PBXNativeTarget "worktableTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +414,7 @@
 				2DF1011D1AC231B300CCCB7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

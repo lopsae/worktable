@@ -1,2 +1,7 @@
-# xcode
+
+# xcode stuff
 xcuserdata
+*.xcworkspace/
+
+# osx stuff
+.DS_Store
