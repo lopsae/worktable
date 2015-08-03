@@ -18,10 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         viewController.navigationItem.title = "Title"
 //        navControler.pushViewController(viewController, animated: false)
         
-        let anotherView = UIViewController()
-        anotherView.navigationItem.title = "Another"
+        let tableView = WorktableViewController(style: .Grouped)
+        tableView.navigationItem.title = "Table"
+//        let anotherView = UIViewController()
+//        anotherView.navigationItem.title = "Another"
 //        navControler.pushViewController(navControler, animated: true)
-        navControler.viewControllers = [viewController, anotherView]
+        navControler.viewControllers = [viewController, tableView]
         
         window!.makeKeyAndVisible()
         
