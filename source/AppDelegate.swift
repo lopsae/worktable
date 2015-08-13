@@ -7,24 +7,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?
+        ) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds);
         window!.tintColor = UIColor.redColor()
         
-        let navControler = UINavigationController()
-        window!.rootViewController = navControler;
-        
         let viewController = UIViewController()
         viewController.navigationItem.title = "Title"
-//        navControler.pushViewController(viewController, animated: false)
         
         let tableView = WorktableViewController(style: .Grouped)
         tableView.navigationItem.title = "Table"
-//        let anotherView = UIViewController()
-//        anotherView.navigationItem.title = "Another"
-//        navControler.pushViewController(navControler, animated: true)
+        
+        let navControler = UINavigationController()
         navControler.viewControllers = [viewController, tableView]
         
+        window!.rootViewController = navControler;
         window!.makeKeyAndVisible()
         
         return true
