@@ -1,40 +1,85 @@
 import UIKit
 
 
-class WorktableViewController: UITableViewController {
+public class WorktableViewController: UITableViewController {
     
-    let REUSE_IDENTIFIER = "worktableCell"
+    private var sections = [[WorktableCellItem]]()
     
-    private var sections = [String]()
-    
+    public var isRefreshing = false
+    public var refreshEnabled = false
+
+
     override init(style: UITableViewStyle) {
         super.init(style: style)
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: REUSE_IDENTIFIER)
     }
-    
-    
+        
     override init!(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    required init!(coder aDecoder: NSCoder!) {
+    required public init!(coder aDecoder: NSCoder!) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+    public func registerViewIdentifiers(cellItem: WorktableCellItem) {
+        if cellItem.viewNib != nil {
+            tableView.registerNib(cellItem.viewNib!,
+                forCellReuseIdentifier: cellItem.reuseIdentifier)
+            return
+        }
+        
+        if cellItem.viewClass != nil {
+            tableView.registerClass(cellItem.viewClass!,
+                forCellReuseIdentifier: cellItem.reuseIdentifier)
+            return
+        }
     }
     
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+    public func addNewSection () {
+        sections.append([WorktableCellItem]())
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellView = tableView.dequeueReusableCellWithIdentifier(REUSE_IDENTIFIER) as! UITableViewCell
-        cellView.textLabel?.text = "wortable cell \(indexPath.row)"
+    
+    public func pushCellItem(cellItem: WorktableCellItem) {
+        if sections.last == nil {
+            addNewSection()
+        }
+        var lastSection = sections.last!
+        lastSection.append(cellItem)
+        sections[sections.count - 1] = lastSection
+        registerViewIdentifiers(cellItem)
+    }
+    
+    
+    
+    public func cellItemAtIndexPath(indexPath: NSIndexPath) -> WorktableCellItem {
+        let section = sections[indexPath.section]
+        return section[indexPath.row]
+    }
+    
+    
+    
+    override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    
+    override public func tableView(tableView: UITableView, numberOfRowsInSection sectionIndex: Int) -> Int {
+        return sections[sectionIndex].count
+    }
+    
+    
+    override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellItem = cellItemAtIndexPath(indexPath)
+        let cellView = tableView.dequeueReusableCellWithIdentifier(cellItem.reuseIdentifier)
+            as! UITableViewCell
+        
+//        if let worktableCellView = cellView as? WorktableCellView {
+//            worktableCellView.updateWithItem(cellItem)
+//        }
         return cellView
     }
     

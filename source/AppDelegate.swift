@@ -16,11 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let viewController = UIViewController()
         viewController.navigationItem.title = "Title"
         
-        let tableView = WorktableViewController(style: .Grouped)
-        tableView.navigationItem.title = "Table"
+        let demoTable = DemoTable()
         
         let navControler = UINavigationController()
-        navControler.viewControllers = [viewController, tableView]
+        navControler.viewControllers = [viewController, demoTable]
         
         window!.rootViewController = navControler;
         window!.makeKeyAndVisible()
