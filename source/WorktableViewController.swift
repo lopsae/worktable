@@ -47,9 +47,9 @@ public class WorktableViewController: UITableViewController {
         if sections.last == nil {
             addNewSection()
         }
-        var lastSection = sections.last!
+        var lastSection = sections.tail!
         lastSection.append(cellItem)
-        sections[sections.count - 1] = lastSection
+        sections.tail = lastSection
         registerViewIdentifiers(cellItem)
     }
     
