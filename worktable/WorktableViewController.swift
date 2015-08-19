@@ -61,9 +61,9 @@ public class WorktableViewController: UITableViewController {
 		let cellView = tableView.dequeueReusableCellWithIdentifier(cellItem.reuseIdentifier)
 			as! UITableViewCell
 
-//		if let worktableCellView = cellView as? WorktableCellView {
-//			worktableCellView.updateWithItem(cellItem)
-//		}
+		if let cellView = cellView as? WorktableCellView {
+			cellView.updateWithCellItem(cellItem)
+		}
 		return cellView
 	}
 
