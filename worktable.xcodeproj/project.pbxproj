@@ -54,7 +54,6 @@
 		2D46B52A1B82F9BD00663A40 /* WorktableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorktableViewController.swift; path = worktable/WorktableViewController.swift; sourceTree = "<group>"; };
 		2DF100F91AC231B300CCCB7F /* worktable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = worktable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF1010E1AC231B300CCCB7F /* worktableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = worktableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DF101131AC231B300CCCB7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DF101141AC231B300CCCB7F /* worktableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = worktableTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,17 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				2DF101141AC231B300CCCB7F /* worktableTests.swift */,
-				2DF101121AC231B300CCCB7F /* Supporting Files */,
 			);
 			path = worktableTests;
-			sourceTree = "<group>";
-		};
-		2DF101121AC231B300CCCB7F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				2DF101131AC231B300CCCB7F /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,7 +292,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/info/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -339,7 +328,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/info/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -351,6 +339,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/info/worktable.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -361,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/info/worktable.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -379,7 +369,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = worktableTests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/info/worktableTests.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/worktable.app/worktable";
@@ -394,7 +384,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = worktableTests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/info/worktableTests.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/worktable.app/worktable";
