@@ -6,6 +6,8 @@ class DemoTable: WorktableViewController {
 	init () {
 		super.init(style: .Grouped)
 		navigationItem.title = "Demo table"
+		tableView.estimatedRowHeight = 44
+		tableView.rowHeight = UITableViewAutomaticDimension
 	}
 
 
@@ -25,13 +27,20 @@ class DemoTable: WorktableViewController {
 		addNewSection()
 
 		pushCellItem(WorktableCellItemBase("cell 1"))
-		pushCellItem(WorktableCellItemBase("cell 2"))
+		pushCellItem(DoubleTextCellItem("one label", buttonText: "the button"))
 
 		addNewSection()
 
 		pushCellItem(WorktableCellItemBase("celda 1"))
-		pushCellItem(WorktableCellItemBase("celda 2"))
+		pushCellItem(DoubleTextCellItem("one label lorem ipsum dolor sit amet lorem ipsum dolor sit amet", buttonText: "the button"))
 		pushCellItem(WorktableCellItemBase("celda 3"))
+		pushCellItem(DoubleTextCellItem("one label lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet", buttonText: "the button"))
+	}
+
+
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		tableView.reloadData()
 	}
 
 }
