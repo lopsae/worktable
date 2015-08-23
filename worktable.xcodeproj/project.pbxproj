@@ -15,6 +15,8 @@
 		2D45EC511B853F510078567C /* DoubleTextCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45EC4D1B853F510078567C /* DoubleTextCellView.xib */; };
 		2D45EC531B8546260078567C /* DoubleTextCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC521B8546260078567C /* DoubleTextCellItem.swift */; };
 		2D45EC541B8546260078567C /* DoubleTextCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC521B8546260078567C /* DoubleTextCellItem.swift */; };
+		2D45EC561B8982A90078567C /* LoremIpsum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC551B8982A90078567C /* LoremIpsum.swift */; };
+		2D45EC571B8982A90078567C /* LoremIpsum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC551B8982A90078567C /* LoremIpsum.swift */; };
 		2D46B52B1B82F9BD00663A40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5201B82F9BD00663A40 /* AppDelegate.swift */; };
 		2D46B52C1B82F9BD00663A40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5201B82F9BD00663A40 /* AppDelegate.swift */; };
 		2D46B52D1B82F9BD00663A40 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5211B82F9BD00663A40 /* ArrayExtension.swift */; };
@@ -54,6 +56,7 @@
 		2D45EC4C1B853F510078567C /* DoubleTextCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoubleTextCellView.swift; path = worktable/DoubleTextCellView.swift; sourceTree = "<group>"; };
 		2D45EC4D1B853F510078567C /* DoubleTextCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DoubleTextCellView.xib; path = worktable/DoubleTextCellView.xib; sourceTree = "<group>"; };
 		2D45EC521B8546260078567C /* DoubleTextCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoubleTextCellItem.swift; path = worktable/DoubleTextCellItem.swift; sourceTree = "<group>"; };
+		2D45EC551B8982A90078567C /* LoremIpsum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoremIpsum.swift; path = worktable/LoremIpsum.swift; sourceTree = "<group>"; };
 		2D46B5201B82F9BD00663A40 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = worktable/AppDelegate.swift; sourceTree = "<group>"; };
 		2D46B5211B82F9BD00663A40 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayExtension.swift; path = worktable/ArrayExtension.swift; sourceTree = "<group>"; };
 		2D46B5221B82F9BD00663A40 /* DemoTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoTable.swift; path = worktable/DemoTable.swift; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 				2D46B5271B82F9BD00663A40 /* WorktableCellItemBase.swift */,
 				2D46B5291B82F9BD00663A40 /* WorktableCellViewBase.swift */,
 				2D46B52A1B82F9BD00663A40 /* WorktableViewController.swift */,
+				2D45EC551B8982A90078567C /* LoremIpsum.swift */,
 			);
 			name = worktable;
 			sourceTree = "<group>";
@@ -242,6 +246,7 @@
 				2D46B5351B82F9BD00663A40 /* WorktableCellItem.swift in Sources */,
 				2D45EC4E1B853F510078567C /* DoubleTextCellView.swift in Sources */,
 				2D46B52F1B82F9BD00663A40 /* DemoTable.swift in Sources */,
+				2D45EC561B8982A90078567C /* LoremIpsum.swift in Sources */,
 				2D46B5331B82F9BD00663A40 /* ViewController.swift in Sources */,
 				2D46B52D1B82F9BD00663A40 /* ArrayExtension.swift in Sources */,
 				2D46B5401B84428000663A40 /* WorktableCellView.swift in Sources */,
@@ -262,6 +267,7 @@
 				2D46B5411B84428000663A40 /* WorktableCellView.swift in Sources */,
 				2D46B52C1B82F9BD00663A40 /* AppDelegate.swift in Sources */,
 				2D46B53E1B82F9BD00663A40 /* WorktableViewController.swift in Sources */,
+				2D45EC571B8982A90078567C /* LoremIpsum.swift in Sources */,
 				2D46B5381B82F9BD00663A40 /* WorktableCellItemBase.swift in Sources */,
 				2D46B53C1B82F9BD00663A40 /* WorktableCellViewBase.swift in Sources */,
 				2DF101151AC231B300CCCB7F /* worktableTests.swift in Sources */,
