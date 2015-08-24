@@ -5,8 +5,35 @@ public class WorktableViewController: UITableViewController {
 
 	private var sections = [[WorktableCellItem]]()
 
+	// TODO support refreshing
 //	public var isRefreshing = false
 //	public var refreshEnabled = false
+
+
+	override init(style: UITableViewStyle) {
+		super.init(style: style)
+		tableInit()
+	}
+
+
+	override init!(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+		tableInit()
+	}
+
+	required public init!(coder: NSCoder!) {
+		super.init(coder: coder)
+		tableInit()
+	}
+
+
+	/**
+	 * Shared initialization of table settings.
+	 */
+	private func tableInit() {
+		tableView.estimatedRowHeight = 44
+		tableView.rowHeight = UITableViewAutomaticDimension
+	}
 
 
 	public func registerViewIdentifiers(cellItem: WorktableCellItem) {

@@ -6,8 +6,6 @@ class DemoTable: WorktableViewController {
 	init () {
 		super.init(style: .Grouped)
 		navigationItem.title = "Demo table"
-		tableView.estimatedRowHeight = 44
-		tableView.rowHeight = UITableViewAutomaticDimension
 	}
 
 
