@@ -4,7 +4,7 @@ import UIKit
 public protocol WorktableCellView {
 
 //	var isSelectable: Bool { get }
-//	var height: Int { get }
+	var cellHeight: CGFloat { get }
 
 	// TODO to be moved to a delegate protocol?
 	func updateWithCellItem(cellItem: WorktableCellItem)

@@ -4,6 +4,9 @@ import UIKit
 class WorktableCellViewBase: UITableViewCell, WorktableCellView {
 
 
+	var cellHeight = UITableViewAutomaticDimension
+
+
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 	}

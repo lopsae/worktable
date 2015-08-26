@@ -3,16 +3,14 @@ import UIKit
 
 class DoubleTextCellView: UITableViewCell, WorktableCellView {
 
+	var cellHeight = UITableViewAutomaticDimension
 
 	@IBOutlet weak var label: UILabel?
 	@IBOutlet weak var button: UIButton?
 
+
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
 
 

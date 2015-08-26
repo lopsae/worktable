@@ -3,37 +3,13 @@ import UIKit
 
 public class WorktableViewController: UITableViewController {
 
+	public static let DEFAULT_ESTIMATED_HEIGHT: CGFloat = 44
+
 	private var sections = [[WorktableCellItem]]()
 
 	// TODO support refreshing
 //	public var isRefreshing = false
 //	public var refreshEnabled = false
-
-
-	override init(style: UITableViewStyle) {
-		super.init(style: style)
-		tableInit()
-	}
-
-
-	override init!(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-		tableInit()
-	}
-
-	required public init!(coder: NSCoder!) {
-		super.init(coder: coder)
-		tableInit()
-	}
-
-
-	/**
-	 * Shared initialization of table settings.
-	 */
-	private func tableInit() {
-		tableView.estimatedRowHeight = 44
-		tableView.rowHeight = UITableViewAutomaticDimension
-	}
 
 
 	public func registerViewIdentifiers(cellItem: WorktableCellItem) {
@@ -92,6 +68,21 @@ public class WorktableViewController: UITableViewController {
 			cellView.updateWithCellItem(cellItem)
 		}
 		return cellView
+	}
+
+
+	override public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		// TODO cellItem could provide the estimated height?
+		return self.dynamicType.DEFAULT_ESTIMATED_HEIGHT
+	}
+
+
+	override public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		var cellView = tableView.cellForRowAtIndexPath(indexPath)
+		if let cellView = cellView as? WorktableCellView {
+			return cellView.cellHeight
+		}
+		return UITableViewAutomaticDimension
 	}
 
 }
