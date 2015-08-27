@@ -3,7 +3,7 @@ import UIKit
 
 class WorktableCellItemBase : WorktableCellItem {
 
-	let REUSE_IDENTIFIER = "worktableCellDemo"
+	let REUSE_IDENTIFIER = "WorktableCellItemBase"
 
 	var viewClass: AnyClass?
 	var viewNib: UINib?

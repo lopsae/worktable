@@ -3,6 +3,8 @@ import UIKit
 
 class DoubleTextCellItem: WorktableCellItem {
 
+	let NIB_NAME = "DoubleTextCellView"
+
 	var viewClass: AnyClass?
 	var viewNib: UINib?
 	var reuseIdentifier: String
@@ -12,8 +14,8 @@ class DoubleTextCellItem: WorktableCellItem {
 
 
 	init(_ labelText: String, buttonText: String) {
-		viewNib = UINib(nibName: "DoubleTextCellView", bundle: nil)
-		reuseIdentifier = "DoubleTextCellView"
+		viewNib = UINib(nibName: NIB_NAME, bundle: nil)
+		reuseIdentifier = NIB_NAME
 
 		self.labelText = labelText
 		self.buttonText = buttonText

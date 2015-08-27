@@ -21,5 +21,5 @@ class DoubleTextCellView: UITableViewCell, WorktableCellView {
 		}
 	}
 
-    
+
 }

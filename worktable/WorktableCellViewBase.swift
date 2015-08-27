@@ -3,7 +3,6 @@ import UIKit
 
 class WorktableCellViewBase: UITableViewCell, WorktableCellView {
 
-
 	var cellHeight = UITableViewAutomaticDimension
 
 
