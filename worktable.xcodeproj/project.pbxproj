@@ -25,8 +25,6 @@
 		2D46B5301B82F9BD00663A40 /* DemoTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5221B82F9BD00663A40 /* DemoTable.swift */; };
 		2D46B5311B82F9BD00663A40 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D46B5231B82F9BD00663A40 /* LaunchScreen.xib */; };
 		2D46B5321B82F9BD00663A40 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D46B5231B82F9BD00663A40 /* LaunchScreen.xib */; };
-		2D46B5331B82F9BD00663A40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5251B82F9BD00663A40 /* ViewController.swift */; };
-		2D46B5341B82F9BD00663A40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5251B82F9BD00663A40 /* ViewController.swift */; };
 		2D46B5351B82F9BD00663A40 /* WorktableCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5261B82F9BD00663A40 /* WorktableCellItem.swift */; };
 		2D46B5361B82F9BD00663A40 /* WorktableCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5261B82F9BD00663A40 /* WorktableCellItem.swift */; };
 		2D46B5371B82F9BD00663A40 /* WorktableCellItemBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5271B82F9BD00663A40 /* WorktableCellItemBase.swift */; };
@@ -61,7 +59,6 @@
 		2D46B5211B82F9BD00663A40 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayExtension.swift; path = worktable/ArrayExtension.swift; sourceTree = "<group>"; };
 		2D46B5221B82F9BD00663A40 /* DemoTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoTable.swift; path = worktable/DemoTable.swift; sourceTree = "<group>"; };
 		2D46B5231B82F9BD00663A40 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = worktable/LaunchScreen.xib; sourceTree = "<group>"; };
-		2D46B5251B82F9BD00663A40 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = worktable/ViewController.swift; sourceTree = "<group>"; };
 		2D46B5261B82F9BD00663A40 /* WorktableCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorktableCellItem.swift; path = worktable/WorktableCellItem.swift; sourceTree = "<group>"; };
 		2D46B5271B82F9BD00663A40 /* WorktableCellItemBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorktableCellItemBase.swift; path = worktable/WorktableCellItemBase.swift; sourceTree = "<group>"; };
 		2D46B5291B82F9BD00663A40 /* WorktableCellViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorktableCellViewBase.swift; path = worktable/WorktableCellViewBase.swift; sourceTree = "<group>"; };
@@ -93,22 +90,61 @@
 		2D46B51F1B82F90200663A40 /* worktable */ = {
 			isa = PBXGroup;
 			children = (
-				2D46B5201B82F9BD00663A40 /* AppDelegate.swift */,
-				2D46B5211B82F9BD00663A40 /* ArrayExtension.swift */,
-				2D46B5221B82F9BD00663A40 /* DemoTable.swift */,
-				2D46B5231B82F9BD00663A40 /* LaunchScreen.xib */,
-				2D46B5251B82F9BD00663A40 /* ViewController.swift */,
-				2D46B5261B82F9BD00663A40 /* WorktableCellItem.swift */,
-				2D46B53F1B84428000663A40 /* WorktableCellView.swift */,
-				2D45EC521B8546260078567C /* DoubleTextCellItem.swift */,
-				2D45EC4C1B853F510078567C /* DoubleTextCellView.swift */,
-				2D45EC4D1B853F510078567C /* DoubleTextCellView.xib */,
-				2D46B5271B82F9BD00663A40 /* WorktableCellItemBase.swift */,
-				2D46B5291B82F9BD00663A40 /* WorktableCellViewBase.swift */,
-				2D46B52A1B82F9BD00663A40 /* WorktableViewController.swift */,
-				2D45EC551B8982A90078567C /* LoremIpsum.swift */,
+				2DE0CC4B1B8E92DA00BE16E5 /* main */,
+				2DE0CC4C1B8E930F00BE16E5 /* views */,
+				2DE0CC4D1B8E932F00BE16E5 /* cellItems */,
+				2DE0CC4E1B8E933600BE16E5 /* cellViews */,
+				2DE0CC4A1B8E92C300BE16E5 /* utils */,
 			);
 			name = worktable;
+			sourceTree = "<group>";
+		};
+		2DE0CC4A1B8E92C300BE16E5 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				2D46B5211B82F9BD00663A40 /* ArrayExtension.swift */,
+				2D45EC551B8982A90078567C /* LoremIpsum.swift */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
+		2DE0CC4B1B8E92DA00BE16E5 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				2D46B5201B82F9BD00663A40 /* AppDelegate.swift */,
+				2D46B5231B82F9BD00663A40 /* LaunchScreen.xib */,
+			);
+			name = main;
+			sourceTree = "<group>";
+		};
+		2DE0CC4C1B8E930F00BE16E5 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				2D46B5221B82F9BD00663A40 /* DemoTable.swift */,
+				2D46B52A1B82F9BD00663A40 /* WorktableViewController.swift */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		2DE0CC4D1B8E932F00BE16E5 /* cellItems */ = {
+			isa = PBXGroup;
+			children = (
+				2D46B5261B82F9BD00663A40 /* WorktableCellItem.swift */,
+				2D45EC521B8546260078567C /* DoubleTextCellItem.swift */,
+				2D46B5271B82F9BD00663A40 /* WorktableCellItemBase.swift */,
+			);
+			name = cellItems;
+			sourceTree = "<group>";
+		};
+		2DE0CC4E1B8E933600BE16E5 /* cellViews */ = {
+			isa = PBXGroup;
+			children = (
+				2D46B53F1B84428000663A40 /* WorktableCellView.swift */,
+				2D45EC4C1B853F510078567C /* DoubleTextCellView.swift */,
+				2D45EC4D1B853F510078567C /* DoubleTextCellView.xib */,
+				2D46B5291B82F9BD00663A40 /* WorktableCellViewBase.swift */,
+			);
+			name = cellViews;
 			sourceTree = "<group>";
 		};
 		2DF100F01AC231B300CCCB7F = {
@@ -247,7 +283,6 @@
 				2D45EC4E1B853F510078567C /* DoubleTextCellView.swift in Sources */,
 				2D46B52F1B82F9BD00663A40 /* DemoTable.swift in Sources */,
 				2D45EC561B8982A90078567C /* LoremIpsum.swift in Sources */,
-				2D46B5331B82F9BD00663A40 /* ViewController.swift in Sources */,
 				2D46B52D1B82F9BD00663A40 /* ArrayExtension.swift in Sources */,
 				2D46B5401B84428000663A40 /* WorktableCellView.swift in Sources */,
 				2D46B5371B82F9BD00663A40 /* WorktableCellItemBase.swift in Sources */,
@@ -261,7 +296,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D46B5341B82F9BD00663A40 /* ViewController.swift in Sources */,
 				2D46B52E1B82F9BD00663A40 /* ArrayExtension.swift in Sources */,
 				2D45EC541B8546260078567C /* DoubleTextCellItem.swift in Sources */,
 				2D46B5411B84428000663A40 /* WorktableCellView.swift in Sources */,
