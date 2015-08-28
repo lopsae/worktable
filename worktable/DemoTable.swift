@@ -29,7 +29,6 @@ class DemoTable: WorktableViewController {
 		pushCellItem(VariableHeightCellItem(80))
 
 		addNewSection()
-
 		pushCellItem(WorktableCellItemBase("cell 2"))
 		pushCellItem(DoubleTextCellItem(LoremIpsum.string(12), buttonText: "button two"))
 		pushCellItem(WorktableCellItemBase("cell 3"))

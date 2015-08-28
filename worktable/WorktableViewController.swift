@@ -85,5 +85,24 @@ public class WorktableViewController: UITableViewController {
 		return UITableViewAutomaticDimension
 	}
 
+
+	override public func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+
+		// TODO: only do if we detect that cells need resizing?
+
+		// begin-endUpdates animates the cell height change, possible all of them
+		// what happens if cells become visible or out of view?
+		tableView.beginUpdates()
+		tableView.endUpdates()
+
+		// reload data corrects heights changes, but requests all cellsViews
+		// again and does not have animation
+//		tableView.reloadData()
+
+		// reloadRows animates size change and slides a new cell with an animation
+//		tableView.reloadRowsAtIndexPaths([temporaryIndexPath!], withRowAnimation: .Right)
+	}
+
 }
 
