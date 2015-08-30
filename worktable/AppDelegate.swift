@@ -6,6 +6,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+	var navController: UINavigationController!
+	var demoTable: DemoTable!
+
 
     func application(application: UIApplication,
         didFinishLaunchingWithOptions
@@ -13,20 +16,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds);
         window!.tintColor = UIColor.redColor()
-        
+
+		let tableButton = UIBarButtonItem(
+			title: "demo",
+			style: .Plain,
+			target: self,
+			action: "pushDemo"
+		)
+
         let viewController = UIViewController()
-        viewController.navigationItem.title = "Title"
+        viewController.navigationItem.title = "worktable"
+		viewController.navigationItem.rightBarButtonItem = tableButton
         
-        let demoTable = DemoTable()
+        demoTable = DemoTable()
+		navController = UINavigationController()
+		
+//        navControler.viewControllers = [viewController, demoTable!]
+		navController.viewControllers = [viewController]
         
-        let navControler = UINavigationController()
-        navControler.viewControllers = [viewController, demoTable]
-        
-        window!.rootViewController = navControler;
+        window!.rootViewController = navController;
         window!.makeKeyAndVisible()
         
         return true
     }
+
+
+	func pushDemo() {
+		navController.pushViewController(demoTable, animated: true)
+	}
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
