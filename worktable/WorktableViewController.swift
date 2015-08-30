@@ -93,12 +93,15 @@ public class WorktableViewController: UITableViewController {
 
 		// begin-endUpdates animates the cell height change, possible all of them
 		// what happens if cells become visible or out of view?
-		tableView.beginUpdates()
-		tableView.endUpdates()
+//		tableView.beginUpdates()
+//		tableView.endUpdates()
 
 		// reload data corrects heights changes, but requests all cellsViews
 		// again and does not have animation
-//		tableView.reloadData()
+		// all cellViews are recreated, but size is checked until after
+		// layoutSubviews is called! So in this specific case cell have the
+		// chance to adjust their layout and size and the table grabs it properly
+		tableView.reloadData()
 
 		// reloadRows animates size change and slides a new cell with an animation
 //		tableView.reloadRowsAtIndexPaths([temporaryIndexPath!], withRowAnimation: .Right)
