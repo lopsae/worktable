@@ -43,23 +43,31 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	public func cellItemAtIndexPath(indexPath: NSIndexPath) -> WorktableCellItem {
+	public func cellItemAtIndexPath(indexPath: NSIndexPath)
+	-> WorktableCellItem {
 		let section = sections[indexPath.section]
 		return section[indexPath.row]
 	}
 
 
-	override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	override public func numberOfSectionsInTableView(tableView: UITableView)
+	-> Int {
 		return sections.count
 	}
 
 
-	override public func tableView(tableView: UITableView, numberOfRowsInSection sectionIndex: Int) -> Int {
+	override public func tableView(
+		tableView: UITableView,
+		numberOfRowsInSection sectionIndex: Int
+	) -> Int {
 		return sections[sectionIndex].count
 	}
 
 
-	override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	override public func tableView(
+		tableView: UITableView,
+		cellForRowAtIndexPath indexPath: NSIndexPath
+	) -> UITableViewCell {
 		let cellItem = cellItemAtIndexPath(indexPath)
 		let cellView = tableView.dequeueReusableCellWithIdentifier(cellItem.reuseIdentifier)
 			as! UITableViewCell
@@ -71,18 +79,37 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	override public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	override public func tableView(
+		tableView: UITableView,
+		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
+	) -> CGFloat {
 		// TODO cellItem could provide the estimated height?
 		return self.dynamicType.DEFAULT_ESTIMATED_HEIGHT
 	}
 
 
-	override public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	override public func tableView(
+		tableView: UITableView,
+		heightForRowAtIndexPath indexPath: NSIndexPath
+	) -> CGFloat {
 		var cellView = tableView.cellForRowAtIndexPath(indexPath)
 		if let cellView = cellView as? WorktableCellView {
 			return cellView.cellHeight
 		}
 		return UITableViewAutomaticDimension
+	}
+
+
+	override public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+		// When a table is redisplayed the cell are not requested again. Right
+		// now they are because a reloadData is being issued
+
+		// seems like this method is called before the height is checked, but
+		// after the frame with the right width is set
+		// thus it might be usable for doing layout for coded-layout cells so
+		// that these are ready upon first display
+
+		// TODO: this method should triger layoutSubviews for code cellViews!
 	}
 
 
@@ -105,6 +132,21 @@ public class WorktableViewController: UITableViewController {
 
 		// reloadRows animates size change and slides a new cell with an animation
 //		tableView.reloadRowsAtIndexPaths([temporaryIndexPath!], withRowAnimation: .Right)
+	}
+
+
+	// For debugging
+
+	// happens before any requests for cell views
+	// this is why it is usualy used to populate cellItems
+	override public func viewDidLoad() {
+		super.viewDidLoad()
+	}
+
+
+	// also happens before any cellViews are requested
+	override public func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
 	}
 
 }
