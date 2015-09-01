@@ -83,9 +83,12 @@ public class WorktableViewController: UITableViewController {
 		tableView: UITableView,
 		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
-		return 75
-		let cellItem = cellItemAtIndexPath(indexPath)
-		return cellItem.aproximateHeight
+		// IF anything other that 44 is returned here then the cellView cannot
+		// be found in tableView.cellForRowAtIndexPath and thus heightForRow cannot be retrieved...
+		// what the hell?
+		return 44
+//		let cellItem = cellItemAtIndexPath(indexPath)
+//		return cellItem.aproximateHeight
 	}
 
 
