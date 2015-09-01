@@ -9,6 +9,8 @@ class WorktableCellItemBase : WorktableCellItem {
 	var viewNib: UINib?
 	var reuseIdentifier: String
 
+	let aproximateHeight = WorktableViewController.DEFAULT_ESTIMATED_HEIGHT
+
 	var text: String
 
 

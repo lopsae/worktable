@@ -31,9 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         demoTable = DemoTable()
 		navController = UINavigationController()
 		
-//        navControler.viewControllers = [viewController, demoTable!]
-		navController.viewControllers = [viewController]
-        
+        navController.viewControllers = [viewController, demoTable!]
+//		navController.viewControllers = [viewController]
+
         window!.rootViewController = navController;
         window!.makeKeyAndVisible()
         

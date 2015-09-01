@@ -83,8 +83,9 @@ public class WorktableViewController: UITableViewController {
 		tableView: UITableView,
 		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
-		// TODO cellItem could provide the estimated height?
-		return self.dynamicType.DEFAULT_ESTIMATED_HEIGHT
+		return 75
+		let cellItem = cellItemAtIndexPath(indexPath)
+		return cellItem.aproximateHeight
 	}
 
 
