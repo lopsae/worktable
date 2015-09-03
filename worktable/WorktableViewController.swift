@@ -79,6 +79,15 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
+	// TODO attack for extimate height and height
+	// estimated height always comes from cellItem
+	// first on first height request tableView.cellForRow returns null
+	//     TODO have to check if this is true when changing cells
+	// in this case, we return again the estimated height
+	// when estimated and actual height are the same, the cell is added to tableView
+	// height is requested again, tableView.cellForRow now returns the cell
+	//     TODO check if cellWillBecome visible is called before the second height request
+	// with the cell the corrected height can be provided with a cell with updated layout
 	override public func tableView(
 		tableView: UITableView,
 		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
