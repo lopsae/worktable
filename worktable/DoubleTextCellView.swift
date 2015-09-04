@@ -22,4 +22,7 @@ class DoubleTextCellView: UITableViewCell, WorktableCellView {
 	}
 
 
+	func willDisplayWithTable(tableView: UITableView) {}
+
+
 }

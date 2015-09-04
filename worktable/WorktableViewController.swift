@@ -85,19 +85,22 @@ public class WorktableViewController: UITableViewController {
 	//     TODO have to check if this is true when changing cells
 	// in this case, we return again the estimated height
 	// when estimated and actual height are the same, the cell is added to tableView
-	// height is requested again, tableView.cellForRow now returns the cell
 	//     TODO check if cellWillBecome visible is called before the second height request
+	//     It is called properly, after cellWillBecomeVisible cell is added to table.cellForRow
+	// height is requested again, tableView.cellForRow now returns the cell
 	// with the cell the corrected height can be provided with a cell with updated layout
+
+	/**
+	* Estimated height is called before any cell is created.
+	*
+	* ...
+	*/
 	override public func tableView(
 		tableView: UITableView,
 		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
-		// IF anything other that 44 is returned here then the cellView cannot
-		// be found in tableView.cellForRowAtIndexPath and thus heightForRow cannot be retrieved...
-		// what the hell?
-		return 44
-//		let cellItem = cellItemAtIndexPath(indexPath)
-//		return cellItem.aproximateHeight
+		let cellItem = cellItemAtIndexPath(indexPath)
+		return cellItem.aproximateHeight
 	}
 
 
@@ -109,11 +112,16 @@ public class WorktableViewController: UITableViewController {
 		if let cellView = cellView as? WorktableCellView {
 			return cellView.cellHeight
 		}
-		return UITableViewAutomaticDimension
+
+		return self.tableView(tableView, estimatedHeightForRowAtIndexPath: indexPath);
 	}
 
 
-	override public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+	override public func tableView(
+		tableView: UITableView,
+		willDisplayCell cellView: UITableViewCell,
+		forRowAtIndexPath indexPath: NSIndexPath
+	) {
 		// When a table is redisplayed the cell are not requested again. Right
 		// now they are because a reloadData is being issued
 
@@ -121,8 +129,10 @@ public class WorktableViewController: UITableViewController {
 		// after the frame with the right width is set
 		// thus it might be usable for doing layout for coded-layout cells so
 		// that these are ready upon first display
-
-		// TODO: this method should triger layoutSubviews for code cellViews!
+		
+		if let cellView = cellView as? WorktableCellView {
+			return cellView.willDisplayWithTable(tableView)
+		}
 	}
 
 
@@ -141,7 +151,7 @@ public class WorktableViewController: UITableViewController {
 		// all cellViews are recreated, but size is checked until after
 		// layoutSubviews is called! So in this specific case cell have the
 		// chance to adjust their layout and size and the table grabs it properly
-		tableView.reloadData()
+//		tableView.reloadData()
 
 		// reloadRows animates size change and slides a new cell with an animation
 //		tableView.reloadRowsAtIndexPaths([temporaryIndexPath!], withRowAnimation: .Right)

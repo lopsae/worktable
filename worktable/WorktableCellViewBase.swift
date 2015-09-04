@@ -22,5 +22,8 @@ class WorktableCellViewBase: UITableViewCell, WorktableCellView {
 		}
 	}
 
+
+	func willDisplayWithTable(tableView: UITableView) {}
+
 }
 

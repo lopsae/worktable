@@ -34,6 +34,11 @@ class VariableHeightCellView: UITableViewCell, WorktableCellView {
 	}
 
 
+	func willDisplayWithTable(tableView: UITableView) {
+		layoutIfNeeded()
+	}
+
+
 	/**
 	* Upon initialization the cell frame will be set to either its default size
 	* or the size provided by the nib file.
