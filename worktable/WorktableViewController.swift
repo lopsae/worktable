@@ -77,24 +77,19 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	// TODO attack for extimate height and height
-	// estimated height always comes from cellItem
-	// first on first height request tableView.cellForRow returns null
-	//     TODO have to check if this is true when changing cells
-	// in this case, we return again the estimated height
-	// when estimated and actual height are the same, the cell is added to tableView
-	//     TODO check if cellWillBecome visible is called before the second height request
-	//     It is called properly, after cellWillBecomeVisible cell is added to table.cellForRow
-	// height is requested again, tableView.cellForRow now returns the cell
-	// with the cell the corrected height can be provided with a cell with updated layout
-
 	/**
-	* Estimated height is called before any cell is created. 
+	* Returns the estimated height of a cell before its cellView is created.
+	* This value is used to estimate the available scroll area without having to
+	* create cellViews that are not visible yet.
 	*
-	* ...
+	* The estimated size of any cell is always provided by it corresponding
+	* cellItem. UITableViewAutomaticDimension can be used to allow the default
+	* size of cellViews or to use autolayout.
+	*
+	* This method must exist, otherwise calling tableView::cellForRowAtIndexPath
+	* from within heightForRowAtIndexPath causes an infinite loop.
 	*/
-	override public func tableView(
-		tableView: UITableView,
+	override public func tableView(_: UITableView,
 		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
 		let cellItem = cellItemAtIndexPath(indexPath)
@@ -102,32 +97,56 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	override public func tableView(
-		tableView: UITableView,
+	/**
+	* Returns the height of a given cell.
+	*
+	* This method is called during creation of each of the cellViews, at that
+	* point the cellView is not available through the tableView object and the
+	* estimatedHeight value of the cellItem is used.
+	*
+	* When the estimatedHeight and height are the same during the cellView
+	* creation the height wil be requested again before the cellView is finally
+	* displayed.
+	*
+	* The willDisplayCell delegate method is used to allow cellViews to update
+	* their layouts. Afterwards the height is requested again and the height
+	* returned by the cellView object is used. This allows cellViews to update
+	* their height during creation without the need to call reloadData in the
+	* tableView object.
+	*/
+	override public func tableView(_: UITableView,
 		heightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
+		// TODO when deleting or inserting new cells, what does cellForRow returns?
+		// cell state before the change? after the change?
 		var cellView = tableView.cellForRowAtIndexPath(indexPath)
 		if let cellView = cellView as? WorktableCellView {
 			return cellView.cellHeight
 		}
-
-		return self.tableView(tableView, estimatedHeightForRowAtIndexPath: indexPath);
+		return self.tableView(tableView,
+			estimatedHeightForRowAtIndexPath: indexPath
+		)
 	}
 
 
-	override public func tableView(
-		tableView: UITableView,
+	/**
+	* Method called as each cellView is about to be displayed.
+	* 
+	* At this point the table has already requested the height of the cellView
+	* and the frame has been set to the correct size using the requested height.
+	*
+	* cellView::willDisplayWithTable is called to allow cellViews that manage
+	* their own layout through to adjust their subviews and update their height,
+	* or to do any other last chance update before display.
+	*
+	* After this method is called the cellView is availble to request through
+	* the tableView object. The height of the cell is requested again allowing
+	* to use the correct height returned by the cellView.
+	*/
+	override public func tableView(_: UITableView,
 		willDisplayCell cellView: UITableViewCell,
 		forRowAtIndexPath indexPath: NSIndexPath
 	) {
-		// When a table is redisplayed the cell are not requested again. Right
-		// now they are because a reloadData is being issued
-
-		// seems like this method is called before the height is checked, but
-		// after the frame with the right width is set
-		// thus it might be usable for doing layout for coded-layout cells so
-		// that these are ready upon first display
-		
 		if let cellView = cellView as? WorktableCellView {
 			return cellView.willDisplayWithTable(tableView)
 		}
