@@ -9,7 +9,7 @@ class DoubleTextCellItem: WorktableCellItem {
 	var viewNib: UINib?
 	var reuseIdentifier: String
 
-	let aproximateHeight: CGFloat = 75 // Based on the nib initial height
+	let estimatedHeight: CGFloat = 75 // Based on the nib initial height
 
 	var labelText: String
 	var buttonText: String

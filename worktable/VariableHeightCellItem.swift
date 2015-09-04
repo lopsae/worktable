@@ -9,7 +9,7 @@ class VariableHeightCellItem: WorktableCellItem {
 	var viewNib: UINib?
 	var reuseIdentifier: String
 
-	var aproximateHeight: CGFloat
+	var estimatedHeight: CGFloat
 	var height: CGFloat
 
 
@@ -17,7 +17,7 @@ class VariableHeightCellItem: WorktableCellItem {
 		viewClass = VariableHeightCellView.self
 		reuseIdentifier = REUSE_IDENTIFIER
 
-		aproximateHeight = initialHeight
+		estimatedHeight = initialHeight
 		height = initialHeight
 	}
 

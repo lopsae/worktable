@@ -3,8 +3,6 @@ import UIKit
 
 public class WorktableViewController: UITableViewController {
 
-	public static let DEFAULT_ESTIMATED_HEIGHT: CGFloat = 44
-
 	private var sections = [[WorktableCellItem]]()
 
 	// TODO support refreshing
@@ -91,7 +89,7 @@ public class WorktableViewController: UITableViewController {
 	// with the cell the corrected height can be provided with a cell with updated layout
 
 	/**
-	* Estimated height is called before any cell is created.
+	* Estimated height is called before any cell is created. 
 	*
 	* ...
 	*/
@@ -100,7 +98,7 @@ public class WorktableViewController: UITableViewController {
 		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
 		let cellItem = cellItemAtIndexPath(indexPath)
-		return cellItem.aproximateHeight
+		return cellItem.estimatedHeight
 	}
 
 
