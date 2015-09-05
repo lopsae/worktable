@@ -10,18 +10,45 @@ public class WorktableViewController: UITableViewController {
 //	public var refreshEnabled = false
 
 
-	public func registerViewIdentifiers(cellItem: WorktableCellItem) {
-		if cellItem.viewNib != nil {
-			tableView.registerNib(cellItem.viewNib!,
-				forCellReuseIdentifier: cellItem.reuseIdentifier)
+	public func registerCellItemForReuse(cellItem: WorktableCellItem) {
+		if let nibName = cellItem.viewSource as? String {
+			// TODO string could have special format to allow bundle
+			// say, separate with # or character not allowed in nib/bundle names
+			let nib = UINib(nibName: nibName, bundle: nil);
+			let reuseId = reuseIdentifierForCellItem(cellItem)
+			tableView.registerNib(nib, forCellReuseIdentifier: reuseId!)
 			return
 		}
 
-		if cellItem.viewClass != nil {
-			tableView.registerClass(cellItem.viewClass!,
-				forCellReuseIdentifier: cellItem.reuseIdentifier)
+		if let cellViewClass = cellItem.viewSource as? UITableViewCell.Type {
+			let reuseId = reuseIdentifierForCellItem(cellItem)
+			tableView.registerClass(cellViewClass,
+				forCellReuseIdentifier: reuseId!
+			)
 			return
 		}
+
+		debugPrintln(cellItem.viewSource)
+		debugPrintln(cellItem.viewSource is AnyClass)
+		debugPrintln(cellItem.viewSource is UITableViewCell.Type)
+
+		assertionFailure("Unexpected type of viewSource to register for reuse")
+	}
+
+
+	internal func reuseIdentifierForCellItem(
+		cellItem: WorktableCellItem
+	) -> String? {
+		if let nibName = cellItem.viewSource as? String {
+			return nibName
+		}
+
+		if let cellViewClass = cellItem.viewSource as? UITableViewCell.Type {
+			return NSStringFromClass(cellViewClass)
+		}
+
+		assertionFailure("Unexpected type of viewSource")
+		return nil
 	}
 
 
@@ -37,7 +64,7 @@ public class WorktableViewController: UITableViewController {
 		var lastSection = sections.tail!
 		lastSection.append(cellItem)
 		sections.tail = lastSection
-		registerViewIdentifiers(cellItem)
+		registerCellItemForReuse(cellItem)
 	}
 
 
@@ -67,7 +94,8 @@ public class WorktableViewController: UITableViewController {
 		cellForRowAtIndexPath indexPath: NSIndexPath
 	) -> UITableViewCell {
 		let cellItem = cellItemAtIndexPath(indexPath)
-		let cellView = tableView.dequeueReusableCellWithIdentifier(cellItem.reuseIdentifier)
+		let reuseId = reuseIdentifierForCellItem(cellItem)
+		let cellView = tableView.dequeueReusableCellWithIdentifier(reuseId!)
 			as! UITableViewCell
 
 		if let cellView = cellView as? WorktableCellView {

@@ -1,26 +1,23 @@
 import UIKit
 
 
-class DoubleTextCellItem: WorktableCellItem {
+class DoubleTextCellItem: BaseCellItem {
 
 	let NIB_NAME = "DoubleTextCellView"
-
-	var viewClass: AnyClass?
-	var viewNib: UINib?
-	var reuseIdentifier: String
-
-	let estimatedHeight: CGFloat = 75 // Based on the nib initial height
+	let ESTIMATED_HEIGHT: CGFloat = 75
 
 	var labelText: String
 	var buttonText: String
 
 
 	init(_ labelText: String, buttonText: String) {
-		viewNib = UINib(nibName: NIB_NAME, bundle: nil)
-		reuseIdentifier = NIB_NAME
-
 		self.labelText = labelText
 		self.buttonText = buttonText
+		super.init(viewSource: NIB_NAME, estimatedHeight: ESTIMATED_HEIGHT)
+
+		// Also works with shorter init, but if the expanded cell is too big the
+		// scrolling bar jumps around as cells are created
+//		super.init(viewSource: NIB_NAME)
 	}
 
 }

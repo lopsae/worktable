@@ -4,7 +4,7 @@ import UIKit
 class VariableHeightCellView: UITableViewCell, WorktableCellView {
 
 	var cellHeight = UITableViewAutomaticDimension
-	var definedHeight: CGFloat = -1
+	var initialHeight = UITableViewAutomaticDimension
 
 	var dummyView: DummyView
 
@@ -27,8 +27,8 @@ class VariableHeightCellView: UITableViewCell, WorktableCellView {
 
 	func updateWithCellItem(cellItem: WorktableCellItem) {
 		if let cellItem = cellItem as? VariableHeightCellItem {
-			definedHeight = cellItem.height
-			cellHeight = cellItem.height
+			initialHeight = cellItem.initialHeight
+			cellHeight = cellItem.initialHeight
 			setNeedsLayout()
 		}
 	}
@@ -57,7 +57,7 @@ class VariableHeightCellView: UITableViewCell, WorktableCellView {
 	*/
 	override func layoutSubviews() {
 		var newBounds = bounds
-		newBounds.size.height = definedHeight * 2
+		newBounds.size.height = initialHeight * 2
 		bounds = newBounds
 
 		cellHeight = bounds.height

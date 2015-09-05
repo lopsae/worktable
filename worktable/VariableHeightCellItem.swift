@@ -1,24 +1,16 @@
 import UIKit
 
 
-class VariableHeightCellItem: WorktableCellItem {
+class VariableHeightCellItem: BaseCellItem {
 
-	let REUSE_IDENTIFIER = "VariableHeightCellItem"
+	let VIEW_CLASS = VariableHeightCellView.self
 
-	var viewClass: AnyClass?
-	var viewNib: UINib?
-	var reuseIdentifier: String
-
-	var estimatedHeight: CGFloat
-	var height: CGFloat
+	var initialHeight: CGFloat
 
 
-	init(_ initialHeight: CGFloat) {
-		viewClass = VariableHeightCellView.self
-		reuseIdentifier = REUSE_IDENTIFIER
-
-		estimatedHeight = initialHeight
-		height = initialHeight
+	init(initialHeight: CGFloat) {
+		self.initialHeight = initialHeight
+		super.init(viewSource: VIEW_CLASS, estimatedHeight: initialHeight)
 	}
 
 }
