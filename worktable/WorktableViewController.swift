@@ -28,10 +28,6 @@ public class WorktableViewController: UITableViewController {
 			return
 		}
 
-		debugPrintln(cellItem.viewSource)
-		debugPrintln(cellItem.viewSource is AnyClass)
-		debugPrintln(cellItem.viewSource is UITableViewCell.Type)
-
 		assertionFailure("Unexpected type of viewSource to register for reuse")
 	}
 
@@ -43,8 +39,8 @@ public class WorktableViewController: UITableViewController {
 			return nibName
 		}
 
-		if let cellViewClass = cellItem.viewSource as? UITableViewCell.Type {
-			return NSStringFromClass(cellViewClass)
+		if cellItem.viewSource is UITableViewCell.Type {
+			return toString(cellItem.viewSource)
 		}
 
 		assertionFailure("Unexpected type of viewSource")
