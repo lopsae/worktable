@@ -5,14 +5,14 @@ public class WorktableViewController: UITableViewController {
 
 	private var sections = [[WorktableCellItem]]()
 
-	// TODO support refreshing
+	// TODO: support refreshing
 //	public var isRefreshing = false
 //	public var refreshEnabled = false
 
 
 	public func registerCellItemForReuse(cellItem: WorktableCellItem) {
 		if let nibName = cellItem.cellViewSource as? String {
-			// TODO string could have special format to allow bundle
+			// TODO: string could have special format to allow bundle
 			// say, separate with # or character not allowed in nib/bundle names
 			let nib = UINib(nibName: nibName, bundle: nil);
 			let reuseId = reuseIdentifierForCellItem(cellItem)
@@ -141,7 +141,7 @@ public class WorktableViewController: UITableViewController {
 	override public func tableView(_: UITableView,
 		heightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
-		// TODO when deleting or inserting new cells, what does cellForRow returns?
+		// TODO: when deleting or inserting new cells, what does cellForRow returns?
 		// cell state before the change? after the change?
 		var cellView = tableView.cellForRowAtIndexPath(indexPath)
 		if let cellView = cellView as? WorktableCellView {
