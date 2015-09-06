@@ -102,16 +102,17 @@ public class WorktableViewController: UITableViewController {
 
 
 	/**
-	* Returns the estimated height of a cell before its cellView is created.
-	* This value is used to estimate the available scroll area without having to
-	* create cellViews that are not visible yet.
-	*
-	* The estimated size of any cell is always provided by it corresponding
-	* cellItem. UITableViewAutomaticDimension can be used to allow the default
-	* size of cellViews or to use autolayout.
-	*
-	* This method must exist, otherwise calling tableView::cellForRowAtIndexPath
-	* from within heightForRowAtIndexPath causes an infinite loop.
+	Returns the estimated height of a cell before its cellView is created.
+	
+	This value is used to estimate the available scroll area without having to
+	create cellViews that are not visible yet.
+
+	The estimated size of any cell is always provided by it corresponding
+	cellItem. UITableViewAutomaticDimension can be used to allow the default
+	size of cellViews or to use autolayout.
+
+	This method must exist, otherwise calling tableView::cellForRowAtIndexPath
+	from within heightForRowAtIndexPath causes an infinite loop.
 	*/
 	override public func tableView(_: UITableView,
 		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
@@ -122,21 +123,21 @@ public class WorktableViewController: UITableViewController {
 
 
 	/**
-	* Returns the height of a given cell.
-	*
-	* This method is called during creation of each of the cellViews, at that
-	* point the cellView is not available through the tableView object and the
-	* estimatedHeight value of the cellItem is used.
-	*
-	* When the estimatedHeight and height are the same during the cellView
-	* creation the height wil be requested again before the cellView is finally
-	* displayed.
-	*
-	* The willDisplayCell delegate method is used to allow cellViews to update
-	* their layouts. Afterwards the height is requested again and the height
-	* returned by the cellView object is used. This allows cellViews to update
-	* their height during creation without the need to call reloadData in the
-	* tableView object.
+	Returns the height of a given cell.
+
+	This method is called during creation of each of the cellViews, at that
+	point the cellView is not available through the tableView object and the
+	estimatedHeight value of the cellItem is used.
+
+	When the estimatedHeight and height are the same during the cellView
+	creation the height wil be requested again before the cellView is finally
+	displayed.
+
+	The willDisplayCell delegate method is used to allow cellViews to update
+	their layouts. Afterwards the height is requested again and the height
+	returned by the cellView object is used. This allows cellViews to update
+	their height during creation without the need to call reloadData in the
+	tableView object.
 	*/
 	override public func tableView(_: UITableView,
 		heightForRowAtIndexPath indexPath: NSIndexPath
@@ -154,18 +155,18 @@ public class WorktableViewController: UITableViewController {
 
 
 	/**
-	* Method called as each cellView is about to be displayed.
-	* 
-	* At this point the table has already requested the height of the cellView
-	* and the frame has been set to the correct size using the requested height.
-	*
-	* cellView::willDisplayWithTable is called to allow cellViews that manage
-	* their own layout through to adjust their subviews and update their height,
-	* or to do any other last chance update before display.
-	*
-	* After this method is called the cellView is availble to request through
-	* the tableView object. The height of the cell is requested again allowing
-	* to use the correct height returned by the cellView.
+	Method called as each cellView is about to be displayed.
+
+	At this point the table has already requested the height of the cellView
+	and the frame has been set to the correct size using the requested height.
+
+	cellView::willDisplayWithTable is called to allow cellViews that manage
+	their own layout through to adjust their subviews and update their height,
+	or to do any other last chance update before display.
+
+	After this method is called the cellView is availble to request through the
+	tableView object. The height of the cell is requested again allowing to use
+	the correct height returned by the cellView.
 	*/
 	override public func tableView(_: UITableView,
 		willDisplayCell cellView: UITableViewCell,
