@@ -6,7 +6,7 @@ public protocol WorktableCellItem {
 	/**
 	* Class or nibName of the cellView for this cellItem. This object is used
 	* by the WorktableViewController to register the class or nib that will be
-	* used to create cellViews for cellItems of this class.
+	* used to create cellViews for the instance.
 	*
 	* If viewSource is a String object it will be interpreted as the name of the
 	* nib to use in the default bundle.
@@ -21,11 +21,15 @@ public protocol WorktableCellItem {
 
 	/**
 	* Estimated height of the cellView that will be created for this cellItem.
-	* While this value can be calculated it is important that the same value is
-	* returned consistently. This value is used for both the estimated height
-	* and the actual height while the cellView is being created. If different
-	* values are provided the table may not adjust properly to any further
-	* height changes that happen on the cellView.
+	*
+	* It is important that the value returned is the same through the lifetime
+	* of the cellItem in a table. That is, while a cellItem is contained by a
+	* table its estimated height should not change.
+	*
+	* This value is used for both the estimated height and the actual height
+	* while the cellView is created. If different values are provided between
+	* calls the table may not adjust properly to changes in the height provided
+	* by the cellView.
 	*/
 	var estimatedHeight: CGFloat { get }
     

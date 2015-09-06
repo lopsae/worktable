@@ -106,12 +106,23 @@
 			isa = PBXGroup;
 			children = (
 				2DE0CC4B1B8E92DA00BE16E5 /* main */,
+				2DD7B5371B9C0EF100678ABF /* table */,
 				2DE0CC4C1B8E930F00BE16E5 /* views */,
 				2DE0CC4D1B8E932F00BE16E5 /* cellItems */,
 				2DE0CC4E1B8E933600BE16E5 /* cellViews */,
 				2DE0CC4A1B8E92C300BE16E5 /* utils */,
 			);
 			name = worktable;
+			sourceTree = "<group>";
+		};
+		2DD7B5371B9C0EF100678ABF /* table */ = {
+			isa = PBXGroup;
+			children = (
+				2D46B52A1B82F9BD00663A40 /* WorktableViewController.swift */,
+				2D46B5261B82F9BD00663A40 /* WorktableCellItem.swift */,
+				2D46B53F1B84428000663A40 /* WorktableCellView.swift */,
+			);
+			name = table;
 			sourceTree = "<group>";
 		};
 		2DE0CC4A1B8E92C300BE16E5 /* utils */ = {
@@ -138,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				2D46B5221B82F9BD00663A40 /* DemoTable.swift */,
-				2D46B52A1B82F9BD00663A40 /* WorktableViewController.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -146,7 +156,6 @@
 		2DE0CC4D1B8E932F00BE16E5 /* cellItems */ = {
 			isa = PBXGroup;
 			children = (
-				2D46B5261B82F9BD00663A40 /* WorktableCellItem.swift */,
 				2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */,
 				2DE0CC4F1B8EA79F00BE16E5 /* VariableHeightCellItem.swift */,
 				2D45EC521B8546260078567C /* DoubleTextCellItem.swift */,
@@ -158,7 +167,6 @@
 		2DE0CC4E1B8E933600BE16E5 /* cellViews */ = {
 			isa = PBXGroup;
 			children = (
-				2D46B53F1B84428000663A40 /* WorktableCellView.swift */,
 				2DE0CC521B8EA7CC00BE16E5 /* VariableHeightCellView.swift */,
 				2D45EC4C1B853F510078567C /* DoubleTextCellView.swift */,
 				2D45EC4D1B853F510078567C /* DoubleTextCellView.xib */,
