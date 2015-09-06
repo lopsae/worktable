@@ -17,7 +17,7 @@ public protocol WorktableCellItem {
 	* Any other object or value will cause a assertion failure when the cellItem
 	* is added to a WorktableViewController instance.
 	*/
-	var viewSource: Any { get }
+	var cellViewSource: Any { get }
 
 	/**
 	* Estimated height of the cellView that will be created for this cellItem.
@@ -31,10 +31,10 @@ public protocol WorktableCellItem {
 	* calls the table may not adjust properly to changes in the height provided
 	* by the cellView.
 	*/
-	var estimatedHeight: CGFloat { get }
+	var cellEstimatedHeight: CGFloat { get }
     
     
-    // TODO this should be moved to a delegate?
+    // TODO: pending functions
     // func cellSelectedWithView(cellview: WorktableCellView)
 
 }

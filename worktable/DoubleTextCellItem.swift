@@ -4,7 +4,7 @@ import UIKit
 class DoubleTextCellItem: BaseCellItem {
 
 	let NIB_NAME = "DoubleTextCellView"
-	let ESTIMATED_HEIGHT: CGFloat = 75
+	let ESTIMATED_HEIGHT: CGFloat = 75 // Based on initial height in nib file
 
 	var labelText: String
 	var buttonText: String
@@ -15,8 +15,10 @@ class DoubleTextCellItem: BaseCellItem {
 		self.buttonText = buttonText
 		super.init(viewSource: NIB_NAME, estimatedHeight: ESTIMATED_HEIGHT)
 
-		// Also works with shorter init, but if the expanded cell is too big the
-		// scrolling bar jumps around as cells are created
+		// This would also work with the shorter init, but the difference
+		// between estimatedHeight default (44) and the final height is too
+		// large and causes jumping of the scroll indicator as cells are
+		// creted.
 //		super.init(viewSource: NIB_NAME)
 	}
 

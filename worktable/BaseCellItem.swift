@@ -12,10 +12,10 @@ import UIKit
 public class BaseCellItem: WorktableCellItem {
 
 	private(set)
-	public var viewSource: Any = UITableViewCell.self
+	public var cellViewSource: Any = UITableViewCell.self
 
 	private(set)
-	public var estimatedHeight: CGFloat = UITableViewAutomaticDimension
+	public var cellEstimatedHeight: CGFloat = UITableViewAutomaticDimension
 
 
 	init() {
@@ -23,17 +23,16 @@ public class BaseCellItem: WorktableCellItem {
 	}
 
 
-	// TODO docs about this being usefull for autolayout views
+	// TODO: docs about this being usefull for autolayout views
 	init(viewSource: Any) {
-		self.viewSource = viewSource
+		cellViewSource = viewSource
 	}
 
 
 	init(viewSource: Any, estimatedHeight:CGFloat) {
-		self.viewSource = viewSource
-		self.estimatedHeight = estimatedHeight
+		cellViewSource = viewSource
+		cellEstimatedHeight = estimatedHeight
 	}
 
-
-
 }
+

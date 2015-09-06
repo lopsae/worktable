@@ -11,7 +11,7 @@ public class WorktableViewController: UITableViewController {
 
 
 	public func registerCellItemForReuse(cellItem: WorktableCellItem) {
-		if let nibName = cellItem.viewSource as? String {
+		if let nibName = cellItem.cellViewSource as? String {
 			// TODO string could have special format to allow bundle
 			// say, separate with # or character not allowed in nib/bundle names
 			let nib = UINib(nibName: nibName, bundle: nil);
@@ -20,7 +20,7 @@ public class WorktableViewController: UITableViewController {
 			return
 		}
 
-		if let cellViewClass = cellItem.viewSource as? UITableViewCell.Type {
+		if let cellViewClass = cellItem.cellViewSource as? UITableViewCell.Type {
 			let reuseId = reuseIdentifierForCellItem(cellItem)
 			tableView.registerClass(cellViewClass,
 				forCellReuseIdentifier: reuseId!
@@ -35,12 +35,12 @@ public class WorktableViewController: UITableViewController {
 	internal func reuseIdentifierForCellItem(
 		cellItem: WorktableCellItem
 	) -> String? {
-		if let nibName = cellItem.viewSource as? String {
+		if let nibName = cellItem.cellViewSource as? String {
 			return nibName
 		}
 
-		if cellItem.viewSource is UITableViewCell.Type {
-			return toString(cellItem.viewSource)
+		if cellItem.cellViewSource is UITableViewCell.Type {
+			return toString(cellItem.cellViewSource)
 		}
 
 		assertionFailure("Unexpected type of viewSource")
@@ -117,7 +117,7 @@ public class WorktableViewController: UITableViewController {
 		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
 		let cellItem = cellItemAtIndexPath(indexPath)
-		return cellItem.estimatedHeight
+		return cellItem.cellEstimatedHeight
 	}
 
 
