@@ -37,6 +37,8 @@
 		2D46B5411B84428000663A40 /* WorktableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B53F1B84428000663A40 /* WorktableCellView.swift */; };
 		2D8D7F6F1B9A5EFF00169A16 /* BaseCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */; };
 		2D8D7F701B9A5EFF00169A16 /* BaseCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */; };
+		2DD7B5391B9C16F000678ABF /* BaseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7B5381B9C16F000678ABF /* BaseCellView.swift */; };
+		2DD7B53A1B9C16F000678ABF /* BaseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7B5381B9C16F000678ABF /* BaseCellView.swift */; };
 		2DE0CC501B8EA79F00BE16E5 /* VariableHeightCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC4F1B8EA79F00BE16E5 /* VariableHeightCellItem.swift */; };
 		2DE0CC511B8EA79F00BE16E5 /* VariableHeightCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC4F1B8EA79F00BE16E5 /* VariableHeightCellItem.swift */; };
 		2DE0CC531B8EA7CC00BE16E5 /* VariableHeightCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC521B8EA7CC00BE16E5 /* VariableHeightCellView.swift */; };
@@ -75,6 +77,7 @@
 		2D46B52A1B82F9BD00663A40 /* WorktableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorktableViewController.swift; path = worktable/WorktableViewController.swift; sourceTree = "<group>"; };
 		2D46B53F1B84428000663A40 /* WorktableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorktableCellView.swift; path = worktable/WorktableCellView.swift; sourceTree = "<group>"; };
 		2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseCellItem.swift; path = worktable/BaseCellItem.swift; sourceTree = "<group>"; };
+		2DD7B5381B9C16F000678ABF /* BaseCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseCellView.swift; path = worktable/BaseCellView.swift; sourceTree = "<group>"; };
 		2DE0CC4F1B8EA79F00BE16E5 /* VariableHeightCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VariableHeightCellItem.swift; path = worktable/VariableHeightCellItem.swift; sourceTree = "<group>"; };
 		2DE0CC521B8EA7CC00BE16E5 /* VariableHeightCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VariableHeightCellView.swift; path = worktable/VariableHeightCellView.swift; sourceTree = "<group>"; };
 		2DE0CC551B8EE11900BE16E5 /* DummyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyView.swift; path = worktable/DummyView.swift; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 		2DE0CC4E1B8E933600BE16E5 /* cellViews */ = {
 			isa = PBXGroup;
 			children = (
+				2DD7B5381B9C16F000678ABF /* BaseCellView.swift */,
 				2DE0CC521B8EA7CC00BE16E5 /* VariableHeightCellView.swift */,
 				2D45EC4C1B853F510078567C /* DoubleTextCellView.swift */,
 				2D45EC4D1B853F510078567C /* DoubleTextCellView.xib */,
@@ -319,6 +323,7 @@
 				2D46B5371B82F9BD00663A40 /* WorktableCellItemBase.swift in Sources */,
 				2DE0CC561B8EE11900BE16E5 /* DummyView.swift in Sources */,
 				2D45EC531B8546260078567C /* DoubleTextCellItem.swift in Sources */,
+				2DD7B5391B9C16F000678ABF /* BaseCellView.swift in Sources */,
 				2DE0CC501B8EA79F00BE16E5 /* VariableHeightCellItem.swift in Sources */,
 				2D46B53D1B82F9BD00663A40 /* WorktableViewController.swift in Sources */,
 				2D46B53B1B82F9BD00663A40 /* WorktableCellViewBase.swift in Sources */,
@@ -346,6 +351,7 @@
 				2D46B5301B82F9BD00663A40 /* DemoTable.swift in Sources */,
 				2D45EC4F1B853F510078567C /* DoubleTextCellView.swift in Sources */,
 				2DE0CC541B8EA7CC00BE16E5 /* VariableHeightCellView.swift in Sources */,
+				2DD7B53A1B9C16F000678ABF /* BaseCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

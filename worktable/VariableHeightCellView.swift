@@ -1,40 +1,32 @@
 import UIKit
 
 
-class VariableHeightCellView: UITableViewCell, WorktableCellView {
+class VariableHeightCellView: BaseCellView {
 
-	var cellHeight = UITableViewAutomaticDimension
-	var initialHeight = UITableViewAutomaticDimension
-
-	var dummyView: DummyView
+	var initialHeight: CGFloat!
+	var dummyView: DummyView!
 
 
-	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	override func postInit() {
+		super.postInit()
+		initialHeight = UITableViewAutomaticDimension
 		dummyView = DummyView(frame: CGRectZero)
-		super.init(style: style, reuseIdentifier: reuseIdentifier)
-
 		contentView.addSubview(dummyView)
 	}
 
 
-	required init(coder: NSCoder) {
-		dummyView = DummyView(frame: CGRectZero)
-		super.init(coder: coder)
-
-		contentView.addSubview(dummyView)
-	}
-
-
-	func updateWithCellItem(cellItem: WorktableCellItem) {
+	override func updateWithCellItem(cellItem: WorktableCellItem) {
+		super.updateWithCellItem(cellItem)
 		if let cellItem = cellItem as? VariableHeightCellItem {
+			updateCellHeight(cellItem.initialHeight)
 			initialHeight = cellItem.initialHeight
-			cellHeight = cellItem.initialHeight
 			setNeedsLayout()
 		}
 	}
 
 
-	func willDisplayWithTable(tableView: UITableView) {
+	override func willDisplayWithTable(tableView: UITableView) {
+		super.willDisplayWithTable(tableView)
 		layoutIfNeeded()
 	}
 
@@ -60,7 +52,7 @@ class VariableHeightCellView: UITableViewCell, WorktableCellView {
 		newBounds.size.height = initialHeight * 2
 		bounds = newBounds
 
-		cellHeight = bounds.height
+		updateCellHeight(bounds.height)
 		dummyView.frame = bounds
 
 		super.layoutSubviews()

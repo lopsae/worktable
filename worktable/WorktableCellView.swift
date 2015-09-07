@@ -3,8 +3,10 @@ import UIKit
 
 public protocol WorktableCellView {
 
-//	var isSelectable: Bool { get }
 	var cellHeight: CGFloat { get }
+
+	// TODO: properties to implement
+//	var isSelectable: Bool { get }
 
 
 	func updateWithCellItem(cellItem: WorktableCellItem)
