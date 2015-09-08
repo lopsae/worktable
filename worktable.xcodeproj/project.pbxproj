@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		2D3E76341B42490D004B6F01 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D3E76331B42490D004B6F01 /* assets.xcassets */; };
 		2D3E76351B42490D004B6F01 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D3E76331B42490D004B6F01 /* assets.xcassets */; };
-		2D45EC4E1B853F510078567C /* DoubleTextCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC4C1B853F510078567C /* DoubleTextCellView.swift */; };
-		2D45EC4F1B853F510078567C /* DoubleTextCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC4C1B853F510078567C /* DoubleTextCellView.swift */; };
-		2D45EC501B853F510078567C /* DoubleTextCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45EC4D1B853F510078567C /* DoubleTextCellView.xib */; };
-		2D45EC511B853F510078567C /* DoubleTextCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45EC4D1B853F510078567C /* DoubleTextCellView.xib */; };
-		2D45EC531B8546260078567C /* DoubleTextCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC521B8546260078567C /* DoubleTextCellItem.swift */; };
-		2D45EC541B8546260078567C /* DoubleTextCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC521B8546260078567C /* DoubleTextCellItem.swift */; };
+		2D45EC4E1B853F510078567C /* AutolayoutCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC4C1B853F510078567C /* AutolayoutCellView.swift */; };
+		2D45EC4F1B853F510078567C /* AutolayoutCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC4C1B853F510078567C /* AutolayoutCellView.swift */; };
+		2D45EC501B853F510078567C /* AutolayoutCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45EC4D1B853F510078567C /* AutolayoutCellView.xib */; };
+		2D45EC511B853F510078567C /* AutolayoutCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45EC4D1B853F510078567C /* AutolayoutCellView.xib */; };
+		2D45EC531B8546260078567C /* AutolayoutCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC521B8546260078567C /* AutolayoutCellItem.swift */; };
+		2D45EC541B8546260078567C /* AutolayoutCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC521B8546260078567C /* AutolayoutCellItem.swift */; };
 		2D45EC561B8982A90078567C /* LoremIpsum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC551B8982A90078567C /* LoremIpsum.swift */; };
 		2D45EC571B8982A90078567C /* LoremIpsum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC551B8982A90078567C /* LoremIpsum.swift */; };
 		2D46B52B1B82F9BD00663A40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5201B82F9BD00663A40 /* AppDelegate.swift */; };
@@ -63,9 +63,9 @@
 /* Begin PBXFileReference section */
 		2D3E76321B4247F0004B6F01 /* info */ = {isa = PBXFileReference; lastKnownFileType = folder; path = info; sourceTree = "<group>"; };
 		2D3E76331B42490D004B6F01 /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
-		2D45EC4C1B853F510078567C /* DoubleTextCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoubleTextCellView.swift; path = worktable/DoubleTextCellView.swift; sourceTree = "<group>"; };
-		2D45EC4D1B853F510078567C /* DoubleTextCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DoubleTextCellView.xib; path = worktable/DoubleTextCellView.xib; sourceTree = "<group>"; };
-		2D45EC521B8546260078567C /* DoubleTextCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoubleTextCellItem.swift; path = worktable/DoubleTextCellItem.swift; sourceTree = "<group>"; };
+		2D45EC4C1B853F510078567C /* AutolayoutCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutolayoutCellView.swift; path = worktable/AutolayoutCellView.swift; sourceTree = "<group>"; };
+		2D45EC4D1B853F510078567C /* AutolayoutCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AutolayoutCellView.xib; path = worktable/AutolayoutCellView.xib; sourceTree = "<group>"; };
+		2D45EC521B8546260078567C /* AutolayoutCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutolayoutCellItem.swift; path = worktable/AutolayoutCellItem.swift; sourceTree = "<group>"; };
 		2D45EC551B8982A90078567C /* LoremIpsum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoremIpsum.swift; path = worktable/LoremIpsum.swift; sourceTree = "<group>"; };
 		2D46B5201B82F9BD00663A40 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = worktable/AppDelegate.swift; sourceTree = "<group>"; };
 		2D46B5211B82F9BD00663A40 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayExtension.swift; path = worktable/ArrayExtension.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 			children = (
 				2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */,
 				2DE0CC4F1B8EA79F00BE16E5 /* VariableHeightCellItem.swift */,
-				2D45EC521B8546260078567C /* DoubleTextCellItem.swift */,
+				2D45EC521B8546260078567C /* AutolayoutCellItem.swift */,
 				2D46B5271B82F9BD00663A40 /* DefaultCellItem.swift */,
 			);
 			name = cellItems;
@@ -172,8 +172,8 @@
 			children = (
 				2DD7B5381B9C16F000678ABF /* BaseCellView.swift */,
 				2DE0CC521B8EA7CC00BE16E5 /* VariableHeightCellView.swift */,
-				2D45EC4C1B853F510078567C /* DoubleTextCellView.swift */,
-				2D45EC4D1B853F510078567C /* DoubleTextCellView.xib */,
+				2D45EC4C1B853F510078567C /* AutolayoutCellView.swift */,
+				2D45EC4D1B853F510078567C /* AutolayoutCellView.xib */,
 				2D46B5291B82F9BD00663A40 /* DefaultCellView.swift */,
 			);
 			name = cellViews;
@@ -288,7 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D46B5311B82F9BD00663A40 /* LaunchScreen.xib in Resources */,
-				2D45EC501B853F510078567C /* DoubleTextCellView.xib in Resources */,
+				2D45EC501B853F510078567C /* AutolayoutCellView.xib in Resources */,
 				2D3E76341B42490D004B6F01 /* assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,7 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D46B5321B82F9BD00663A40 /* LaunchScreen.xib in Resources */,
-				2D45EC511B853F510078567C /* DoubleTextCellView.xib in Resources */,
+				2D45EC511B853F510078567C /* AutolayoutCellView.xib in Resources */,
 				2D3E76351B42490D004B6F01 /* assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,7 +312,7 @@
 			files = (
 				2D46B52B1B82F9BD00663A40 /* AppDelegate.swift in Sources */,
 				2D46B5351B82F9BD00663A40 /* WorktableCellItem.swift in Sources */,
-				2D45EC4E1B853F510078567C /* DoubleTextCellView.swift in Sources */,
+				2D45EC4E1B853F510078567C /* AutolayoutCellView.swift in Sources */,
 				2D46B52F1B82F9BD00663A40 /* DemoTable.swift in Sources */,
 				2DE0CC591B8EE30D00BE16E5 /* CGExtension.swift in Sources */,
 				2DE0CC531B8EA7CC00BE16E5 /* VariableHeightCellView.swift in Sources */,
@@ -322,7 +322,7 @@
 				2D46B5401B84428000663A40 /* WorktableCellView.swift in Sources */,
 				2D46B5371B82F9BD00663A40 /* DefaultCellItem.swift in Sources */,
 				2DE0CC561B8EE11900BE16E5 /* DummyView.swift in Sources */,
-				2D45EC531B8546260078567C /* DoubleTextCellItem.swift in Sources */,
+				2D45EC531B8546260078567C /* AutolayoutCellItem.swift in Sources */,
 				2DD7B5391B9C16F000678ABF /* BaseCellView.swift in Sources */,
 				2DE0CC501B8EA79F00BE16E5 /* VariableHeightCellItem.swift in Sources */,
 				2D46B53D1B82F9BD00663A40 /* WorktableViewController.swift in Sources */,
@@ -335,7 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D46B52E1B82F9BD00663A40 /* ArrayExtension.swift in Sources */,
-				2D45EC541B8546260078567C /* DoubleTextCellItem.swift in Sources */,
+				2D45EC541B8546260078567C /* AutolayoutCellItem.swift in Sources */,
 				2D46B5411B84428000663A40 /* WorktableCellView.swift in Sources */,
 				2DE0CC5A1B8EE30D00BE16E5 /* CGExtension.swift in Sources */,
 				2D46B52C1B82F9BD00663A40 /* AppDelegate.swift in Sources */,
@@ -349,7 +349,7 @@
 				2DE0CC571B8EE11900BE16E5 /* DummyView.swift in Sources */,
 				2D46B5361B82F9BD00663A40 /* WorktableCellItem.swift in Sources */,
 				2D46B5301B82F9BD00663A40 /* DemoTable.swift in Sources */,
-				2D45EC4F1B853F510078567C /* DoubleTextCellView.swift in Sources */,
+				2D45EC4F1B853F510078567C /* AutolayoutCellView.swift in Sources */,
 				2DE0CC541B8EA7CC00BE16E5 /* VariableHeightCellView.swift in Sources */,
 				2DD7B53A1B9C16F000678ABF /* BaseCellView.swift in Sources */,
 			);

@@ -1,7 +1,7 @@
 import UIKit
 
 
-class DoubleTextCellView: BaseCellView {
+class AutolayoutCellView: BaseCellView {
 
 	@IBOutlet weak var label: UILabel?
 	@IBOutlet weak var button: UIButton?
@@ -9,7 +9,7 @@ class DoubleTextCellView: BaseCellView {
 
 	override func updateWithCellItem(cellItem: WorktableCellItem) {
 		super.updateWithCellItem(cellItem)
-		if let cellItem = cellItem as? DoubleTextCellItem {
+		if let cellItem = cellItem as? AutolayoutCellItem {
 			label?.text = cellItem.labelText
 			button?.setTitle(cellItem.buttonText, forState: .Normal)
 		}

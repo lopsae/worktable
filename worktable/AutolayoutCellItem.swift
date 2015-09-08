@@ -1,9 +1,9 @@
 import UIKit
 
 
-class DoubleTextCellItem: BaseCellItem {
+class AutolayoutCellItem: BaseCellItem {
 
-	let NIB_NAME = "DoubleTextCellView"
+	let NIB_NAME = "AutolayoutCellView"
 	let ESTIMATED_HEIGHT: CGFloat = 75 // Based on initial height in nib file
 
 	var labelText: String
