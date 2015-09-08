@@ -45,6 +45,11 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 	}
 
 
+	convenience public init(height: CGFloat) {
+		self.init(height: height, style: nil, reuseIdentifier: nil, coder: nil)
+	}
+
+
 	public func postInit() {
 		// To override
 	}
@@ -62,7 +67,11 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 
 
 	public func willDisplayWithTable(tableView: UITableView) {
-		// To override
+		// this allows cells that handle their own layout to layout themselves
+		// and update their height. At the time of this call the cellView will
+		// have a frame with the correct width and as height that returned by
+		// the cellItem.estimatedHeight
+		layoutIfNeeded()
 	}
 
 	

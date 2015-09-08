@@ -25,12 +25,6 @@ class VariableHeightCellView: BaseCellView {
 	}
 
 
-	override func willDisplayWithTable(tableView: UITableView) {
-		super.willDisplayWithTable(tableView)
-		layoutIfNeeded()
-	}
-
-
 	/**
 	* Upon initialization the cell frame will be set to either its default size
 	* or the size provided by the nib file.
