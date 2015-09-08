@@ -1,29 +1,13 @@
 import UIKit
 
 
-class WorktableCellViewBase: UITableViewCell, WorktableCellView {
+class WorktableCellViewBase: BaseCellView {
 
-	var cellHeight = UITableViewAutomaticDimension
-
-
-	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-		super.init(style: style, reuseIdentifier: reuseIdentifier)
-	}
-
-
-	required init(coder: NSCoder) {
-		super.init(coder: coder)
-	}
-
-
-	func updateWithCellItem(cellItem: WorktableCellItem) {
+	override func updateWithCellItem(cellItem: WorktableCellItem) {
 		if let cellItem = cellItem as? WorktableCellItemBase {
 			textLabel?.text = cellItem.text
 		}
 	}
-
-
-	func willDisplayWithTable(tableView: UITableView) {}
 
 }
 
