@@ -6,6 +6,14 @@ class DemoTable: WorktableViewController {
 	init () {
 		super.init(style: .Grouped)
 		navigationItem.title = "Demo table"
+
+		let reloadButton = UIBarButtonItem(
+			title: "Reload",
+			style: .Plain,
+			target: self,
+			action: "reloadTable"
+		)
+		navigationItem.rightBarButtonItem = reloadButton
 	}
 
 
@@ -39,5 +47,9 @@ class DemoTable: WorktableViewController {
 		pushCellItem(DefaultCellItem("cell 4"))
 	}
 
+
+	func reloadTable() {
+		tableView.reloadData()
+	}
 
 }
