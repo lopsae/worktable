@@ -24,19 +24,19 @@ class DemoTable: WorktableViewController {
 
 		addNewSection()
 
-		pushCellItem(WorktableCellItemBase("cell 1"))
+		pushCellItem(DefaultCellItem("cell 1"))
 		pushCellItem(DoubleTextCellItem(LoremIpsum.string(3), buttonText: "button one"))
 		pushCellItem(VariableHeightCellItem(initialHeight: 80))
 
 		addNewSection()
-		pushCellItem(WorktableCellItemBase("cell 2"))
+		pushCellItem(DefaultCellItem("cell 2"))
 		pushCellItem(DoubleTextCellItem(LoremIpsum.string(12), buttonText: "button two"))
-		pushCellItem(WorktableCellItemBase("cell 3"))
+		pushCellItem(DefaultCellItem("cell 3"))
 		pushCellItem(DoubleTextCellItem(LoremIpsum.string(20), buttonText: "button three"))
 
-		pushCellItem(DoubleTextCellItem(LoremIpsum.string(20), buttonText: "button three"))
+		pushCellItem(DoubleTextCellItem(LoremIpsum.string(20), buttonText: "button four"))
 		pushCellItem(VariableHeightCellItem(initialHeight: 80))
-		pushCellItem(WorktableCellItemBase("cell 3"))
+		pushCellItem(DefaultCellItem("cell 4"))
 	}
 
 

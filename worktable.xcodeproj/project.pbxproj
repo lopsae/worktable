@@ -27,10 +27,10 @@
 		2D46B5321B82F9BD00663A40 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D46B5231B82F9BD00663A40 /* LaunchScreen.xib */; };
 		2D46B5351B82F9BD00663A40 /* WorktableCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5261B82F9BD00663A40 /* WorktableCellItem.swift */; };
 		2D46B5361B82F9BD00663A40 /* WorktableCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5261B82F9BD00663A40 /* WorktableCellItem.swift */; };
-		2D46B5371B82F9BD00663A40 /* WorktableCellItemBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5271B82F9BD00663A40 /* WorktableCellItemBase.swift */; };
-		2D46B5381B82F9BD00663A40 /* WorktableCellItemBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5271B82F9BD00663A40 /* WorktableCellItemBase.swift */; };
-		2D46B53B1B82F9BD00663A40 /* WorktableCellViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5291B82F9BD00663A40 /* WorktableCellViewBase.swift */; };
-		2D46B53C1B82F9BD00663A40 /* WorktableCellViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5291B82F9BD00663A40 /* WorktableCellViewBase.swift */; };
+		2D46B5371B82F9BD00663A40 /* DefaultCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5271B82F9BD00663A40 /* DefaultCellItem.swift */; };
+		2D46B5381B82F9BD00663A40 /* DefaultCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5271B82F9BD00663A40 /* DefaultCellItem.swift */; };
+		2D46B53B1B82F9BD00663A40 /* DefaultCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5291B82F9BD00663A40 /* DefaultCellView.swift */; };
+		2D46B53C1B82F9BD00663A40 /* DefaultCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B5291B82F9BD00663A40 /* DefaultCellView.swift */; };
 		2D46B53D1B82F9BD00663A40 /* WorktableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B52A1B82F9BD00663A40 /* WorktableViewController.swift */; };
 		2D46B53E1B82F9BD00663A40 /* WorktableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B52A1B82F9BD00663A40 /* WorktableViewController.swift */; };
 		2D46B5401B84428000663A40 /* WorktableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B53F1B84428000663A40 /* WorktableCellView.swift */; };
@@ -72,8 +72,8 @@
 		2D46B5221B82F9BD00663A40 /* DemoTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoTable.swift; path = worktable/DemoTable.swift; sourceTree = "<group>"; };
 		2D46B5231B82F9BD00663A40 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = worktable/LaunchScreen.xib; sourceTree = "<group>"; };
 		2D46B5261B82F9BD00663A40 /* WorktableCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorktableCellItem.swift; path = worktable/WorktableCellItem.swift; sourceTree = "<group>"; };
-		2D46B5271B82F9BD00663A40 /* WorktableCellItemBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorktableCellItemBase.swift; path = worktable/WorktableCellItemBase.swift; sourceTree = "<group>"; };
-		2D46B5291B82F9BD00663A40 /* WorktableCellViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorktableCellViewBase.swift; path = worktable/WorktableCellViewBase.swift; sourceTree = "<group>"; };
+		2D46B5271B82F9BD00663A40 /* DefaultCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultCellItem.swift; path = worktable/DefaultCellItem.swift; sourceTree = "<group>"; };
+		2D46B5291B82F9BD00663A40 /* DefaultCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultCellView.swift; path = worktable/DefaultCellView.swift; sourceTree = "<group>"; };
 		2D46B52A1B82F9BD00663A40 /* WorktableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorktableViewController.swift; path = worktable/WorktableViewController.swift; sourceTree = "<group>"; };
 		2D46B53F1B84428000663A40 /* WorktableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorktableCellView.swift; path = worktable/WorktableCellView.swift; sourceTree = "<group>"; };
 		2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseCellItem.swift; path = worktable/BaseCellItem.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 				2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */,
 				2DE0CC4F1B8EA79F00BE16E5 /* VariableHeightCellItem.swift */,
 				2D45EC521B8546260078567C /* DoubleTextCellItem.swift */,
-				2D46B5271B82F9BD00663A40 /* WorktableCellItemBase.swift */,
+				2D46B5271B82F9BD00663A40 /* DefaultCellItem.swift */,
 			);
 			name = cellItems;
 			sourceTree = "<group>";
@@ -174,7 +174,7 @@
 				2DE0CC521B8EA7CC00BE16E5 /* VariableHeightCellView.swift */,
 				2D45EC4C1B853F510078567C /* DoubleTextCellView.swift */,
 				2D45EC4D1B853F510078567C /* DoubleTextCellView.xib */,
-				2D46B5291B82F9BD00663A40 /* WorktableCellViewBase.swift */,
+				2D46B5291B82F9BD00663A40 /* DefaultCellView.swift */,
 			);
 			name = cellViews;
 			sourceTree = "<group>";
@@ -320,13 +320,13 @@
 				2D8D7F6F1B9A5EFF00169A16 /* BaseCellItem.swift in Sources */,
 				2D46B52D1B82F9BD00663A40 /* ArrayExtension.swift in Sources */,
 				2D46B5401B84428000663A40 /* WorktableCellView.swift in Sources */,
-				2D46B5371B82F9BD00663A40 /* WorktableCellItemBase.swift in Sources */,
+				2D46B5371B82F9BD00663A40 /* DefaultCellItem.swift in Sources */,
 				2DE0CC561B8EE11900BE16E5 /* DummyView.swift in Sources */,
 				2D45EC531B8546260078567C /* DoubleTextCellItem.swift in Sources */,
 				2DD7B5391B9C16F000678ABF /* BaseCellView.swift in Sources */,
 				2DE0CC501B8EA79F00BE16E5 /* VariableHeightCellItem.swift in Sources */,
 				2D46B53D1B82F9BD00663A40 /* WorktableViewController.swift in Sources */,
-				2D46B53B1B82F9BD00663A40 /* WorktableCellViewBase.swift in Sources */,
+				2D46B53B1B82F9BD00663A40 /* DefaultCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,8 +342,8 @@
 				2D46B53E1B82F9BD00663A40 /* WorktableViewController.swift in Sources */,
 				2D8D7F701B9A5EFF00169A16 /* BaseCellItem.swift in Sources */,
 				2D45EC571B8982A90078567C /* LoremIpsum.swift in Sources */,
-				2D46B5381B82F9BD00663A40 /* WorktableCellItemBase.swift in Sources */,
-				2D46B53C1B82F9BD00663A40 /* WorktableCellViewBase.swift in Sources */,
+				2D46B5381B82F9BD00663A40 /* DefaultCellItem.swift in Sources */,
+				2D46B53C1B82F9BD00663A40 /* DefaultCellView.swift in Sources */,
 				2DE0CC511B8EA79F00BE16E5 /* VariableHeightCellItem.swift in Sources */,
 				2DF101151AC231B300CCCB7F /* worktableTests.swift in Sources */,
 				2DE0CC571B8EE11900BE16E5 /* DummyView.swift in Sources */,
