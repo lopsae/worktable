@@ -33,6 +33,10 @@ class DemoTable: WorktableViewController {
 		pushCellItem(DoubleTextCellItem(LoremIpsum.string(12), buttonText: "button two"))
 		pushCellItem(WorktableCellItemBase("cell 3"))
 		pushCellItem(DoubleTextCellItem(LoremIpsum.string(20), buttonText: "button three"))
+
+		pushCellItem(DoubleTextCellItem(LoremIpsum.string(20), buttonText: "button three"))
+		pushCellItem(VariableHeightCellItem(initialHeight: 80))
+		pushCellItem(WorktableCellItemBase("cell 3"))
 	}
 
 
