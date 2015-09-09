@@ -30,8 +30,6 @@ class DemoTable: WorktableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		addNewSection()
-
 		pushCellItem(DefaultCellItem("cell 1"))
 		pushCellItem(AutolayoutCellItem(LoremIpsum.string(3), buttonText: "button one"))
 		pushCellItem(VariableHeightCellItem(initialHeight: 80))
@@ -42,6 +40,7 @@ class DemoTable: WorktableViewController {
 		pushCellItem(DefaultCellItem("cell 3"))
 		pushCellItem(AutolayoutCellItem(LoremIpsum.string(20), buttonText: "button three"))
 
+		pushCellItem(VariableHeightCellItem(initialHeight: 80))
 		pushCellItem(AutolayoutCellItem(LoremIpsum.string(20), buttonText: "button four"))
 		pushCellItem(VariableHeightCellItem(initialHeight: 80))
 		pushCellItem(DefaultCellItem("cell 4"))

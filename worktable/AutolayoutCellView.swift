@@ -20,4 +20,17 @@ class AutolayoutCellView: BaseCellView {
 	// maybe layout can be skipped if height is automatic?
 	override func willDisplayWithTable(tableView: UITableView) {}
 
+
+	// For debugging
+	
+//	override var frame: CGRect {
+//		get {
+//			return super.frame
+//		}
+//
+//		set (newFrame) {
+//			super.frame = newFrame
+//		}
+//	}
+
 }

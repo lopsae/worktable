@@ -5,7 +5,11 @@ public class WorktableViewController: UITableViewController {
 
 	private var sections = [[WorktableCellItem]]()
 
-	// TODO: support refreshing
+	// TODO: add proper cleanup as cellViews are retired (didEndDisplayingCell?)
+	// TODO: add proper documentation to related methods
+	private var cellViews = [[UITableViewCell?]]()
+
+	// TODO: for future refresh support
 //	public var isRefreshing = false
 //	public var refreshEnabled = false
 
@@ -97,6 +101,18 @@ public class WorktableViewController: UITableViewController {
 		if let cellView = cellView as? WorktableCellView {
 			cellView.updateWithCellItem(cellItem)
 		}
+
+		// TODO: move this into its own method, or extension
+		while cellViews.count <= indexPath.section {
+			cellViews.append([UITableViewCell?]())
+		}
+		var sectionArray = cellViews[indexPath.section]
+		while sectionArray.count <= indexPath.row {
+			sectionArray.append(nil)
+		}
+		sectionArray[indexPath.row] = cellView
+		cellViews[indexPath.section] = sectionArray
+
 		return cellView
 	}
 
@@ -142,12 +158,16 @@ public class WorktableViewController: UITableViewController {
 	override public func tableView(_: UITableView,
 		heightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
-		// TODO: when deleting or inserting new cells, what does cellForRow returns?
-		// cell state before the change? after the change?
-		var cellView = tableView.cellForRowAtIndexPath(indexPath)
+		var cellView = cellViews[indexPath.section][indexPath.row]!
+
 		if let cellView = cellView as? WorktableCellView {
+			// TODO: better event name like: preHeightRequest
+			// TODO: is this being called several times during initial population
+			// is it being called when the frame has not yet been set correctly?
+			cellView.willDisplayWithTable(tableView)
 			return cellView.cellHeight
 		}
+
 		return self.tableView(tableView,
 			estimatedHeightForRowAtIndexPath: indexPath
 		)
@@ -172,9 +192,11 @@ public class WorktableViewController: UITableViewController {
 		willDisplayCell cellView: UITableViewCell,
 		forRowAtIndexPath indexPath: NSIndexPath
 	) {
-		if let cellView = cellView as? WorktableCellView {
-			return cellView.willDisplayWithTable(tableView)
-		}
+		// TODO: delete or still useful?
+		// commented because this is not called on time when cells are created during scroll
+//		if let cellView = cellView as? WorktableCellView {
+//			cellView.willDisplayWithTable(tableView)
+//		}
 	}
 
 
