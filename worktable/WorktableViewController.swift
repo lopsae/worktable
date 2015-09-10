@@ -102,7 +102,9 @@ public class WorktableViewController: UITableViewController {
 			cellView.updateWithCellItem(cellItem)
 		}
 
-		var sectionArray = cellViews[indexPath.section, filler: [UITableViewCell?]()]
+		var sectionArray = cellViews[indexPath.section,
+			filler: [UITableViewCell?]()
+		]
 		sectionArray[indexPath.row, filler: nil] = cellView
 		cellViews[indexPath.section] = sectionArray
 

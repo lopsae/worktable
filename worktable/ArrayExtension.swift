@@ -19,17 +19,20 @@ extension Array {
 
 	subscript(index: Int, #filler: T) -> T {
 		mutating get {
-			while count <= index {
-				append(filler)
-			}
+			fill(to: index, filler: filler)
 			return self[index]
 		}
 
 		mutating set(newValue) {
-			while count <= index {
-				append(filler)
-			}
+			fill(to: index, filler: filler)
 			self[index] = newValue
+		}
+	}
+
+
+	mutating func fill(to index: Int, filler: T) {
+		while count <= index {
+			append(filler)
 		}
 	}
 
