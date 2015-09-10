@@ -102,15 +102,8 @@ public class WorktableViewController: UITableViewController {
 			cellView.updateWithCellItem(cellItem)
 		}
 
-		// TODO: move this into its own method, or extension
-		while cellViews.count <= indexPath.section {
-			cellViews.append([UITableViewCell?]())
-		}
-		var sectionArray = cellViews[indexPath.section]
-		while sectionArray.count <= indexPath.row {
-			sectionArray.append(nil)
-		}
-		sectionArray[indexPath.row] = cellView
+		var sectionArray = cellViews[indexPath.section, filler: [UITableViewCell?]()]
+		sectionArray[indexPath.row, filler: nil] = cellView
 		cellViews[indexPath.section] = sectionArray
 
 		return cellView
