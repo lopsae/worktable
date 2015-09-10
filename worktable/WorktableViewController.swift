@@ -58,12 +58,12 @@ public class WorktableViewController: UITableViewController {
 
 
 	public func pushCellItem(cellItem: WorktableCellItem) {
-		if sections.last == nil {
+		if sections.isEmpty {
 			addNewSection()
 		}
-		var lastSection = sections.tail!
+		var lastSection = sections.last!
 		lastSection.append(cellItem)
-		sections.tail = lastSection
+		sections.setLast(lastSection)
 		registerCellItemForReuse(cellItem)
 	}
 

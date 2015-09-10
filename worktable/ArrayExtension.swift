@@ -2,17 +2,20 @@
 
 extension Array {
 
-	var tail: T? {
-		get {
-			return last
+	mutating func setFirst(newFirst: T) {
+		if isEmpty {
+			append(newFirst)
+		} else {
+			self[0] = newFirst
 		}
+	}
 
-		mutating set(newTail) {
-			if count == 0 {
-				append(newTail!)
-			} else {
-				self[count - 1] = newTail!
-			}
+
+	mutating func setLast(newLast: T) {
+		if isEmpty {
+			append(newLast)
+		} else {
+			self[count - 1] = newLast
 		}
 	}
 
