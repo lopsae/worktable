@@ -4,7 +4,7 @@ import UIKit
 extension CGRect {
 
 	/**
-	* Returns a point at the center of the rectangle.
+	Returns a point at the center of the rectangle.
 	*/
 	var center: CGPoint {
 		get {
@@ -14,7 +14,7 @@ extension CGRect {
 
 
 	/**
-	* Returns the distance from the center of the rectangle to of its corners.
+	Returns the distance from the center of the rectangle to of its corners.
 	*/
 	var distanceCenterToCorner: CGFloat {
 		get {
