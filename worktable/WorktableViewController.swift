@@ -5,9 +5,14 @@ public class WorktableViewController: UITableViewController {
 
 	private var sections = [[WorktableCellItem]]()
 
-	// TODO: add proper cleanup as cellViews are retired (didEndDisplayingCell?)
-	// TODO: add proper documentation to related methods
-	private var cellViews = [[UITableViewCell?]]()
+	/**
+	Internal storage of cellViews as they are created. Mainly used to allow
+	cellViews to perform their own layout before the height for the cell is
+	requested. The method `tableView::cellForRowAtIndexPath` does not return
+	the created cellViews when the height is requested neither during the
+	initial table load, nor when new cellsViews are created during scrolling.
+	*/
+	private var cellViews = [[WorktableCellView?]]()
 
 	// TODO: for future refresh support
 //	public var isRefreshing = false
@@ -75,6 +80,13 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
+
+	public func cellViewAtIndexPath(indexPath: NSIndexPath)
+	-> WorktableCellView? {
+		return cellViews[indexPath.section][indexPath.row]
+	}
+
+
 	override public func numberOfSectionsInTableView(tableView: UITableView)
 	-> Int {
 		return sections.count
@@ -89,6 +101,12 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
+	/**
+	Creates and returns the cellView for the cellItem corresponding to the given
+	`indexPath`. As cellViews are created or dequeued they are updated with the
+	corresponding cellItem. The created cellViews are available inmediately
+	through the instance `cellViewForIndexPath` method.
+	*/
 	override public func tableView(
 		tableView: UITableView,
 		cellForRowAtIndexPath indexPath: NSIndexPath
@@ -100,13 +118,13 @@ public class WorktableViewController: UITableViewController {
 
 		if let cellView = cellView as? WorktableCellView {
 			cellView.updateWithCellItem(cellItem)
-		}
 
-		var sectionArray = cellViews[indexPath.section,
-			filler: [UITableViewCell?]()
-		]
-		sectionArray[indexPath.row, filler: nil] = cellView
-		cellViews[indexPath.section] = sectionArray
+			var sectionArray = cellViews[indexPath.section,
+				filler: [WorktableCellView?]()
+			]
+			sectionArray[indexPath.row, filler: nil] = cellView
+			cellViews[indexPath.section] = sectionArray
+		}
 
 		return cellView
 	}
@@ -136,20 +154,19 @@ public class WorktableViewController: UITableViewController {
 	/**
 	Returns the height of a given cell.
 	
-	The first time this method is called for each of the cells, the cell is
+	The first time this method is called for each of the cells, the cellView is
 	still not available throught the `tableView.cellForRowAtIndexPath` method.
-	The cell view is retrieved by the cellViews stored during creation.
+	Thus the cellView is stored internally and retrieved by the instance
+	`cellViewAtIndexPath` method.
 	
 	Before returning the height, cellViews are allowed to process their layout
-	and thus calculate their correct height if such is needed.
+	and thus calculate their correct height if needed.
 	*/
 	// TODO: check if the frame size is correctly set by the time we allow cells to do their layout
 	override public func tableView(_: UITableView,
 		heightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
-		var cellView = cellViews[indexPath.section][indexPath.row]!
-
-		if let cellView = cellView as? WorktableCellView {
+		if let cellView = cellViews[indexPath.section][indexPath.row] {
 			// TODO: better event name like: preHeightRequest
 			// TODO: is this being called several times during initial population
 			// is it being called when the frame has not yet been set correctly?
