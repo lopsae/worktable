@@ -41,7 +41,7 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	internal func reuseIdentifierForCellItem(
+	private func reuseIdentifierForCellItem(
 		cellItem: WorktableCellItem
 	) -> String? {
 		if let nibName = cellItem.cellViewSource as? String {
@@ -83,7 +83,28 @@ public class WorktableViewController: UITableViewController {
 
 	public func cellViewAtIndexPath(indexPath: NSIndexPath)
 	-> WorktableCellView? {
+		// TODO: can this be part of an expansion, subindex with indexPath
 		return cellViews[indexPath.section][indexPath.row]
+	}
+
+
+	private func storeCellView(cellView: WorktableCellView,
+		indexPath: NSIndexPath
+	) {
+		var sectionArray = cellViews[indexPath.section,
+			filler: [WorktableCellView?]()
+		]
+		sectionArray[indexPath.row, filler: nil] = cellView
+		cellViews[indexPath.section] = sectionArray
+	}
+
+
+	private func clearCellViewWithIndexPath(indexPath: NSIndexPath) {
+		var sectionArray = cellViews[indexPath.section,
+			filler: [WorktableCellView?]()
+		]
+		sectionArray[indexPath.row, filler: nil] = nil
+		cellViews[indexPath.section] = sectionArray
 	}
 
 
@@ -118,12 +139,7 @@ public class WorktableViewController: UITableViewController {
 
 		if let cellView = cellView as? WorktableCellView {
 			cellView.updateWithCellItem(cellItem)
-
-			var sectionArray = cellViews[indexPath.section,
-				filler: [WorktableCellView?]()
-			]
-			sectionArray[indexPath.row, filler: nil] = cellView
-			cellViews[indexPath.section] = sectionArray
+			storeCellView(cellView, indexPath: indexPath)
 		}
 
 		return cellView
