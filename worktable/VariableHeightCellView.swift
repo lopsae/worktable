@@ -4,14 +4,14 @@ import UIKit
 class VariableHeightCellView: BaseCellView {
 
 	var initialHeight: CGFloat!
-	var dummyView: DummyView!
+	var testView: ConcentricView!
 
 
 	override func postInit() {
 		super.postInit()
 		initialHeight = UITableViewAutomaticDimension
-		dummyView = DummyView(frame: CGRectZero)
-		contentView.addSubview(dummyView)
+		testView = ConcentricView(frame: CGRectZero)
+		contentView.addSubview(testView)
 	}
 
 
@@ -47,7 +47,7 @@ class VariableHeightCellView: BaseCellView {
 		bounds = newBounds
 
 		updateCellHeight(bounds.height)
-		dummyView.frame = bounds
+		testView.frame = bounds
 
 		super.layoutSubviews()
 	}

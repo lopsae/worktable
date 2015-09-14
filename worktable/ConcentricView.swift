@@ -5,7 +5,7 @@ import UIKit
  * UIView that draws a pattern inside all its drawable area and a border around
  * its frame. Good for testing scrolling and layouts.
  */
-class DummyView: UIView {
+class ConcentricView: UIView {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
