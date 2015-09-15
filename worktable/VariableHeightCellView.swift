@@ -48,6 +48,7 @@ class VariableHeightCellView: BaseCellView {
 
 		updateCellHeight(bounds.height)
 		testView.frame = bounds
+		testView.setNeedsDisplay()
 
 		super.layoutSubviews()
 	}
