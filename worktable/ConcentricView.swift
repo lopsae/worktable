@@ -44,6 +44,38 @@ class ConcentricView: UIView {
 		borderPath.lineWidth = 10
 		UIColor.redColor().setStroke()
 		borderPath.stroke()
+
+		// Frame label
+		var labelPlaceBounds = bounds
+
+		// TODO: this simple transformations could be done with some extentions and method chaining?
+		labelPlaceBounds.origin.x += 10
+		labelPlaceBounds.size.width -= 10
+
+		let labelFont = UIFont(name: "HelveticaNeue", size: 14)
+		let labelForeColor = UIColor.redColor()
+
+		var labelAttributes = [String: AnyObject]()
+		labelAttributes[NSFontAttributeName] = labelFont
+		labelAttributes[NSForegroundColorAttributeName] = labelForeColor
+
+		let label = NSAttributedString(
+			string: "\(bounds.size.width),\(bounds.size.height)",
+			attributes: labelAttributes
+		)
+
+		let drawOptions: NSStringDrawingOptions = .UsesLineFragmentOrigin | .TruncatesLastVisibleLine
+
+		var labelDrawBounds = label.boundingRectWithSize(labelPlaceBounds.size,
+			options: drawOptions,
+			context: nil
+		)
+
+		var centeredRect = CGRectMake(0, 0, ceil(labelDrawBounds.width), ceil(labelDrawBounds.height))
+		centeredRect.origin.x = labelPlaceBounds.origin.x
+		centeredRect.origin.y = (labelPlaceBounds.height - labelDrawBounds.height)/2 + labelPlaceBounds.origin.y
+
+		label.drawWithRect(centeredRect, options: drawOptions, context: nil)
 	}
 
 }
