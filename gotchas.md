@@ -75,3 +75,16 @@ At the `willDisplayCell` method call the frame correct frame size is set; the me
 This approach breaks when scrolling. In this case there is no further calls to `heightForCell` to update the size.
 
 Size can be updated through other means, like `beginUpdates`-`endUpdates`, but this triggers animations.
+
+
+
+Autolayout cellViews broken when first actual height was estimated height
+-------------------------------------------------------------------------
+Estimated height is provided by the cellItem, and actual height is provided by the cellView when its available.
+
+During table initialization, since the cellView is not available during the first `heightForCell` call, the estimaged height was returned instead. Returning matching estimated and actual height caused the height to be requested later again when the cell would be available with the correct height.
+
+This approach failed during scrolling: `heightForCell` is called only once and the cellView is not available.
+
+If a cellItem for an autolayout cellView provided a specific height (not automaticDimention) this would be returned again during the `heightForCell` call. This being the only height requests causes the cellView to be displayed with a fixed height.
+
