@@ -17,44 +17,36 @@ During scrolling, as new cells become visible, cellViews for those are created a
 
 During initializaton if estimated and actual height match, actual height is requested again; but not during scroll
 ---------------------------------------------------------------------------
-During initialization if estimated and actual height match, actual height is requested again. The following happen in order:
+During initialization if estimated and actual height match, actual height is requested again. The following happens in order:
 
 - CellView is created or dequeued
 - Actual height is requested for the first time; cellView **is not available** through `tableView.cellForRowAtIndexPath`
-- The `willDisplayCell` delegate method is called, at this point the frame of the cell is already setup correctly with width of the table, and the height provided as actual height
+- The `willDisplayCell` delegate method is called
 - Actual height is requested again, in some conditions twice; cellView **is available** through `tableView.cellForRowAtIndexPath`
 - CellView is displayed with the last height provided
 
-During scroll cell creation height is requested only once. The following happen in order:
+During scroll cell creation height is requested only once. The following happens in order:
 - CellView is created or dequeued
 - Actual height is requested: cellView **is not available** through `tableView.cellForRowAtIndexPath`
+- The `willDisplayCell` delegate method is called
 - CellView is displayed with the last height provided
 
 
 
-CellView is unavailable during height request
----------------------------------------------
-CellView creation happens always before requesting the height. CellViews are however unavailable using the `table.cellForRowAtIndexPath` method.
+Neither cellView, nor correct frame size, is unavailable during height request
+---------------------------------------------------------------------------
+The following events always happen in order both during table initialization and during scrolling:
+- CellView is created or dequeued; cellView frame is either the last one set when dequeued, or it is created with the default (not the actual) width, and the estimated height
+- Actual height is requested; cellView **is not available** through `tableView.cellForRowAtIndexPath`
+- The `willDisplayCell` delegate method is called; cellView frame is already updated to the actual width and the actual height
+- Afterwards the cellView **is available** through `tableView.cellForRowAtIndexPath`
 
-This is an issue for dinamically sized cellViews, which height can be known only when layout is done, and that depends on having the correct frame width already setup.
+This bears no issue with cells using automatic layout, since all the resizing is handled internally.
 
+Dynamic cellViews—cells that may change their size during `layoutSubviews`—have no chance to adjust their height properly using the provided infraestructure. Either:
+- During creation they have to provide a specific combination of estimated and actual height to trigger post-`willDisplayCell` height requests
+- Or during scrolling there is no height request in which cellView is available and the correct frame is set
 
-
-Final frame is unavailable until willDisplayCell
-------------------------------------------------
-During table initialization cellViews will be created and its height requested.
-
-Even storing the cellView from its creation the frame is not set appropiately until later.
-
-TODO: what is the size of the frame during creation? default width and aproximated height?
-
-Single point where it has been found consistently that frame is already set correct is until `willDisplayCell` is called, when the width is already correct and the height is set to the value returned by `heightForCell`.
-
-During startup, if same value is provided for estimated and actual height then the `willDisplayCell` is called, and height is requested again.
-
-If actual height is different, height is not requested again.
-
-During scrolling cellView creation height is requested once, followed by `willDisplayCell`, TODO: is frame setup correctly in this case?
 
 
 
@@ -65,3 +57,21 @@ Estimated height is requested several times when the table initializes. Even hav
 If you have more cells the requests increase exponentially?
 
 TODO: Check how many requests happen as cell size increases
+
+
+
+Broken approaches
+=================
+Approaches tried and removed since they broke somewhere else.
+
+
+
+Returning matching estimated and actual height to allow later height adjustment does not work
+---------------------------------------------------------------------------
+Providing matching estimated and actual height during the table initialization causes further calls to `heightForCell` to happen after the `willDisplayCell` delegate method is called.
+
+At the `willDisplayCell` method call the frame correct frame size is set; the method was used to call the `layoutSubviews` method in the cellViews, allowing them to update their size and report the correct size when further height requests happen.
+
+This approach breaks when scrolling. In this case there is no further calls to `heightForCell` to update the size.
+
+Size can be updated through other means, like `beginUpdates`-`endUpdates`, but this triggers animations.
