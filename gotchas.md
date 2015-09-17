@@ -1,15 +1,34 @@
 Gotchas
 =======
 Notes about gotchas and side effects in using ios table views.
-Also reasons why some approaches or modifications where taken, in order to remember and not do them again.
+Also rationale for aproaches taken and modifications done, in order to remember and not do them again.
 
 
-Height is not requested again if its different from estimated height
---------------------------------------------------------------------
-During initialization if estimated and actual height are different, no more calls happen. If they are the same, height is rerequested, which allows height to be adjusted.
 
-However during scroll cell creation height is requested only once.
-TODO: check if the frame is correct in this case, assumption is that not and this is the cause of many problems
+Different behaviors during creation and scrolling
+-------------------------------------------------
+The table view creates cells in two different moments: during intialization (or first display) and during scrolling.
+
+During initialization (or first display or table reload) estimated height of all cells is requested. Visible cellsViews are created and actual height for those is requested. Depending on the values provided for estimated and actual height, the height request can happen again.
+
+During scrolling, as new cells become visible, cellViews for those are created and actual height is requested only once.
+
+
+
+During initializaton if estimated and actual height match, actual height is requested again; but not during scroll
+---------------------------------------------------------------------------
+During initialization if estimated and actual height match, actual height is requested again. The following happen in order:
+
+- CellView is created or dequeued
+- Actual height is requested for the first time; cellView **is not available** through `tableView.cellForRowAtIndexPath`
+- The `willDisplayCell` delegate method is called, at this point the frame of the cell is already setup correctly with width of the table, and the height provided as actual height
+- Actual height is requested again, in some conditions twice; cellView **is available** through `tableView.cellForRowAtIndexPath`
+- CellView is displayed with the last height provided
+
+During scroll cell creation height is requested only once. The following happen in order:
+- CellView is created or dequeued
+- Actual height is requested: cellView **is not available** through `tableView.cellForRowAtIndexPath`
+- CellView is displayed with the last height provided
 
 
 
