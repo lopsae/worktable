@@ -11,11 +11,17 @@ public protocol WorktableCellView {
 
 	func updateWithCellItem(cellItem: WorktableCellItem)
 
-	func willDisplayWithTable(tableView: UITableView)
 
-	// TODO: functions to implement
-//	func willEndDisplayWithTable(tableView: UITableView)
+	func willReportCellHeight(controller: WorktableViewController)
 
+
+	func willDisplayCell(controller: WorktableViewController)
+
+
+	func willEndDisplayingCell(controller: WorktableViewController)
+
+
+	// TODO: functions to implements
 //	func cellSelectedWithItem(cellItem: WorktableCellItem)
 
 }

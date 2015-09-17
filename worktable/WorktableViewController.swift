@@ -197,16 +197,12 @@ public class WorktableViewController: UITableViewController {
 	override public func tableView(_: UITableView,
 		heightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
-
 		if let cellView = cellViews[indexPath.section][indexPath.row] {
-			// TODO: better event name like: preHeightRequest
-			cellView.willDisplayWithTable(tableView)
+			cellView.willReportCellHeight(self)
 			return cellView.cellHeight
 		}
 
-		return self.tableView(tableView,
-			estimatedHeightForRowAtIndexPath: indexPath
-		)
+		return UITableViewAutomaticDimension
 	}
 
 
@@ -220,6 +216,19 @@ public class WorktableViewController: UITableViewController {
 		willDisplayCell cellView: UITableViewCell,
 		forRowAtIndexPath indexPath: NSIndexPath
 	) {
+		if let cellView = cellView as? WorktableCellView {
+			cellView.willDisplayCell(self)
+		}
+	}
+
+
+	override public func tableView(_: UITableView,
+		didEndDisplayingCell cellView: UITableViewCell,
+		forRowAtIndexPath indexPath: NSIndexPath
+	) {
+		if let cellView = cellView as? WorktableCellView {
+			cellView.willEndDisplayingCell(self)
+		}
 	}
 
 

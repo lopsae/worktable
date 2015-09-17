@@ -16,11 +16,6 @@ class AutolayoutCellView: BaseCellView {
 	}
 
 
-	// TODO: Autlayout cell break if layoutSubvies it is called again here... come on
-	// maybe layout can be skipped if height is automatic?
-	override func willDisplayWithTable(tableView: UITableView) {}
-
-
 	// For debugging
 	
 //	override var frame: CGRect {

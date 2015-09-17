@@ -57,7 +57,7 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 
 	public func updateCellHeight(height: CGFloat) {
 		cellHeight = height
-		// TODO: trigger update in table view
+		// TODO: trigger update in table view if not in creation or scroll
 	}
 
 
@@ -66,14 +66,19 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 	}
 
 
-	public func willDisplayWithTable(tableView: UITableView) {
-		// this allows cells that handle their own layout to layout themselves
-		// and update their height. At the time of this call the cellView will
-		// have a frame with the correct width and as height that returned by
-		// the cellItem.estimatedHeight
-		layoutIfNeeded()
+	public func willReportCellHeight(controller: WorktableViewController) {
+			layoutIfNeeded()
 	}
 
-	
+
+	public func willDisplayCell(controller: WorktableViewController) {
+		// To override
+	}
+
+
+	public func willEndDisplayingCell(controller: WorktableViewController) {
+		// To override
+	}
+
 
 }
