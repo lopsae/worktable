@@ -80,7 +80,14 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-
+	// TODO: add to documentation
+	// on very specific cases a cell may be returned here that is not yet displayed
+	// and thus could be reused in different position.
+	// during init, if cells grow, some other cells can become pushed out of visibility
+	// in this case the cellView may be created, but ultimately never displayed
+	// and this cell may be later reused in the same or different position
+	// the only assumption that can be made for this method is that it returns
+	// the last cell created for the given indexPath, regardless of if it was displayed or not
 	public func cellViewAtIndexPath(indexPath: NSIndexPath)
 	-> WorktableCellView? {
 		// TODO: can this be part of an expansion, subindex with indexPath
@@ -137,6 +144,11 @@ public class WorktableViewController: UITableViewController {
 		let cellView = tableView.dequeueReusableCellWithIdentifier(reuseId!)
 			as! UITableViewCell
 
+		// The table width is updated inmediately on all cellViews to allow
+		// height to be calculated during `heightForCell`
+		cellView.frame.size.width = tableView.bounds.width
+		// TODO: GCRect extension to allow setting width/height/x/y
+
 		if let cellView = cellView as? WorktableCellView {
 			cellView.updateWithCellItem(cellItem)
 			storeCellView(cellView, indexPath: indexPath)
@@ -152,13 +164,14 @@ public class WorktableViewController: UITableViewController {
 	This value is used to estimate the available scroll area without having to
 	create cellViews that are not visible yet.
 
-	The estimated size of any cell is always provided by it corresponding
+	The estimated size of any cell is always provided by its corresponding
 	cellItem. UITableViewAutomaticDimension can be used to allow the default
 	size of cellViews or to use autolayout.
 
 	This method must exist, otherwise calling tableView::cellForRowAtIndexPath
 	from within heightForRowAtIndexPath causes an infinite loop.
 	*/
+	// TODO: measure how many estimated heights requests are happening at startup
 	override public func tableView(_: UITableView,
 		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
@@ -177,15 +190,16 @@ public class WorktableViewController: UITableViewController {
 	
 	Before returning the height, cellViews are allowed to process their layout
 	and thus calculate their correct height if needed.
+	
+	CellViews that use autolayout should return UITableViewAutomaticDimension to
+	properly adjust themselves.
 	*/
-	// TODO: check if the frame size is correctly set by the time we allow cells to do their layout
 	override public func tableView(_: UITableView,
 		heightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
+
 		if let cellView = cellViews[indexPath.section][indexPath.row] {
 			// TODO: better event name like: preHeightRequest
-			// TODO: is this being called several times during initial population
-			// is it being called when the frame has not yet been set correctly?
 			cellView.willDisplayWithTable(tableView)
 			return cellView.cellHeight
 		}
@@ -199,7 +213,8 @@ public class WorktableViewController: UITableViewController {
 	/**
 	Method called as each cellView is about to be displayed.
 
-	TODO: figure out if this method is still useful, since layout is happening inside heightForRowAt
+	TODO: use this method to notify cellView of its display, frame and height happened before and should be correct
+	this, and didDisplayCell, can be used to trigger after display height adjustments
 	*/
 	override public func tableView(_: UITableView,
 		willDisplayCell cellView: UITableViewCell,

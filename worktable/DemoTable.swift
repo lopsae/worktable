@@ -40,6 +40,7 @@ class DemoTable: WorktableViewController {
 		pushCellItem(DefaultCellItem("cell 3"))
 		pushCellItem(AutolayoutCellItem(LoremIpsum.string(20), buttonText: "button three"))
 
+		pushCellItem(VariableHeightCellItem(initialHeight: 120))
 		pushCellItem(VariableHeightCellItem(initialHeight: 80))
 		pushCellItem(AutolayoutCellItem(LoremIpsum.string(20), buttonText: "button four"))
 		pushCellItem(VariableHeightCellItem(initialHeight: 80))
