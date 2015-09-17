@@ -49,14 +49,13 @@ Dynamic cellViews—cells that may change their size during `layoutSubviews`—h
 
 
 
+Estimated height is requested several times during table creation
+-----------------------------------------------------------------
+During initialization estimated height is requested 5 times for each cell.
 
-Estimated height is requested repeatedly during table creation
---------------------------------------------------------------
-Estimated height is requested several times when the table initializes. Even having a single cell causes the estimated height to be requested up to five times, all for the same single cell.
+Estimated height do not happen when scrolling, at least when there is no change in the cells displayed.
 
-If you have more cells the requests increase exponentially?
-
-TODO: Check how many requests happen as cell size increases
+When reloading the table estimated height is requested only once per cell.
 
 
 

@@ -171,7 +171,6 @@ public class WorktableViewController: UITableViewController {
 	This method must exist, otherwise calling tableView::cellForRowAtIndexPath
 	from within heightForRowAtIndexPath causes an infinite loop.
 	*/
-	// TODO: measure how many estimated heights requests are happening at startup
 	override public func tableView(_: UITableView,
 		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
