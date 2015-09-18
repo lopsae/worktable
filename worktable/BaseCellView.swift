@@ -26,7 +26,7 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 		}
 
 		if coder != nil {
-			super.init(coder: coder!)
+			super.init(coder: coder!)!
 		} else if style != nil {
 			super.init(style: style!, reuseIdentifier: reuseIdentifier)
 		} else {

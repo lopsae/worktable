@@ -18,8 +18,8 @@ class LoremIpsum {
 		var substringIndex = LOREM.startIndex
 		var wordIndex = 0
 		while wordIndex < words {
-			let wordLength = count(splitLorem![wordIndex])
-			substringIndex = advance(substringIndex, wordLength + 1)
+			let wordLength = splitLorem![wordIndex].characters.count
+			substringIndex = substringIndex.advancedBy(wordLength + 1)
 			wordIndex += 1
 		}
 

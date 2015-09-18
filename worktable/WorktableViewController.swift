@@ -49,7 +49,7 @@ public class WorktableViewController: UITableViewController {
 		}
 
 		if cellItem.cellViewSource is UITableViewCell.Type {
-			return toString(cellItem.cellViewSource)
+			return String(cellItem.cellViewSource)
 		}
 
 		assertionFailure("Unexpected type of viewSource")
@@ -142,11 +142,10 @@ public class WorktableViewController: UITableViewController {
 		let cellItem = cellItemAtIndexPath(indexPath)
 		let reuseId = reuseIdentifierForCellItem(cellItem)
 		let cellView = tableView.dequeueReusableCellWithIdentifier(reuseId!)
-			as! UITableViewCell
 
 		// The table width is updated inmediately on all cellViews to allow
 		// height to be calculated during `heightForCell`
-		cellView.frame.size.width = tableView.bounds.width
+		cellView?.frame.size.width = tableView.bounds.width
 		// TODO: GCRect extension to allow setting width/height/x/y
 
 		if let cellView = cellView as? WorktableCellView {
@@ -154,7 +153,7 @@ public class WorktableViewController: UITableViewController {
 			storeCellView(cellView, indexPath: indexPath)
 		}
 
-		return cellView
+		return cellView!
 	}
 
 

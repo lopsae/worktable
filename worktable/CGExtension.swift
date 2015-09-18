@@ -18,7 +18,7 @@ extension CGRect {
 	*/
 	var distanceCenterToCorner: CGFloat {
 		get {
-			var distance = pow(origin.x - center.x, 2) +
+			let distance = pow(origin.x - center.x, 2) +
 				pow(origin.y - center.y , 2)
 			return sqrt(distance)
 		}

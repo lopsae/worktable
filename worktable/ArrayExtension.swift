@@ -1,3 +1,4 @@
+import Foundation
 
 
 extension Array {
@@ -6,7 +7,7 @@ extension Array {
 	Overwrites the first element of the array with the `newFirst` element. If
 	the array is empty the `newFirst` element is appended.
 	*/
-	mutating func setFirst(newFirst: T) {
+	mutating func setFirst(newFirst: Element) {
 		if isEmpty {
 			append(newFirst)
 		} else {
@@ -19,7 +20,7 @@ extension Array {
 	Overwrites the last element of the array with the `newLast` element. If
 	the array is empty the `newFirst` element is appended.
 	*/
-	mutating func setLast(newLast: T) {
+	mutating func setLast(newLast: Element) {
 		if isEmpty {
 			append(newLast)
 		} else {
@@ -43,7 +44,7 @@ extension Array {
 	the `index` position, or will fill up to the `index` position and then set
 	the last element with the `newValue` element.
 	*/
-	subscript(index: Int, #filler: T) -> T {
+	subscript(index: Int, filler filler: Element) -> Element {
 		mutating get {
 			fill(to: index, filler: filler)
 			return self[index]
@@ -62,7 +63,7 @@ extension Array {
 	If the array count is already greater that `index` no operation is
 	performed.
 	*/
-	mutating func fill(to index: Int, filler: T) {
+	mutating func fill(to index: Int, filler: Element) {
 		while count <= index {
 			append(filler)
 		}

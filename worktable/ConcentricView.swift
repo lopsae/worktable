@@ -13,7 +13,7 @@ class ConcentricView: UIView {
 	}
 
 
-	required init(coder: NSCoder) {
+	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 	}
 
@@ -64,9 +64,9 @@ class ConcentricView: UIView {
 			attributes: labelAttributes
 		)
 
-		let drawOptions: NSStringDrawingOptions = .UsesLineFragmentOrigin | .TruncatesLastVisibleLine
+		let drawOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .TruncatesLastVisibleLine]
 
-		var labelDrawBounds = label.boundingRectWithSize(labelPlaceBounds.size,
+		let labelDrawBounds = label.boundingRectWithSize(labelPlaceBounds.size,
 			options: drawOptions,
 			context: nil
 		)
