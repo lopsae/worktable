@@ -15,7 +15,7 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 	public var cellHeight = UITableViewAutomaticDimension
 
 
-	init(
+	init?(
 		height: CGFloat?,
 		style: UITableViewCellStyle?,
 		reuseIdentifier: String?,
@@ -26,7 +26,7 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 		}
 
 		if coder != nil {
-			super.init(coder: coder!)!
+			super.init(coder: coder!)
 		} else if style != nil {
 			super.init(style: style!, reuseIdentifier: reuseIdentifier)
 		} else {
@@ -37,16 +37,16 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 
 
 	override convenience init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-		self.init(height: nil, style: style, reuseIdentifier: reuseIdentifier, coder: nil)
+		self.init(height: nil, style: style, reuseIdentifier: reuseIdentifier, coder: nil)!
 	}
 
-	required convenience public init(coder: NSCoder) {
+	required convenience public init?(coder: NSCoder) {
 		self.init(height: nil, style: nil, reuseIdentifier: nil, coder: coder)
 	}
 
 
 	convenience public init(height: CGFloat) {
-		self.init(height: height, style: nil, reuseIdentifier: nil, coder: nil)
+		self.init(height: height, style: nil, reuseIdentifier: nil, coder: nil)!
 	}
 
 
