@@ -44,14 +44,14 @@ extension Array {
 	the `index` position, or will fill up to the `index` position and then set
 	the last element with the `newValue` element.
 	*/
-	subscript(index: Int, filler filler: Element) -> Element {
+	subscript(index: Int, @autoclosure filler filler: () -> Element) -> Element {
 		mutating get {
-			fill(to: index, filler: filler)
+			fill(to: index, filler: {_ in filler()})
 			return self[index]
 		}
 
 		mutating set(newElement) {
-			fill(to: index - 1, filler: filler)
+			fill(to: index - 1, filler: {_ in filler()})
 			if count > index {
 				self[index] = newElement
 			} else {
@@ -86,9 +86,9 @@ extension Array {
 	If the array count is already greater that `index` no operation is
 	performed.
 	*/
-	mutating func fill(to fillIndex: Int, filler: Element) {
+	mutating func fill(to fillIndex: Int, @autoclosure filler: () -> Element) {
 		while count <= fillIndex {
-			append(filler)
+			append(filler())
 		}
 	}
 

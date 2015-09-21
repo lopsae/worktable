@@ -25,6 +25,15 @@ class Counter {
 	}
 
 
+	func curryIncrement<Return>(f: () -> Return) -> () -> Return {
+		return {
+			[weak self] in
+			self?.increment()
+			return f()
+		}
+	}
+
+
 	func curryIncrement<Param, Return>(f: Param -> Return) -> Param -> Return {
 		return {
 			[weak self]

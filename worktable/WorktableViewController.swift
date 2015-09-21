@@ -99,7 +99,7 @@ public class WorktableViewController: UITableViewController {
 		indexPath: NSIndexPath
 	) {
 		var sectionArray = cellViews[indexPath.section,
-			filler:{_ in [WorktableCellView?]()}
+			filler:[WorktableCellView?]()
 		]
 		sectionArray[indexPath.row, filler: nil] = cellView
 		cellViews[indexPath.section] = sectionArray
@@ -108,7 +108,7 @@ public class WorktableViewController: UITableViewController {
 
 	private func clearCellViewWithIndexPath(indexPath: NSIndexPath) {
 		var sectionArray = cellViews[indexPath.section,
-			filler: {_ in [WorktableCellView?]()}
+			filler: [WorktableCellView?]()
 		]
 		sectionArray[indexPath.row, filler: nil] = nil
 		cellViews[indexPath.section] = sectionArray
