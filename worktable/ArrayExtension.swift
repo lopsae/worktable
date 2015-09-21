@@ -50,9 +50,32 @@ extension Array {
 			return self[index]
 		}
 
-		mutating set(newValue) {
+		mutating set(newElement) {
+			fill(to: index - 1, filler: filler)
+			if count > index {
+				self[index] = newElement
+			} else {
+				append(newElement)
+			}
+			self[index] = newElement
+		}
+	}
+
+
+// TODO: docs
+	subscript(index: Int, filler filler: Int -> Element) -> Element {
+		mutating get {
 			fill(to: index, filler: filler)
-			self[index] = newValue
+			return self[index]
+		}
+
+		mutating set(newElement) {
+			fill(to: index - 1, filler: filler)
+			if count > index {
+				self[index] = newElement
+			} else {
+				append(newElement)
+			}
 		}
 	}
 
@@ -63,13 +86,22 @@ extension Array {
 	If the array count is already greater that `index` no operation is
 	performed.
 	*/
-	mutating func fill(to index: Int, filler: Element) {
-		while count <= index {
+	mutating func fill(to fillIndex: Int, filler: Element) {
+		while count <= fillIndex {
 			append(filler)
 		}
 	}
 
 
-	// TODO: create fill extension with a block instead of filler, so that it gets called only if needed
+// TODO: docs
+	mutating func fill(to fillIndex: Int, filler: Int -> Element) {
+		if count > fillIndex {
+			return
+		}
+
+		for index in count...fillIndex {
+			append(filler(index))
+		}
+	}
 
 }
