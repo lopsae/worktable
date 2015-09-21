@@ -16,6 +16,16 @@ class ArrayExtension: XCTestCase {
 	}
 
 
+	/**
+	Convenience function to easily call filler functions by just providing the
+	filler string to return. Each call to the returned function will also call
+	`counter.increase()` once.
+	*/
+	func mockFiller(filler: String) -> Int -> String {
+		return counter.curryIncrement({(_: Int) in filler})
+	}
+
+
 	func testSetFirst() {
 		// With emtpy array
 		tester.setFirst("one")
@@ -64,31 +74,19 @@ class ArrayExtension: XCTestCase {
 
 
 	func testFillerWithBlock() {
-		tester.fill(to: 0, filler: counter.curryIncrement({_ in "once"}))
+		tester.fill(to: 0, filler: mockFiller("once"))
 		XCTAssertEqual(tester, ["once"])
 		counter.assertCount(1)
 
-		tester.fill(to: 2) {
-			_ in
-			counter.increment()
-			return "twice"
-		}
+		tester.fill(to: 2, filler: mockFiller("twice"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(2)
 
-		tester.fill(to: 1) {
-			_ in
-			counter.increment()
-			return "none"
-		}
+		tester.fill(to: 1, filler: mockFiller("none"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 
-		tester.fill(to: 2){
-			_ in
-			counter.increment()
-			return "none"
-		}
+		tester.fill(to: 2, filler: mockFiller("none"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 	}
@@ -116,51 +114,26 @@ class ArrayExtension: XCTestCase {
 
 
 	func testSubscriptFillerWithBlock() {
-		element = tester[1,
-			filler: {_ in
-				counter.increment()
-				return "first"
-			}
-		]
+		element = tester[1, filler: mockFiller("first")]
 		XCTAssertEqual(element, "first")
 		XCTAssertEqual(tester, ["first", "first"])
 		counter.assertCount(2)
 
-		tester[1,
-			filler: {_ in
-				counter.increment()
-				return "none"
-			}
-		] = "second"
+		tester[1, filler: mockFiller("none")] = "second"
 		XCTAssertEqual(tester, ["first", "second"])
 		counter.assertCount(0)
 
-		element = tester[2,
-			filler: {_ in
-				counter.increment()
-				return "third"
-			}
-		]
+		element = tester[2, filler: mockFiller("third")]
 		XCTAssertEqual(element, "third")
 		XCTAssertEqual(tester, ["first", "second", "third"])
 		counter.assertCount(1)
 
-		element = tester[0,
-			filler: {_ in
-				counter.increment()
-				return "none"
-			}
-		]
+		element = tester[0, filler: mockFiller("none")]
 		XCTAssertEqual(element, "first")
 		XCTAssertEqual(tester, ["first", "second", "third"])
 		counter.assertCount(0)
 
-		tester[4,
-			filler: {_ in
-				counter.increment()
-				return "fourth"
-			}
-		] = "fifth"
+		tester[4, filler: mockFiller("fourth")] = "fifth"
 		XCTAssertEqual(tester, ["first", "second", "third", "fourth", "fifth"])
 		counter.assertCount(1)
 	}
