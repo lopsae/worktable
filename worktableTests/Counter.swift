@@ -24,4 +24,15 @@ class Counter {
 		}
 	}
 
+
+	func curryIncrement<Param, Return>(f: Param -> Return) -> Param -> Return {
+		return {
+			[weak self]
+			(param: Param) -> Return in
+			self?.increment()
+			return f(param)
+		}
+
+	}
+
 }

@@ -64,11 +64,7 @@ class ArrayExtension: XCTestCase {
 
 
 	func testFillerWithBlock() {
-		tester.fill(to: 0) {
-			_ in
-			counter.increment()
-			return "once"
-		}
+		tester.fill(to: 0, filler: counter.curryIncrement({_ in "once"}))
 		XCTAssertEqual(tester, ["once"])
 		counter.assertCount(1)
 
