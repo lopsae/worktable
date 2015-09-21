@@ -63,7 +63,7 @@ extension Array {
 
 
 // TODO: docs
-	subscript(index: Int, filler filler: Int -> Element) -> Element {
+	subscript(index: Int, @noescape filler filler: Int -> Element) -> Element {
 		mutating get {
 			fill(to: index, filler: filler)
 			return self[index]
@@ -94,7 +94,7 @@ extension Array {
 
 
 // TODO: docs
-	mutating func fill(to fillIndex: Int, filler: Int -> Element) {
+	mutating func fill(to fillIndex: Int, @noescape filler: Int -> Element) {
 		if count > fillIndex {
 			return
 		}

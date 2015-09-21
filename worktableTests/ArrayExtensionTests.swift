@@ -66,7 +66,7 @@ class ArrayExtension: XCTestCase {
 	func testFillerWithBlock() {
 		tester.fill(to: 0) {
 			_ in
-			self.timesCalled++
+			timesCalled++
 			return "once"
 		}
 		XCTAssertEqual(tester, ["once"])
@@ -75,7 +75,7 @@ class ArrayExtension: XCTestCase {
 
 		tester.fill(to: 2) {
 			_ in
-			self.timesCalled++
+			timesCalled++
 			return "twice"
 		}
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
@@ -84,7 +84,7 @@ class ArrayExtension: XCTestCase {
 
 		tester.fill(to: 1) {
 			_ in
-			self.timesCalled++
+			timesCalled++
 			return "none"
 		}
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
@@ -92,7 +92,7 @@ class ArrayExtension: XCTestCase {
 
 		tester.fill(to: 2){
 			_ in
-			self.timesCalled++
+			timesCalled++
 			return "none"
 		}
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
@@ -124,7 +124,7 @@ class ArrayExtension: XCTestCase {
 	func testSubscriptFillerWithBlock() {
 		element = tester[1,
 			filler: {_ in
-				self.timesCalled++
+				timesCalled++
 				return "first"
 			}
 		]
@@ -135,7 +135,7 @@ class ArrayExtension: XCTestCase {
 
 		tester[1,
 			filler: {_ in
-				self.timesCalled++
+				timesCalled++
 				return "none"
 			}
 		] = "second"
@@ -144,7 +144,7 @@ class ArrayExtension: XCTestCase {
 
 		element = tester[2,
 			filler: {_ in
-				self.timesCalled++
+				timesCalled++
 				return "third"
 			}
 		]
@@ -155,7 +155,7 @@ class ArrayExtension: XCTestCase {
 
 		element = tester[0,
 			filler: {_ in
-				self.timesCalled++
+				timesCalled++
 				return "none"
 			}
 		]
@@ -165,7 +165,7 @@ class ArrayExtension: XCTestCase {
 
 		tester[4,
 			filler: {_ in
-				self.timesCalled++
+				timesCalled++
 				return "fourth"
 			}
 		] = "fifth"
