@@ -64,7 +64,8 @@ class ArrayExtension: XCTestCase {
 
 
 	func testFillerWithBlock() {
-		tester.fill(to: 0) {_ in
+		tester.fill(to: 0) {
+			_ in
 			self.timesCalled++
 			return "once"
 		}
@@ -72,7 +73,8 @@ class ArrayExtension: XCTestCase {
 		XCTAssertEqual(timesCalled, 1)
 		timesCalled = 0
 
-		tester.fill(to: 2) {_ in
+		tester.fill(to: 2) {
+			_ in
 			self.timesCalled++
 			return "twice"
 		}
@@ -80,14 +82,16 @@ class ArrayExtension: XCTestCase {
 		XCTAssertEqual(timesCalled, 2)
 		timesCalled = 0
 
-		tester.fill(to: 1) {_ in
+		tester.fill(to: 1) {
+			_ in
 			self.timesCalled++
 			return "none"
 		}
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		XCTAssertEqual(timesCalled, 0)
 
-		tester.fill(to: 2) {_ in
+		tester.fill(to: 2){
+			_ in
 			self.timesCalled++
 			return "none"
 		}
@@ -118,43 +122,53 @@ class ArrayExtension: XCTestCase {
 
 
 	func testSubscriptFillerWithBlock() {
-		element = tester[1, filler: {_ in
-			self.timesCalled++
-			return "first"
-		}]
+		element = tester[1,
+			filler: {_ in
+				self.timesCalled++
+				return "first"
+			}
+		]
 		XCTAssertEqual(element, "first")
 		XCTAssertEqual(tester, ["first", "first"])
 		XCTAssertEqual(timesCalled, 2)
 		timesCalled = 0
 
-		tester[1, filler: {_ in
-			self.timesCalled++
-			return "none"
-		}] = "second"
+		tester[1,
+			filler: {_ in
+				self.timesCalled++
+				return "none"
+			}
+		] = "second"
 		XCTAssertEqual(tester, ["first", "second"])
 		XCTAssertEqual(timesCalled, 0)
 
-		element = tester[2, filler: {_ in
-			self.timesCalled++
-			return "third"
-		}]
+		element = tester[2,
+			filler: {_ in
+				self.timesCalled++
+				return "third"
+			}
+		]
 		XCTAssertEqual(element, "third")
 		XCTAssertEqual(tester, ["first", "second", "third"])
 		XCTAssertEqual(timesCalled, 1)
 		timesCalled = 0
 
-		element = tester[0, filler: {_ in
-			self.timesCalled++
-			return "none"
-		}]
+		element = tester[0,
+			filler: {_ in
+				self.timesCalled++
+				return "none"
+			}
+		]
 		XCTAssertEqual(element, "first")
 		XCTAssertEqual(tester, ["first", "second", "third"])
 		XCTAssertEqual(timesCalled, 0)
 
-		tester[4, filler: {_ in
-			self.timesCalled++
-			return "fourth"
-		}] = "fifth"
+		tester[4,
+			filler: {_ in
+				self.timesCalled++
+				return "fourth"
+			}
+		] = "fifth"
 		XCTAssertEqual(tester, ["first", "second", "third", "fourth", "fifth"])
 		XCTAssertEqual(timesCalled, 1)
 		timesCalled = 0
