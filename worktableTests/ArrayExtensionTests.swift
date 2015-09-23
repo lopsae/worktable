@@ -22,7 +22,10 @@ class ArrayExtension: XCTestCase {
 	`counter.increase()` once.
 	*/
 	func mockFiller(filler: String) -> Int -> String {
-		return counter.curryIncrement({(_: Int) in filler})
+		return counter.wrapIncrement(){
+			(_: Int) in
+			return filler
+		}
 	}
 
 
