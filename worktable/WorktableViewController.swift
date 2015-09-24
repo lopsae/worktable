@@ -5,13 +5,13 @@ public class WorktableViewController: UITableViewController {
 
 	private var sections = [[WorktableCellItem]]()
 
-	/**
-	Internal storage of cellViews as they are created. Mainly used to allow
-	cellViews to perform their own layout before the height for the cell is
-	requested. The method `tableView::cellForRowAtIndexPath` does not return
-	the created cellViews when the height is requested neither during the
-	initial table load, nor when new cellsViews are created during scrolling.
-	*/
+
+	/// Internal storage of cellViews as they are created. Mainly used to allow
+	/// cellViews to perform their own layout before the height for the cell is
+	/// requested. The method `tableView::cellForRowAtIndexPath` does not return
+	/// the created cellViews when the height is requested neither during the
+	/// initial table load, nor when new cellsViews are created during
+	/// scrolling.
 	private var cellViews = [[WorktableCellView?]]()
 
 	// TODO: for future refresh support
@@ -129,12 +129,10 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	/**
-	Creates and returns the cellView for the cellItem corresponding to the given
-	`indexPath`. As cellViews are created or dequeued they are updated with the
-	corresponding cellItem. The created cellViews are available inmediately
-	through the instance `cellViewForIndexPath` method.
-	*/
+	/// Creates and returns the cellView for the cellItem corresponding to the
+	/// given `indexPath`. As cellViews are created or dequeued they are updated
+	/// with the corresponding cellItem. The created cellViews are available
+	/// immediately through the instance `cellViewForIndexPath` method.
 	override public func tableView(
 		tableView: UITableView,
 		cellForRowAtIndexPath indexPath: NSIndexPath
@@ -157,19 +155,18 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	/**
-	Returns the estimated height of a cell before its cellView is created.
-	
-	This value is used to estimate the available scroll area without having to
-	create cellViews that are not visible yet.
-
-	The estimated size of any cell is always provided by its corresponding
-	cellItem. UITableViewAutomaticDimension can be used to allow the default
-	size of cellViews or to use autolayout.
-
-	This method must exist, otherwise calling tableView::cellForRowAtIndexPath
-	from within heightForRowAtIndexPath causes an infinite loop.
-	*/
+	/// Returns the estimated height of a cell before its cellView is created.
+	///
+	/// This value is used to estimate the available scroll area without having
+	/// to create cellViews that are not visible yet.
+	///
+	/// The estimated size of any cell is always provided by its corresponding
+	/// cellItem. UITableViewAutomaticDimension can be used to allow the default
+	/// size of cellViews or to use autolayout.
+	///
+	/// This method must exist, otherwise calling
+	/// `tableView::cellForRowAtIndexPath` from within `heightForRowAtIndexPath`
+	/// causes an infinite loop.
 	override public func tableView(_: UITableView,
 		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
@@ -178,20 +175,18 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	/**
-	Returns the height of a given cell.
-	
-	The first time this method is called for each of the cells, the cellView is
-	still not available throught the `tableView.cellForRowAtIndexPath` method.
-	Thus the cellView is stored internally and retrieved by the instance
-	`cellViewAtIndexPath` method.
-	
-	Before returning the height, cellViews are allowed to process their layout
-	and thus calculate their correct height if needed.
-	
-	CellViews that use autolayout should return UITableViewAutomaticDimension to
-	properly adjust themselves.
-	*/
+	/// Returns the height of a given cell.
+	///
+	/// The first time this method is called for each of the cells, the cellView
+	/// is still not available throught the `tableView.cellForRowAtIndexPath`
+	/// method. Thus the cellView is stored internally and retrieved by the
+	/// instance `cellViewAtIndexPath` method.
+	///
+	/// Before returning the height, cellViews are allowed to process their
+	/// layout and thus calculate their correct height if needed.
+	///
+	/// CellViews that use autolayout should return
+	/// `UITableViewAutomaticDimension` to properly adjust themselves.
 	override public func tableView(_: UITableView,
 		heightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
@@ -204,12 +199,10 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	/**
-	Method called as each cellView is about to be displayed.
-
-	TODO: use this method to notify cellView of its display, frame and height happened before and should be correct
-	this, and didDisplayCell, can be used to trigger after display height adjustments
-	*/
+	/// Method called as each cellView is about to be displayed.
+	///
+	/// TODO: use this method to notify cellView of its display, frame and height happened before and should be correct
+	/// this, and didDisplayCell, can be used to trigger after display height adjustments
 	override public func tableView(_: UITableView,
 		willDisplayCell cellView: UITableViewCell,
 		forRowAtIndexPath indexPath: NSIndexPath

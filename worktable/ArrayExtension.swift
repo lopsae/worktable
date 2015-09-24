@@ -3,10 +3,8 @@ import Foundation
 
 extension Array {
 
-	/**
-	Overwrites the first element of the array with the `newFirst` element. If
-	the array is empty the `newFirst` element is appended.
-	*/
+	/// Overwrites the first element of the array with the `newFirst` element.
+	/// If the array is empty the `newFirst` element is appended.
 	mutating func setFirst(newFirst: Element) {
 		if isEmpty {
 			append(newFirst)
@@ -16,10 +14,8 @@ extension Array {
 	}
 
 
-	/**
-	Overwrites the last element of the array with the `newLast` element. If
-	the array is empty the `newFirst` element is appended.
-	*/
+	/// Overwrites the last element of the array with the `newLast` element. If
+	/// the array is empty the `newFirst` element is appended.
 	mutating func setLast(newLast: Element) {
 		if isEmpty {
 			append(newLast)
@@ -29,21 +25,19 @@ extension Array {
 	}
 
 
-	/**
-	Subscript that fills the array up to a given position and then returns or
-	overwrite the content of that position.
-	
-	For both get and set — if the array count is lower that `index` the array is
-	filled up with the `filler` element up the `index` position.
-	
-	When getting — the subscript will return either the element that was already
-	at the `index` position, or will fill up to the `index` position and then
-	return the `filler` element.
-	
-	When setting — the subscript will overwrite the element that was already at
-	the `index` position, or will fill up to the `index` position and then set
-	the last element with the `newValue` element.
-	*/
+	/// Subscript that fills the array up to a given position and then returns
+	/// or overwrite the content of that position.
+	///
+	/// For both get and set — if the array count is lower that `index` the
+	/// array is filled up with the `filler` element up the `index` position.
+	///
+	/// When getting — the subscript will return either the element that was
+	/// already at the `index` position, or will fill up to the `index` position
+	/// and then return the `filler` element.
+	///
+	/// When setting — the subscript will overwrite the element that was already
+	/// at the `index` position, or will fill up to the `index` position and
+	/// then set the last element with the `newValue` element.
 	subscript(index: Int, @autoclosure filler filler: () -> Element) -> Element {
 		mutating get {
 			fill(to: index, filler: {_ in filler()})
@@ -80,12 +74,10 @@ extension Array {
 	}
 
 
-	/**
-	Fills the array to the `index` position with the `filler` element.
-	
-	If the array count is already greater that `index` no operation is
-	performed.
-	*/
+	/// Fills the array to the `index` position with the `filler` element.
+	///
+	/// If the array count is already greater that `index` no operation is
+	/// performed.
 	mutating func fill(to fillIndex: Int, @autoclosure filler: () -> Element) {
 		while count <= fillIndex {
 			append(filler())
