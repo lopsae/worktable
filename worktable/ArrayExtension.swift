@@ -33,7 +33,7 @@ extension Array {
 	/// called as each `filler` element is created.
 	///
 	/// When getting — returns the the element at the `index` if it exists,
-	/// otherwise the array is filled with `filler` elements until the `index`
+	/// otherwise the array is filled with `filler` elements up to the `index`
 	/// position and the last `filler` element is returned.
 	///
 	/// When setting — overwrites the element at the `index` position if it
@@ -67,7 +67,7 @@ extension Array {
 	///
 	/// When reading — returns the the element at the `index` if it exists,
 	/// otherwise the array is filled with the elements returned by the `filler`
-	/// closure until the `index` position and the last `filler` element is
+	/// closure up to the `index` position and the last `filler` element is
 	/// returned.
 	///
 	/// When writing — overwrites the element at the `index` position if it
@@ -91,10 +91,13 @@ extension Array {
 	}
 
 
-	/// Fills the array to the `index` position with the `filler` element.
+	/// Fills the array up to the `index` position with the `filler` element.
 	///
-	/// If the array count is already greater that `index` no operation is
-	/// performed.
+	/// Notice that `filler` is automatically captured as a closure which is
+	/// called as each `filler` element is created.
+	///
+	/// If the array already contains more elements that the `to` index then no
+	/// operation is performed.
 	mutating func fill(to fillIndex: Int, @autoclosure filler: () -> Element) {
 		while count <= fillIndex {
 			append(filler())
@@ -102,7 +105,11 @@ extension Array {
 	}
 
 
-// TODO: docs
+	/// Fills the array up to the `index` position with the elements returned by
+	/// the `filler` closure.
+	///
+	/// If the array already contains more elements that the `to` index then no
+	/// operation is performed.
 	mutating func fill(to fillIndex: Int, @noescape filler: Int -> Element) {
 		if count > fillIndex {
 			return
