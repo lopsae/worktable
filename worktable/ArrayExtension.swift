@@ -25,50 +25,67 @@ extension Array {
 	}
 
 
-	/// Subscript that fills the array up to a given position and then returns
-	/// or overwrite the content of that position.
+	/// Returns or sets the element at the `index` position if it exists,
+	/// otherwise the array is filled with the `filler` element as as needed
+	/// until the element in the `index` position can be returned or set.
 	///
-	/// For both get and set — if the array count is lower that `index` the
-	/// array is filled up with the `filler` element up the `index` position.
+	/// Notice that `filler` is automatically captured as a closure which is
+	/// called as each `filler` element is created.
 	///
-	/// When getting — the subscript will return either the element that was
-	/// already at the `index` position, or will fill up to the `index` position
-	/// and then return the `filler` element.
+	/// When getting — returns the the element at the `index` if it exists,
+	/// otherwise the array is filled with `filler` elements until the `index`
+	/// position and the last `filler` element is returned.
 	///
-	/// When setting — the subscript will overwrite the element that was already
-	/// at the `index` position, or will fill up to the `index` position and
-	/// then set the last element with the `newValue` element.
+	/// When setting — overwrites the element at the `index` position if it
+	/// exists, otherwise the array is filled with `filler` elements until
+	/// the `newValue` element can be appended at the `index` position.
 	subscript(index: Int, @autoclosure filler filler: () -> Element) -> Element {
 		mutating get {
 			fill(to: index, filler: {_ in filler()})
 			return self[index]
 		}
 
-		mutating set(newElement) {
+		mutating set {
 			fill(to: index - 1, filler: {_ in filler()})
 			if count > index {
-				self[index] = newElement
+				self[index] = newValue
 			} else {
-				append(newElement)
+				append(newValue)
 			}
-			self[index] = newElement
+			self[index] = newValue
 		}
 	}
 
 
-// TODO: docs
+	/// Returns or sets the element at the `index` position if it exists,
+	/// otherwise the array is filled with the elements returned by the `filler`
+	/// closure as as needed until the element in the `index` position can be
+	/// returned or set.
+	///
+	/// The `filler` closure receives the index where the returned element will
+	/// be stored.
+	///
+	/// When reading — returns the the element at the `index` if it exists,
+	/// otherwise the array is filled with the elements returned by the `filler`
+	/// closure until the `index` position and the last `filler` element is
+	/// returned.
+	///
+	/// When writing — overwrites the element at the `index` position if it
+	/// exists, otherwise the array is filled with the elements returned by the
+	/// `filler` closure until the `newValue` element can be appended at the
+	/// `index` position.
 	subscript(index: Int, @noescape filler filler: Int -> Element) -> Element {
 		mutating get {
 			fill(to: index, filler: filler)
 			return self[index]
 		}
 
-		mutating set(newElement) {
+		mutating set {
 			fill(to: index - 1, filler: filler)
 			if count > index {
-				self[index] = newElement
+				self[index] = newValue
 			} else {
-				append(newElement)
+				append(newValue)
 			}
 		}
 	}
