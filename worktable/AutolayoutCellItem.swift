@@ -1,6 +1,7 @@
 import UIKit
 
 
+/// Example cellItem for a cell that adjust its size through autolayout.
 class AutolayoutCellItem: BaseCellItem {
 
 	let NIB_NAME = "AutolayoutCellView"
