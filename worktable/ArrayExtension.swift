@@ -1,6 +1,22 @@
 import Foundation
 
 
+protocol ArrayProtocol {
+
+	func get(index: Int) -> Any
+	
+}
+
+
+extension Array: ArrayProtocol {
+
+	func get(index: Int) -> Any {
+		return self[index]
+	}
+	
+}
+
+
 extension Array {
 
 	/// Overwrites the first element of the array with the `newFirst` element.
@@ -21,6 +37,40 @@ extension Array {
 			append(newLast)
 		} else {
 			self[count - 1] = newLast
+		}
+	}
+
+
+	// TODO: docs
+	subscript (indexPath: NSIndexPath) -> Any? {
+		get {
+			guard indexPath.length > 0 else {
+				return nil
+			}
+
+			var pathPosition = 0
+			var arrayAtPosition: ArrayProtocol = self
+
+			while true {
+				let currentIndex = indexPath.indexAtPosition(pathPosition)
+				let currentElement = arrayAtPosition.get(currentIndex)
+
+				if pathPosition + 1 == indexPath.length {
+					// In last position, get item and return
+					return currentElement
+				}
+
+				// Not last position, we have to go deeper
+				guard let nextArray = currentElement as? ArrayProtocol
+				else {
+					// No array to go deeper
+					return nil
+				}
+
+				// Prepare next loop
+				pathPosition++
+				arrayAtPosition = nextArray
+			}
 		}
 	}
 

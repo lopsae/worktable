@@ -94,8 +94,22 @@ public class WorktableViewController: UITableViewController {
 	// the last cell created for the given indexPath, regardless of if it was displayed or not
 	public func cellViewAtIndexPath(indexPath: NSIndexPath)
 	-> WorktableCellView? {
-		// TODO: can this be part of an expansion, subindex with indexPath
-		return cellViews[indexPath.section][indexPath.row]
+		guard let anyElement = cellViews[indexPath] else {
+			// Tried to access an unexisting position
+			return nil
+		}
+
+		guard let maybeCellView = anyElement as? OptionalProtocol else {
+			// Not an WorktableCellView? element, supposedly imposible
+			return nil
+		}
+
+		if maybeCellView.isNone() {
+			// Position in array exist, but nothing stored there
+			return nil
+		}
+	
+		return maybeCellView.unwrap() as? WorktableCellView
 	}
 
 
@@ -194,7 +208,7 @@ public class WorktableViewController: UITableViewController {
 	override public func tableView(_: UITableView,
 		heightForRowAtIndexPath indexPath: NSIndexPath
 	) -> CGFloat {
-		if let cellView = cellViews[indexPath.section][indexPath.row] {
+		if let cellView = cellViewAtIndexPath(indexPath) {
 			cellView.willReportCellHeight(self)
 			return cellView.cellHeight
 		}

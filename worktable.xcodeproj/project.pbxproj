@@ -39,6 +39,8 @@
 		2D8D7F701B9A5EFF00169A16 /* BaseCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */; };
 		2DC3FE411BAF9EA300C13B6F /* ArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE401BAF9EA300C13B6F /* ArrayExtensionTests.swift */; settings = {ASSET_TAGS = (); }; };
 		2DC3FE441BAFC86A00C13B6F /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE431BAFC86A00C13B6F /* Counter.swift */; settings = {ASSET_TAGS = (); }; };
+		2DC3FE491BB661B400C13B6F /* OptionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE481BB661B400C13B6F /* OptionalExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		2DC3FE4A1BB661B400C13B6F /* OptionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE481BB661B400C13B6F /* OptionalExtension.swift */; settings = {ASSET_TAGS = (); }; };
 		2DD7B5391B9C16F000678ABF /* BaseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7B5381B9C16F000678ABF /* BaseCellView.swift */; };
 		2DD7B53A1B9C16F000678ABF /* BaseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7B5381B9C16F000678ABF /* BaseCellView.swift */; };
 		2DE0CC501B8EA79F00BE16E5 /* VariableHeightCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC4F1B8EA79F00BE16E5 /* VariableHeightCellItem.swift */; };
@@ -80,6 +82,7 @@
 		2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseCellItem.swift; path = worktable/BaseCellItem.swift; sourceTree = "<group>"; };
 		2DC3FE401BAF9EA300C13B6F /* ArrayExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensionTests.swift; sourceTree = "<group>"; };
 		2DC3FE431BAFC86A00C13B6F /* Counter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
+		2DC3FE481BB661B400C13B6F /* OptionalExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalExtension.swift; sourceTree = "<group>"; };
 		2DD7B5381B9C16F000678ABF /* BaseCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseCellView.swift; path = worktable/BaseCellView.swift; sourceTree = "<group>"; };
 		2DE0CC4F1B8EA79F00BE16E5 /* VariableHeightCellItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VariableHeightCellItem.swift; path = worktable/VariableHeightCellItem.swift; sourceTree = "<group>"; };
 		2DE0CC521B8EA7CC00BE16E5 /* VariableHeightCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VariableHeightCellView.swift; path = worktable/VariableHeightCellView.swift; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 			children = (
 				2DE0CC551B8EE11900BE16E5 /* ConcentricView.swift */,
 				2D46B5211B82F9BD00663A40 /* ArrayExtension.swift */,
+				2DC3FE481BB661B400C13B6F /* OptionalExtension.swift */,
 				2D45EC551B8982A90078567C /* LoremIpsum.swift */,
 				2DE0CC581B8EE30D00BE16E5 /* CGExtension.swift */,
 			);
@@ -332,6 +336,7 @@
 				2D45EC561B8982A90078567C /* LoremIpsum.swift in Sources */,
 				2D8D7F6F1B9A5EFF00169A16 /* BaseCellItem.swift in Sources */,
 				2D46B52D1B82F9BD00663A40 /* ArrayExtension.swift in Sources */,
+				2DC3FE491BB661B400C13B6F /* OptionalExtension.swift in Sources */,
 				2D46B5401B84428000663A40 /* WorktableCellView.swift in Sources */,
 				2D46B5371B82F9BD00663A40 /* DefaultCellItem.swift in Sources */,
 				2DE0CC561B8EE11900BE16E5 /* ConcentricView.swift in Sources */,
@@ -352,6 +357,7 @@
 				2D45EC541B8546260078567C /* AutolayoutCellItem.swift in Sources */,
 				2D46B5411B84428000663A40 /* WorktableCellView.swift in Sources */,
 				2DE0CC5A1B8EE30D00BE16E5 /* CGExtension.swift in Sources */,
+				2DC3FE4A1BB661B400C13B6F /* OptionalExtension.swift in Sources */,
 				2D46B52C1B82F9BD00663A40 /* AppDelegate.swift in Sources */,
 				2D46B53E1B82F9BD00663A40 /* WorktableViewController.swift in Sources */,
 				2D8D7F701B9A5EFF00169A16 /* BaseCellItem.swift in Sources */,
