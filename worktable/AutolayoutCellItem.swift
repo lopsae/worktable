@@ -4,7 +4,11 @@ import UIKit
 class AutolayoutCellItem: BaseCellItem {
 
 	let NIB_NAME = "AutolayoutCellView"
-	let ESTIMATED_HEIGHT: CGFloat = 75 // Based on initial height in nib file
+
+	// Based on initial height in nib file
+	// Using the default would also work but if the height difference is too
+	// large there is jumping of the scroll indicator as scrolling happens
+	let ESTIMATED_HEIGHT: CGFloat = 75
 
 	var labelText: String
 	var buttonText: String
@@ -14,12 +18,6 @@ class AutolayoutCellItem: BaseCellItem {
 		self.labelText = labelText
 		self.buttonText = buttonText
 		super.init(viewSource: NIB_NAME, estimatedHeight: ESTIMATED_HEIGHT)
-
-		// This would also work with the shorter init, but the difference
-		// between estimatedHeight default (44) and the final height is too
-		// large and causes jumping of the scroll indicator as cells are
-		// creted.
-//		super.init(viewSource: NIB_NAME)
 	}
 
 }
