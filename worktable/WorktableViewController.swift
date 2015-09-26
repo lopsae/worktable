@@ -6,12 +6,13 @@ public class WorktableViewController: UITableViewController {
 	private var sections = [[WorktableCellItem]]()
 
 
-	/// Internal storage of cellViews as they are created. Mainly used to allow
-	/// cellViews to perform their own layout before the height for the cell is
-	/// requested. The method `tableView::cellForRowAtIndexPath` does not return
-	/// the created cellViews when the height is requested neither during the
-	/// initial table load, nor when new cellsViews are created during
-	/// scrolling.
+	/// Internal storage of cellViews as they are created.
+	///
+	////Used to allow cellViews to perform their own layout before the height
+	/// for the cell is requested. The method `tableView::cellForRowAtIndexPath`
+	/// fails to return the created cellViews at the time when the height is
+	/// requested. This happens for both cellViews created during the initial
+	/// table load and during scrolling.
 	private var cellViews = [[WorktableCellView?]]()
 
 	// TODO: for future refresh support
@@ -80,6 +81,10 @@ public class WorktableViewController: UITableViewController {
 
 
 	// TODO: add to documentation
+	// TODO: test whan happens if cells are to be displayed as calculated by
+	// estimated height, but then fail to appear as these are pushed out of view
+	// by actual heights.
+	//
 	// on very specific cases a cell may be returned here that is not yet displayed
 	// and thus could be reused in different position.
 	// during init, if cells grow, some other cells can become pushed out of visibility
@@ -198,10 +203,12 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
+	// TODO: use this method to notify cellView of its display, frame and height
+	// happened before and should be correct
+	// TODO: implement cell that height changes after display, with animation
+	// and without
+
 	/// Method called as each cellView is about to be displayed.
-	///
-	/// TODO: use this method to notify cellView of its display, frame and height happened before and should be correct
-	/// this, and didDisplayCell, can be used to trigger after display height adjustments
 	override public func tableView(_: UITableView,
 		willDisplayCell cellView: UITableViewCell,
 		forRowAtIndexPath indexPath: NSIndexPath
@@ -222,28 +229,6 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	override public func viewDidAppear(animated: Bool) {
-		super.viewDidAppear(animated)
-
-		// TODO: only do if we detect that cells need resizing?
-
-		// begin-endUpdates animates the cell height change, possible all of them
-		// what happens if cells become visible or out of view?
-//		tableView.beginUpdates()
-//		tableView.endUpdates()
-
-		// reload data corrects heights changes, but requests all cellsViews
-		// again and does not have animation
-		// all cellViews are recreated, but size is checked until after
-		// layoutSubviews is called! So in this specific case cell have the
-		// chance to adjust their layout and size and the table grabs it properly
-//		tableView.reloadData()
-
-		// reloadRows animates size change and slides a new cell with an animation
-//		tableView.reloadRowsAtIndexPaths([temporaryIndexPath!], withRowAnimation: .Right)
-	}
-
-
 	// For debugging
 
 	// happens before any requests for cell views
@@ -256,6 +241,11 @@ public class WorktableViewController: UITableViewController {
 	// also happens before any cellViews are requested
 	override public func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+	}
+
+
+	override public func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
 	}
 
 }
