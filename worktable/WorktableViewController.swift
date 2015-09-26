@@ -37,7 +37,7 @@ public class WorktableViewController: UITableViewController {
 			return
 		}
 
-		assertionFailure("Unexpected type of viewSource to register for reuse")
+		preconditionFailure("Unexpected type of viewSource to register for reuse: \(cellItem.cellViewSource)")
 	}
 
 
@@ -52,8 +52,7 @@ public class WorktableViewController: UITableViewController {
 			return String(cellItem.cellViewSource)
 		}
 
-		assertionFailure("Unexpected type of viewSource")
-		return nil
+		preconditionFailure("Unexpected type of viewSource: \(cellItem.cellViewSource)")
 	}
 
 
