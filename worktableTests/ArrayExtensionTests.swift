@@ -1,4 +1,5 @@
 import XCTest
+import Foundation
 
 
 class ArrayExtension: XCTestCase {
@@ -159,6 +160,26 @@ class ArrayExtension: XCTestCase {
 		tester[4, filler: mockFiller("fourth")] = "fifth"
 		XCTAssertEqual(tester, ["first", "second", "third", "fourth", "fifth"])
 		counter.assertCount(1)
+	}
+
+
+	func testSubscriptIndexPath() {
+		let multiDimentional: [[String]] = [["one"], ["two, three"], ["four"]]
+
+		// Find an existing index
+		var indexPath = NSIndexPath(index: 0).indexPathByAddingIndex(0)
+		if let shouldBeString = multiDimentional[indexPath] {
+			let aString = shouldBeString as! String
+			XCTAssertEqual(aString, "one")
+		} else {
+			XCTFail("nil returned for 0,0 index path")
+		}
+
+		// Unexisting index
+		indexPath = NSIndexPath(index: 9).indexPathByAddingIndex(9)
+		if let shouldBeString = multiDimentional[indexPath] {
+			XCTFail("something returned for 9,9 index path")
+		}
 	}
 
 }

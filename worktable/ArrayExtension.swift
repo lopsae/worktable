@@ -4,7 +4,7 @@ import Foundation
 protocol ArrayProtocol {
 
 	func get(index: Int) -> Any
-	
+	var count: Int { get }
 }
 
 
@@ -13,7 +13,7 @@ extension Array: ArrayProtocol {
 	func get(index: Int) -> Any {
 		return self[index]
 	}
-	
+
 }
 
 
@@ -45,9 +45,7 @@ extension Array {
 	// TODO: should return Optional<Any>? it could return Any and have another
 	// method to check if the given subindex exists
 	// TODO: add tests
-	// TOD): what protocol defines subindex[Int], it could be an extension
-	// directly to it
-	subscript (indexPath: NSIndexPath) -> Any? {
+	subscript(indexPath: NSIndexPath) -> Any? {
 		get {
 			guard indexPath.length > 0 else {
 				return nil
@@ -58,16 +56,18 @@ extension Array {
 
 			while true {
 				let currentIndex = indexPath.indexAtPosition(pathPosition)
-				let currentElement = arrayAtPosition.get(currentIndex)
+				guard arrayAtPosition.count > currentIndex else {
+					return nil
+				}
 
-				if pathPosition + 1 == indexPath.length {
+				let currentElement = arrayAtPosition.get(currentIndex)
+				guard pathPosition < indexPath.length - 1 else {
 					// In last position, get item and return
 					return currentElement
 				}
 
 				// Not last position, we have to go deeper
-				guard let nextArray = currentElement as? ArrayProtocol
-				else {
+				guard let nextArray = currentElement as? ArrayProtocol else {
 					// No array to go deeper
 					return nil
 				}
