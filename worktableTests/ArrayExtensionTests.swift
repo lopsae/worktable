@@ -163,23 +163,34 @@ class ArrayExtension: XCTestCase {
 	}
 
 
+	// TODO: create some better indexpath ergonomics, maybe base it on [Int]
 	func testSubscriptIndexPath() {
 		let multiDimentional: [[String]] = [["one"], ["two, three"], ["four"]]
 
-		// Find an existing index
-		var indexPath = NSIndexPath(index: 0).indexPathByAddingIndex(0)
-		if let shouldBeString = multiDimentional[indexPath] {
-			let aString = shouldBeString as! String
-			XCTAssertEqual(aString, "one")
-		} else {
-			XCTFail("nil returned for 0,0 index path")
-		}
-
 		// Unexisting index
-		indexPath = NSIndexPath(index: 9).indexPathByAddingIndex(9)
-		if let shouldBeString = multiDimentional[indexPath] {
-			XCTFail("something returned for 9,9 index path")
-		}
+		var indexPath = NSIndexPath(index: 9).indexPathByAddingIndex(9)
+		XCTAssertNil(multiDimentional[indexPath])
+
+		// Find an existing index
+		indexPath = NSIndexPath(index: 0).indexPathByAddingIndex(0)
+		let stringAsAny = multiDimentional[indexPath]
+		XCTAssertNotNil(stringAsAny)
+		XCTAssertEqual(stringAsAny as? String, "one")
+
+		// Partial index
+		indexPath = NSIndexPath(index: 2)
+		let arrayAsAny = multiDimentional[indexPath]
+		XCTAssertNotNil(arrayAsAny)
+		XCTAssertEqual(arrayAsAny as! [String], ["four"])
+
+		// Index that goes into a non-array
+		indexPath = NSIndexPath(index: 1)
+			.indexPathByAddingIndex(1)
+			.indexPathByAddingIndex(1)
+		XCTAssertNil(multiDimentional[indexPath])
 	}
+
+
+	// TODO: add subscriptIndexPath test with optionals
 
 }
