@@ -163,16 +163,15 @@ class ArrayExtension: XCTestCase {
 	}
 
 
-	// TODO: create some better indexpath ergonomics, maybe base it on [Int]
 	func testSubscriptIndexPath() {
 		let multiDimentional: [[String]] = [["one"], ["two, three"], ["four"]]
 
 		// Unexisting index
-		var indexPath = NSIndexPath(index: 9).indexPathByAddingIndex(9)
+		var indexPath = NSIndexPath.withIndexes(9, 9)
 		XCTAssertNil(multiDimentional[indexPath])
 
 		// Find an existing index
-		indexPath = NSIndexPath(index: 0).indexPathByAddingIndex(0)
+		indexPath = NSIndexPath.withIndexes(0, 0)
 		let stringAsAny = multiDimentional[indexPath]
 		XCTAssertNotNil(stringAsAny)
 		XCTAssertEqual(stringAsAny as? String, "one")
@@ -184,9 +183,7 @@ class ArrayExtension: XCTestCase {
 		XCTAssertEqual(arrayAsAny as! [String], ["four"])
 
 		// Index that goes into a non-array
-		indexPath = NSIndexPath(index: 1)
-			.indexPathByAddingIndex(1)
-			.indexPathByAddingIndex(1)
+		indexPath = NSIndexPath.withIndexes(1, 1, 1)
 		XCTAssertNil(multiDimentional[indexPath])
 	}
 
