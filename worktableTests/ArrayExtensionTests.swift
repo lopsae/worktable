@@ -190,4 +190,19 @@ class ArrayExtension: XCTestCase {
 
 	// TODO: add subscriptIndexPath test with optionals
 
+
+	func testIndexPathWithArrays() {
+		var indexPath = NSIndexPath.withIndexes()
+		XCTAssertEqual(indexPath.toArray(), [])
+
+		indexPath = NSIndexPath.withIndexes(1)
+		XCTAssertEqual(indexPath.toArray(), [1])
+
+		indexPath = NSIndexPath.withIndexes(1, 2, 3)
+		XCTAssertEqual(indexPath.toArray(), [1, 2, 3])
+
+		indexPath = NSIndexPath.withIndexes([4, 5, 6])
+		XCTAssertEqual(indexPath.toArray(), [4, 5, 6])
+	}
+
 }
