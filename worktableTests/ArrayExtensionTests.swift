@@ -167,24 +167,20 @@ class ArrayExtension: XCTestCase {
 		let multiDimentional: [[String]] = [["one"], ["two, three"], ["four"]]
 
 		// Unexisting index
-		var indexPath = NSIndexPath.withIndexes(9, 9)
-		XCTAssertNil(multiDimentional[indexPath])
+		XCTAssertNil(multiDimentional[[9, 9]])
 
 		// Find an existing index
-		indexPath = NSIndexPath.withIndexes(0, 0)
-		let stringAsAny = multiDimentional[indexPath]
+		let stringAsAny = multiDimentional[[0, 0]]
 		XCTAssertNotNil(stringAsAny)
 		XCTAssertEqual(stringAsAny as? String, "one")
 
 		// Partial index
-		indexPath = NSIndexPath(index: 2)
-		let arrayAsAny = multiDimentional[indexPath]
+		let arrayAsAny = multiDimentional[[2]]
 		XCTAssertNotNil(arrayAsAny)
 		XCTAssertEqual(arrayAsAny as! [String], ["four"])
 
 		// Index that goes into a non-array
-		indexPath = NSIndexPath.withIndexes(1, 1, 1)
-		XCTAssertNil(multiDimentional[indexPath])
+		XCTAssertNil(multiDimentional[[1, 1, 1]])
 	}
 
 

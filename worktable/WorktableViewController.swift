@@ -94,7 +94,7 @@ public class WorktableViewController: UITableViewController {
 	// the last cell created for the given indexPath, regardless of if it was displayed or not
 	public func cellViewAtIndexPath(indexPath: NSIndexPath)
 	-> WorktableCellView? {
-		guard let anyElement = cellViews[indexPath] else {
+		guard let anyElement = cellViews[indexPath.toArray()] else {
 			// Tried to access an unexisting position
 			return nil
 		}

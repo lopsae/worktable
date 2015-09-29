@@ -1,4 +1,3 @@
-import Foundation
 
 
 protocol ArrayProtocol {
@@ -44,10 +43,9 @@ extension Array {
 	// TODO: docs
 	// TODO: should return Optional<Any>? it could return Any and have another
 	// method to check if the given subindex exists
-	// TODO: add tests
-	subscript(indexPath: NSIndexPath) -> Any? {
+	subscript(indexPath: [Int]) -> Any? {
 		get {
-			guard indexPath.length > 0 else {
+			guard indexPath.count > 0 else {
 				return nil
 			}
 
@@ -55,13 +53,13 @@ extension Array {
 			var arrayAtPosition: ArrayProtocol = self
 
 			while true {
-				let currentIndex = indexPath.indexAtPosition(pathPosition)
+				let currentIndex = indexPath[pathPosition]
 				guard arrayAtPosition.count > currentIndex else {
 					return nil
 				}
 
 				let currentElement = arrayAtPosition.get(currentIndex)
-				guard pathPosition < indexPath.length - 1 else {
+				guard pathPosition < indexPath.count - 1 else {
 					// In last position, get item and return
 					return currentElement
 				}
