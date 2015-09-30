@@ -14,6 +14,23 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 	private(set)
 	public var cellHeight = UITableViewAutomaticDimension
 
+	private var selectable = true
+	public var isSelectable: Bool {
+		get {
+			return selectable
+		}
+
+		set {
+			if newValue {
+				self.selectionStyle = .Default
+			} else {
+				self.selectionStyle = .None
+			}
+			
+			selectable = newValue
+		}
+	}
+
 
 	init?(
 		height: CGFloat?,
@@ -32,6 +49,9 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 		} else {
 			super.init()
 		}
+
+		isSelectable = true
+
 		postInit()
 	}
 

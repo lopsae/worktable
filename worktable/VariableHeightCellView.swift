@@ -12,6 +12,8 @@ class VariableHeightCellView: BaseCellView {
 		initialHeight = UITableViewAutomaticDimension
 		testView = ConcentricView(frame: CGRectZero)
 		contentView.addSubview(testView)
+
+		isSelectable = false
 	}
 
 
