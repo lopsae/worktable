@@ -48,34 +48,34 @@ extension CGRect {
 
 
 	mutating func set(width newWidth: CGFloat) {
-		self.size.width = newWidth
+		size.width = newWidth
 	}
 
 
 	mutating func set(height newHeight: CGFloat) {
-		self.size.height = newHeight
+		size.height = newHeight
 	}
 
 
 	mutating func set(width newWidth: CGFloat, height newHeight: CGFloat) {
-		self.size.width = newWidth
-		self.size.height = newHeight
+		size.width = newWidth
+		size.height = newHeight
 	}
 
 
 	mutating func set(x newX: CGFloat) {
-		self.origin.x = newX
+		origin.x = newX
 	}
 
 
 	mutating func set(y newY: CGFloat) {
-		self.origin.y = newY
+		origin.y = newY
 	}
 
 
 	mutating func set(x newX: CGFloat, y newY: CGFloat) {
-		self.origin.x = newX
-		self.origin.y = newY
+		origin.x = newX
+		origin.y = newY
 	}
 
 
@@ -85,42 +85,42 @@ extension CGRect {
 		width newWidth: CGFloat,
 		height newHeight: CGFloat
 	) {
-		self.origin.x = newX
-		self.origin.y = newY
-		self.size.width = newWidth
-		self.size.height = newHeight
+		origin.x = newX
+		origin.y = newY
+		size.width = newWidth
+		size.height = newHeight
 	}
 
 
 	mutating func add(width addWidth: CGFloat) {
-		self.size.width += addWidth
+		size.width += addWidth
 	}
 
 
 	mutating func add(height addHeight: CGFloat) {
-		self.size.height += addHeight
+		size.height += addHeight
 	}
 
 
 	mutating func add(width addWidth: CGFloat, height addHeight: CGFloat) {
-		self.size.width += addWidth
-		self.size.height += addHeight
+		size.width += addWidth
+		size.height += addHeight
 	}
 
 
 	mutating func add(x addX: CGFloat) {
-		self.origin.x += addX
+		origin.x += addX
 	}
 
 
 	mutating func add(y addY: CGFloat) {
-		self.origin.y += addY
+		origin.y += addY
 	}
 
 
 	mutating func add(x addX: CGFloat, y addY: CGFloat) {
-		self.origin.x += addX
-		self.origin.y += addY
+		origin.x += addX
+		origin.y += addY
 	}
 
 
@@ -130,10 +130,10 @@ extension CGRect {
 		width addWidth: CGFloat,
 		height addHeight: CGFloat
 	) {
-		self.origin.x += addX
-		self.origin.y += addY
-		self.size.width += addWidth
-		self.size.height += addHeight
+		origin.x += addX
+		origin.y += addY
+		size.width += addWidth
+		size.height += addHeight
 	}
 
 
