@@ -48,9 +48,8 @@ class ConcentricView: UIView {
 		// Frame label
 		var labelPlaceBounds = bounds
 
-		// TODO: this simple transformations could be done with some extentions and method chaining?
-		labelPlaceBounds.origin.x += 10
-		labelPlaceBounds.size.width -= 10
+		labelPlaceBounds.x += 10
+		labelPlaceBounds.add(width: -10)
 
 		let labelFont = UIFont(name: "HelveticaNeue", size: 14)
 		let labelForeColor = UIColor.redColor()
@@ -71,9 +70,12 @@ class ConcentricView: UIView {
 			context: nil
 		)
 
-		var centeredRect = CGRectMake(0, 0, ceil(labelDrawBounds.width), ceil(labelDrawBounds.height))
-		centeredRect.origin.x = labelPlaceBounds.origin.x
-		centeredRect.origin.y = (labelPlaceBounds.height - labelDrawBounds.height)/2 + labelPlaceBounds.origin.y
+		// TODO: CGFloat extension for ceil/floor methods?
+		var centeredRect = CGRect()
+		centeredRect.x = labelPlaceBounds.x
+		// TODO: can this (h - h)/2 be abstracted explained in an extension method?
+		centeredRect.y = (labelPlaceBounds.height - labelDrawBounds.height)/2 + labelPlaceBounds.y
+		centeredRect.set(width: ceil(labelDrawBounds.width), height: ceil(labelDrawBounds.height))
 
 		label.drawWithRect(centeredRect, options: drawOptions, context: nil)
 	}
