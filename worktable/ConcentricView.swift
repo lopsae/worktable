@@ -46,10 +46,9 @@ class ConcentricView: UIView {
 		borderPath.stroke()
 
 		// Frame label
+		// PlaceBounds is the rectangle in which the label will be centered
 		var labelPlaceBounds = bounds
-
-		labelPlaceBounds.x += 10
-		labelPlaceBounds.add(width: -10)
+		labelPlaceBounds.pushMarginX(10)
 
 		let labelFont = UIFont(name: "HelveticaNeue", size: 14)
 		let labelForeColor = UIColor.redColor()
@@ -65,17 +64,15 @@ class ConcentricView: UIView {
 
 		let drawOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .TruncatesLastVisibleLine]
 
+		// Draw bounds is the rectangle that the drawed text will ocupy exactly
 		let labelDrawBounds = label.boundingRectWithSize(labelPlaceBounds.size,
 			options: drawOptions,
 			context: nil
 		)
 
-		// TODO: CGFloat extension for ceil/floor methods?
-		var centeredRect = CGRect()
+		var centeredRect = CGRect(sizeOf: labelDrawBounds)
 		centeredRect.x = labelPlaceBounds.x
-		// TODO: can this (h - h)/2 be abstracted explained in an extension method?
-		centeredRect.y = (labelPlaceBounds.height - labelDrawBounds.height)/2 + labelPlaceBounds.y
-		centeredRect.set(width: ceil(labelDrawBounds.width), height: ceil(labelDrawBounds.height))
+		centeredRect.centerHeightInto(labelPlaceBounds)
 
 		label.drawWithRect(centeredRect, options: drawOptions, context: nil)
 	}

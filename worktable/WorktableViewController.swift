@@ -161,7 +161,7 @@ public class WorktableViewController: UITableViewController {
 
 		// The table width is updated inmediately on all cellViews to allow
 		// height to be calculated during `heightForCell`
-		cellView?.frame.set(width: tableView.bounds.width)
+		cellView?.frame.w = tableView.bounds.w
 
 		if let cellView = cellView as? WorktableCellView {
 			cellView.updateWithCellItem(cellItem)
