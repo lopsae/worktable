@@ -5,8 +5,6 @@ public protocol WorktableCellView {
 
 	var cellHeight: CGFloat { get }
 
-	var isSelectable: Bool { get }
-
 
 	func updateWithCellItem(cellItem: WorktableCellItem)
 

@@ -13,7 +13,7 @@ class VariableHeightCellView: BaseCellView {
 		testView = ConcentricView(frame: CGRectZero)
 		contentView.addSubview(testView)
 
-		isSelectable = false
+		isSelectionVisible = false
 	}
 
 
@@ -54,23 +54,5 @@ class VariableHeightCellView: BaseCellView {
 
 		super.layoutSubviews()
 	}
-
-
-// For debugging
-	
-//	override var frame: CGRect {
-//		get {
-//			return super.frame
-//		}
-//
-//		set (newFrame) {
-//			super.frame = newFrame
-//		}
-//	}
-
-
-//	override func setNeedsLayout() {
-//		super.setNeedsLayout()
-//	}
 
 }

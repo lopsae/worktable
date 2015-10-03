@@ -15,7 +15,12 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 	public var cellHeight = UITableViewAutomaticDimension
 
 
-	public var isSelectable: Bool {
+	/// Convenience property to enable and disable the default hightlight and
+	/// selection visuals of `UITableViewCell`.
+	///
+	/// Regardless of the value of this property the cellView will still receive
+	/// calls for highlight and selection events.
+	public var isSelectionVisible: Bool {
 		get {
 			return selectionStyle != .None
 		}
