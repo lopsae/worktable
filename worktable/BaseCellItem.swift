@@ -46,5 +46,10 @@ public class BaseCellItem: WorktableCellItem {
 		cellEstimatedHeight = estimatedHeight
 	}
 
+
+	public func cellSelectedWithView(cellview: WorktableCellView?) {
+		// To override
+	}
+
 }
 

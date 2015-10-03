@@ -178,9 +178,9 @@
 			isa = PBXGroup;
 			children = (
 				2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */,
-				2DE0CC4F1B8EA79F00BE16E5 /* VariableHeightCellItem.swift */,
-				2D45EC521B8546260078567C /* AutolayoutCellItem.swift */,
 				2D46B5271B82F9BD00663A40 /* DefaultCellItem.swift */,
+				2D45EC521B8546260078567C /* AutolayoutCellItem.swift */,
+				2DE0CC4F1B8EA79F00BE16E5 /* VariableHeightCellItem.swift */,
 			);
 			name = cellItems;
 			sourceTree = "<group>";
@@ -189,10 +189,10 @@
 			isa = PBXGroup;
 			children = (
 				2DD7B5381B9C16F000678ABF /* BaseCellView.swift */,
-				2DE0CC521B8EA7CC00BE16E5 /* VariableHeightCellView.swift */,
+				2D46B5291B82F9BD00663A40 /* DefaultCellView.swift */,
 				2D45EC4C1B853F510078567C /* AutolayoutCellView.swift */,
 				2D45EC4D1B853F510078567C /* AutolayoutCellView.xib */,
-				2D46B5291B82F9BD00663A40 /* DefaultCellView.swift */,
+				2DE0CC521B8EA7CC00BE16E5 /* VariableHeightCellView.swift */,
 			);
 			name = cellViews;
 			sourceTree = "<group>";

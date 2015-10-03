@@ -242,6 +242,27 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
+	override public func tableView(_: UITableView,
+		didSelectRowAtIndexPath indexPath: NSIndexPath
+	) {
+		let cellItem = cellItemAtIndexPath(indexPath)
+		let cellView = cellViewAtIndexPath(indexPath)
+
+		cellItem.cellSelectedWithView(cellView)
+
+		if let cellView = cellView {
+			cellView.cellSelectedWithItem(cellItem)
+		}
+	}
+
+
+	override public func tableView(_: UITableView,
+		didHighlightRowAtIndexPath indexPath: NSIndexPath
+	) {
+		debugPrint("highlighed at: \(indexPath.section),\(indexPath.row)")
+	}
+
+
 	// For debugging
 
 	// happens before any requests for cell views

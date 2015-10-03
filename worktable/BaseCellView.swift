@@ -93,4 +93,9 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 	}
 
 
+	public func cellSelectedWithItem(cellItem: WorktableCellItem) {
+		updateWithCellItem(cellItem)
+	}
+
+
 }

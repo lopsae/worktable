@@ -20,7 +20,6 @@ public protocol WorktableCellView {
 	func willEndDisplayingCell(controller: WorktableViewController)
 
 
-	// TODO: functions to implements
-//	func cellSelectedWithItem(cellItem: WorktableCellItem)
+	func cellSelectedWithItem(cellItem: WorktableCellItem)
 
 }

@@ -28,9 +28,8 @@ public protocol WorktableCellItem {
 	/// calls the table may not adjust properly to changes in the height
 	/// provided by the cellView.
 	var cellEstimatedHeight: CGFloat { get }
-    
-    
-    // TODO: pending functions
-    // func cellSelectedWithView(cellview: WorktableCellView)
+
+
+	func cellSelectedWithView(cellview: WorktableCellView?)
 
 }
