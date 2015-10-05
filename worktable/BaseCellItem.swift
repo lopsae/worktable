@@ -51,5 +51,10 @@ public class BaseCellItem: WorktableCellItem {
 		// To override
 	}
 
+
+	public func cellDeselectedWithView(cellview: WorktableCellView?) {
+		// To override
+	}
+
 }
 

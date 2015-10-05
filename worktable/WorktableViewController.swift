@@ -226,6 +226,8 @@ public class WorktableViewController: UITableViewController {
 		willDisplayCell cellView: UITableViewCell,
 		forRowAtIndexPath indexPath: NSIndexPath
 	) {
+		debugPrint("will display at: \(indexPath.section),\(indexPath.row)")
+
 		if let cellView = cellView as? WorktableCellView {
 			cellView.willDisplayCell(self)
 		}
@@ -236,6 +238,8 @@ public class WorktableViewController: UITableViewController {
 		didEndDisplayingCell cellView: UITableViewCell,
 		forRowAtIndexPath indexPath: NSIndexPath
 	) {
+		debugPrint("end display at: \(indexPath.section),\(indexPath.row)")
+
 		if let cellView = cellView as? WorktableCellView {
 			cellView.willEndDisplayingCell(self)
 		}
@@ -245,6 +249,8 @@ public class WorktableViewController: UITableViewController {
 	override public func tableView(_: UITableView,
 		didSelectRowAtIndexPath indexPath: NSIndexPath
 	) {
+		debugPrint("selected at: \(indexPath.section),\(indexPath.row)")
+
 		let cellItem = cellItemAtIndexPath(indexPath)
 		let cellView = cellViewAtIndexPath(indexPath)
 
@@ -257,9 +263,40 @@ public class WorktableViewController: UITableViewController {
 
 
 	override public func tableView(_: UITableView,
+		didDeselectRowAtIndexPath indexPath: NSIndexPath
+	) {
+		debugPrint("deselected at: \(indexPath.section),\(indexPath.row)")
+
+		let cellItem = cellItemAtIndexPath(indexPath)
+		let cellView = cellViewAtIndexPath(indexPath)
+
+		cellItem.cellDeselectedWithView(cellView)
+
+		if let cellView = cellView {
+			cellView.cellDeselectedWithItem(cellItem)
+		}
+	}
+
+
+	override public func tableView(_: UITableView,
 		didHighlightRowAtIndexPath indexPath: NSIndexPath
 	) {
 		debugPrint("highlighed at: \(indexPath.section),\(indexPath.row)")
+
+		if let cellView = cellViewAtIndexPath(indexPath) {
+			let cellItem = cellItemAtIndexPath(indexPath)
+			cellView.cellHightlightedWithItem(cellItem)
+		}
+	}
+
+
+	override public func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+		debugPrint("unhighlighed at: \(indexPath.section),\(indexPath.row)")
+
+		if let cellView = cellViewAtIndexPath(indexPath) {
+			let cellItem = cellItemAtIndexPath(indexPath)
+			cellView.cellUnhightlightedWithItem(cellItem)
+		}
 	}
 
 

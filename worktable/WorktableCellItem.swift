@@ -32,4 +32,7 @@ public protocol WorktableCellItem {
 
 	func cellSelectedWithView(cellview: WorktableCellView?)
 
+
+	func cellDeselectedWithView(cellview: WorktableCellView?)
+
 }

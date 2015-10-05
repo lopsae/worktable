@@ -98,8 +98,23 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 	}
 
 
+	public func cellHightlightedWithItem(cellItem: WorktableCellItem) {
+		// To override
+	}
+
+
+	public func cellUnhightlightedWithItem(cellItem: WorktableCellItem) {
+		// To override
+	}
+
+
 	public func cellSelectedWithItem(cellItem: WorktableCellItem) {
 		updateWithCellItem(cellItem)
+	}
+
+
+	public func cellDeselectedWithItem(cellItem: WorktableCellItem) {
+		// To override
 	}
 
 
