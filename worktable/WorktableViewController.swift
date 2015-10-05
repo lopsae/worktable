@@ -8,12 +8,12 @@ public class WorktableViewController: UITableViewController {
 
 	/// Internal storage of cellViews as they are created.
 	///
-	////Used to allow cellViews to perform their own layout before the height
-	/// for the cell is requested. The method `tableView::cellForRowAtIndexPath`
+	/// Used to allow cellViews to perform their own layout before the height
+	/// for the cell is returned. The method `tableView::cellForRowAtIndexPath`
 	/// fails to return the created cellViews at the time when the height is
 	/// requested. This happens for both cellViews created during the initial
 	/// table load and during scrolling.
-	private var cellViews = [[WorktableCellView?]]()
+	private var viewsStorage = [[WorktableCellView?]]()
 
 	// TODO: for future refresh support
 //	public var isRefreshing = false
@@ -94,7 +94,7 @@ public class WorktableViewController: UITableViewController {
 	// the last cell created for the given indexPath, regardless of if it was displayed or not
 	public func cellViewAtIndexPath(indexPath: NSIndexPath)
 	-> WorktableCellView? {
-		guard let anyElement = cellViews[indexPath.toArray()] else {
+		guard let anyElement = viewsStorage[indexPath.toArray()] else {
 			// Tried to access an unexisting position
 			return nil
 		}
@@ -116,20 +116,20 @@ public class WorktableViewController: UITableViewController {
 	private func storeCellView(cellView: WorktableCellView,
 		indexPath: NSIndexPath
 	) {
-		var sectionArray = cellViews[indexPath.section,
+		var sectionArray = viewsStorage[indexPath.section,
 			filler:[WorktableCellView?]()
 		]
 		sectionArray[indexPath.row, filler: nil] = cellView
-		cellViews[indexPath.section] = sectionArray
+		viewsStorage[indexPath.section] = sectionArray
 	}
 
 
 	private func clearCellViewWithIndexPath(indexPath: NSIndexPath) {
-		var sectionArray = cellViews[indexPath.section,
+		var sectionArray = viewsStorage[indexPath.section,
 			filler: [WorktableCellView?]()
 		]
 		sectionArray[indexPath.row, filler: nil] = nil
-		cellViews[indexPath.section] = sectionArray
+		viewsStorage[indexPath.section] = sectionArray
 	}
 
 
