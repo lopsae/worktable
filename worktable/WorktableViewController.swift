@@ -124,7 +124,7 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	private func clearCellViewWithIndexPath(indexPath: NSIndexPath) {
+	private func clearCellView(indexPath indexPath: NSIndexPath) {
 		var sectionArray = viewsStorage[indexPath.section,
 			filler: [WorktableCellView?]()
 		]
@@ -155,6 +155,8 @@ public class WorktableViewController: UITableViewController {
 		tableView: UITableView,
 		cellForRowAtIndexPath indexPath: NSIndexPath
 	) -> UITableViewCell {
+		debugPrint("created or dequeued at: \(indexPath.section),\(indexPath.row)")
+
 		let cellItem = cellItemAtIndexPath(indexPath)
 		let reuseId = reuseIdentifierForCellItem(cellItem)
 		let cellView = tableView.dequeueReusableCellWithIdentifier(reuseId!)
@@ -243,6 +245,8 @@ public class WorktableViewController: UITableViewController {
 		if let cellView = cellView as? WorktableCellView {
 			cellView.didEndDisplayingCell(self)
 		}
+
+		clearCellView(indexPath: indexPath)
 	}
 
 

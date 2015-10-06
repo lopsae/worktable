@@ -15,6 +15,10 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 	public var cellHeight = UITableViewAutomaticDimension
 
 
+	private(set)
+	public var isDisplayed = false
+
+
 	/// Convenience property to enable and disable the default hightlight and
 	/// selection visuals of `UITableViewCell`.
 	///
@@ -89,12 +93,12 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 
 
 	public func willDisplayCell(controller: WorktableViewController) {
-		// To override
+		isDisplayed = true
 	}
 
 
 	public func didEndDisplayingCell(controller: WorktableViewController) {
-		// To override
+		isDisplayed = false
 	}
 
 
