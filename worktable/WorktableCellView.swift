@@ -15,7 +15,7 @@ public protocol WorktableCellView {
 	func willDisplayCell(controller: WorktableViewController)
 
 
-	func willEndDisplayingCell(controller: WorktableViewController)
+	func didEndDisplayingCell(controller: WorktableViewController)
 
 
 	func cellHightlightedWithItem(cellItem: WorktableCellItem)

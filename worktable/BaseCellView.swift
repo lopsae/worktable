@@ -93,7 +93,7 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 	}
 
 
-	public func willEndDisplayingCell(controller: WorktableViewController) {
+	public func didEndDisplayingCell(controller: WorktableViewController) {
 		// To override
 	}
 

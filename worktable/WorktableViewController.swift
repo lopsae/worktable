@@ -241,7 +241,7 @@ public class WorktableViewController: UITableViewController {
 		debugPrint("end display at: \(indexPath.section),\(indexPath.row)")
 
 		if let cellView = cellView as? WorktableCellView {
-			cellView.willEndDisplayingCell(self)
+			cellView.didEndDisplayingCell(self)
 		}
 	}
 
