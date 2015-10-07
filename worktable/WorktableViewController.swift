@@ -17,7 +17,23 @@ public class WorktableViewController: UITableViewController {
 
 	// TODO: for future refresh support
 //	public var isRefreshing = false
-//	public var refreshEnabled = false
+	public var refreshEnabled: Bool {
+		get {
+			return refreshControl != nil
+		}
+
+		set {
+			if newValue {
+				refreshControl = UIRefreshControl()
+				refreshControl?.addTarget(self,
+					action: "refresh",
+					forControlEvents: .ValueChanged
+				)
+			} else {
+				refreshControl = nil
+			}
+		}
+	}
 
 
 	public func registerCellItemForReuse(cellItem: WorktableCellItem) {
@@ -300,6 +316,17 @@ public class WorktableViewController: UITableViewController {
 		if let cellView = cellViewAtIndexPath(indexPath) {
 			let cellItem = cellItemAtIndexPath(indexPath)
 			cellView.cellUnhightlightedWithItem(cellItem)
+		}
+	}
+
+
+	public func refresh() {
+		debugPrint("refresh started")
+
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC))),
+			dispatch_get_main_queue()
+		) {
+			refreshControl?.endRefreshing()
 		}
 	}
 

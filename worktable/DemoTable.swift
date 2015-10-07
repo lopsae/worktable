@@ -30,6 +30,8 @@ class DemoTable: WorktableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		refreshEnabled = true
+
 		pushCellItem(DefaultCellItem("cell 1"))
 		pushCellItem(AutolayoutCellItem(LoremIpsum.string(3), buttonText: "button one"))
 		pushCellItem(VariableHeightCellItem(initialHeight: 80))
