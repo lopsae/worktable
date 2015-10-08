@@ -26,10 +26,12 @@ public class WorktableViewController: UITableViewController {
 			if newValue {
 				refreshControl = UIRefreshControl()
 				refreshControl?.addTarget(self,
-					action: "refresh",
+					action: "refreshWithDrag",
 					forControlEvents: .ValueChanged
 				)
 			} else {
+				// TODO: refresh control cannot be just deleted
+				// has to be deleted once animations are over and control is idle
 				refreshControl = nil
 			}
 		}
@@ -320,14 +322,47 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	public func refresh() {
-		debugPrint("refresh started")
+	/// Method called when the `refreshControl` is activated through user
+	/// interaction.
+	internal func refreshWithDrag() {
+		debugPrint("refresh started by drag")
 
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC))),
 			dispatch_get_main_queue()
 		) {
-			refreshControl?.endRefreshing()
+			self.refreshControl?.endRefreshing()
 		}
+	}
+
+
+	public func beginRefresh() {
+		debugPrint("refresh started by code")
+
+		refreshControl?.beginRefreshing()
+
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC))),
+			dispatch_get_main_queue()
+		) {
+			self.refreshControl?.endRefreshing()
+		}
+	}
+
+
+	/// Scrolls the table view to the top showing the refresh control if it
+	/// is enabled.
+	public func scrollToRefreshControl(animated: Bool = true) {
+		let topPoint = CGPoint(x: 0, y: -tableView.contentInset.top)
+		tableView.setContentOffset(topPoint, animated: animated)
+	}
+
+
+	override public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+		debugPrint("view end deceleration")
+	}
+
+
+	override public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+		debugPrint("scroll animation ended")
 	}
 
 

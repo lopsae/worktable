@@ -8,10 +8,10 @@ class DemoTable: WorktableViewController {
 		navigationItem.title = "Demo table"
 
 		let reloadButton = UIBarButtonItem(
-			title: "Reload",
+			title: "Refresh",
 			style: .Plain,
 			target: self,
-			action: "reloadTable"
+			action: "refreshTable"
 		)
 		navigationItem.rightBarButtonItem = reloadButton
 	}
@@ -52,6 +52,11 @@ class DemoTable: WorktableViewController {
 
 	func reloadTable() {
 		tableView.reloadData()
+	}
+
+
+	func refreshTable() {
+		beginRefresh()
 	}
 
 }
