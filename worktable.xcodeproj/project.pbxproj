@@ -206,7 +206,10 @@
 				2DF101111AC231B300CCCB7F /* worktableTests */,
 				2DF100FA1AC231B300CCCB7F /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 1;
 		};
 		2DF100FA1AC231B300CCCB7F /* Products */ = {
 			isa = PBXGroup;
