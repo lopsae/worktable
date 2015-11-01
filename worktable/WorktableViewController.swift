@@ -330,7 +330,7 @@ public class WorktableViewController: UITableViewController {
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC))),
 			dispatch_get_main_queue()
 		) {
-			self.refreshControl?.endRefreshing()
+			self.endRefresh()
 		}
 	}
 
@@ -339,18 +339,24 @@ public class WorktableViewController: UITableViewController {
 		debugPrint("refresh started by code")
 
 		refreshControl?.beginRefreshing()
+		scrollToTop()
 
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC))),
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC))),
 			dispatch_get_main_queue()
 		) {
-			self.refreshControl?.endRefreshing()
+			self.endRefresh()
 		}
 	}
 
 
-	/// Scrolls the table view to the top showing the refresh control if it
-	/// is enabled.
-	public func scrollToRefreshControl(animated: Bool = true) {
+	public func endRefresh() {
+		self.refreshControl?.endRefreshing()
+	}
+
+
+	/// Scrolls the `tableView` to the top of the scrollable area. If the
+	/// `refreshControl` is active it will be displayed as part of the scroll.
+	public func scrollToTop(animated: Bool = true) {
 		let topPoint = CGPoint(x: 0, y: -tableView.contentInset.top)
 		tableView.setContentOffset(topPoint, animated: animated)
 	}
