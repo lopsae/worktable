@@ -351,6 +351,20 @@ public class WorktableViewController: UITableViewController {
 
 	public func endRefresh() {
 		self.refreshControl?.endRefreshing()
+
+		// If content is already past the top, no need for scroll
+		if tableView.contentOffset.y > -tableView.contentInset.top {
+			return;
+		}
+
+		// `refreshContro.endRefreshing()` will trigger scroll animations if the
+		// content is at the top, except if the content was previously scrolled
+		// from some position other that the top... messy and undetectable
+
+		// Since there is no way to detect the above a scroll is issued every
+		// time. If `endRefreshing()` issued a scroll it will stop automatically
+		// and be replaced with this one.
+		scrollToTop()
 	}
 
 
@@ -361,18 +375,22 @@ public class WorktableViewController: UITableViewController {
 		tableView.setContentOffset(topPoint, animated: animated)
 	}
 
-
-	override public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-		debugPrint("view end deceleration")
-	}
-
-
-	override public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-		debugPrint("scroll animation ended")
-	}
-
-
 	// For debugging
+
+//	override public func scrollViewDidScroll(scrollView: UIScrollView) {
+//		debugPrint("scrolling")
+//	}
+
+
+//	override public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+//		debugPrint("view end deceleration")
+//	}
+
+
+//	override public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+//		debugPrint("scroll animation ended")
+//	}
+
 
 	// happens before any requests for cell views
 	// this is why it is usualy used to populate cellItems
