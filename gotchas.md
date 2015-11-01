@@ -59,6 +59,24 @@ When reloading the table estimated height is requested only once per cell.
 
 
 
+Refresh control does not trigger end animations if content is scrolled
+----------------------------------------------------------------------
+After the refreshControl has been activated and the content has been scrolled to the top. If the user scrolls the content so that it covers partially or completely the refreshControl (that is, the content is above the inset), then calling `refreshControl.endRefreshin()` will not trigger a scroll in the view.
+
+When the scroll is properly at the top when `endRefreshing()` is called, then the scroll animations to hide the `refreshControll` happen automatically.
+
+
+
+Scrolling by code from anywhere except the top, after activating a refreshControl, prevents automatic scroll after refreshing
+---------------------------------------------------------------------------
+If a refresh control is activated by code te view will not scroll and needs to be activated by code too.
+
+If at the moment of triggering the scroll the content is at the top, everything works normally.
+
+If at the moment of triggering the scroll the content was over the inset, and the content remains at the top position during the refreshing, after calling `refreshControl.endRefreshing()` the closing animations will not happen.
+
+
+
 Broken approaches
 =================
 Approaches tried and removed since they broke somewhere else.
@@ -86,4 +104,5 @@ During table initialization, since the cellView is not available during the firs
 This approach failed during scrolling: `heightForCell` is called only once and the cellView is not available.
 
 If a cellItem for an autolayout cellView provided a specific height (not automaticDimention) this would be returned again during the `heightForCell` call. This being the only height requests causes the cellView to be displayed with a fixed height.
+
 
