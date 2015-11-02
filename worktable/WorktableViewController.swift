@@ -15,8 +15,9 @@ public class WorktableViewController: UITableViewController {
 	/// table load and during scrolling.
 	private var viewsStorage = [[WorktableCellView?]]()
 
-	// TODO: for future refresh support
-//	public var isRefreshing = false
+	private(set)
+	public var isRefreshing = false
+
 	public var refreshEnabled: Bool {
 		get {
 			return refreshControl != nil
@@ -360,8 +361,20 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
+	/// Method called when the `refreshControl` has been activated either by
+	/// user interaction or a call to `beginRefresh`. This method should not be
+	/// called directly.
+	///
+	/// Extending classes can override this method to detect and initiate
+	/// refresh logic. If overriden the parent method should be called.
+	public func refreshDidBegin() {
+		isRefreshing = true
+	}
+
+
 	public func endRefresh() {
 		self.refreshControl?.endRefreshing()
+		isRefreshing = false;
 
 		// If content is already past the top, no need for scroll
 		if tableView.contentOffset.y > -tableView.contentInset.top {
