@@ -38,6 +38,8 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
+// MARK: Cell and section register and creation
+
 	public func registerCellItemForReuse(cellItem: WorktableCellItem) {
 		if let nibName = cellItem.cellViewSource as? String {
 			// TODO: string could have special format to allow bundle
@@ -130,6 +132,7 @@ public class WorktableViewController: UITableViewController {
 		return maybeCellView.unwrap() as? WorktableCellView
 	}
 
+// MARK: Cell private storage handlers
 
 	private func storeCellView(cellView: WorktableCellView,
 		indexPath: NSIndexPath
@@ -150,6 +153,8 @@ public class WorktableViewController: UITableViewController {
 		viewsStorage[indexPath.section] = sectionArray
 	}
 
+
+// MARK: Table data source methods
 
 	override public func numberOfSectionsInTableView(tableView: UITableView)
 	-> Int {
@@ -236,6 +241,8 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
+// MARK: Cell display and hide
+
 	// TODO: use this method to notify cellView of its display, frame and height
 	// happened before and should be correct
 	// TODO: implement cell that height changes after display, with animation
@@ -267,6 +274,8 @@ public class WorktableViewController: UITableViewController {
 		clearCellView(indexPath: indexPath)
 	}
 
+
+// MARK: Cell selection and highlight
 
 	override public func tableView(_: UITableView,
 		didSelectRowAtIndexPath indexPath: NSIndexPath
@@ -322,6 +331,8 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
+// MARK: Refresh handling
+
 	/// Method called when the `refreshControl` is activated through user
 	/// interaction.
 	internal func refreshWithDrag() {
@@ -375,7 +386,8 @@ public class WorktableViewController: UITableViewController {
 		tableView.setContentOffset(topPoint, animated: animated)
 	}
 
-	// For debugging
+
+// MARK: Debugging methods
 
 //	override public func scrollViewDidScroll(scrollView: UIScrollView) {
 //		debugPrint("scrolling")
