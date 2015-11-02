@@ -39,6 +39,15 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
+// MARK: Events closures
+
+	public var refreshDidBegin: ((WorktableViewController) -> ())?
+	public var refreshWillEnd: ((WorktableViewController) -> ())?
+	public var refreshDidEnd: ((WorktableViewController) -> ())?
+
+	private var transientScrollAnimationDidEnd: (()->())?
+
+
 // MARK: Cell and section register and creation
 
 	public func registerCellItemForReuse(cellItem: WorktableCellItem) {
@@ -344,6 +353,8 @@ public class WorktableViewController: UITableViewController {
 		) {
 			self.endRefresh()
 		}
+
+		switchToRefreshState()
 	}
 
 
@@ -358,26 +369,26 @@ public class WorktableViewController: UITableViewController {
 		) {
 			self.endRefresh()
 		}
+
+		switchToRefreshState()
 	}
 
 
-	/// Method called when the `refreshControl` has been activated either by
-	/// user interaction or a call to `beginRefresh`. This method should not be
-	/// called directly.
-	///
-	/// Extending classes can override this method to detect and initiate
-	/// refresh logic. If overriden the parent method should be called.
-	public func refreshDidBegin() {
+	private func switchToRefreshState() {
 		isRefreshing = true
+		refreshDidBegin?(self)
 	}
 
 
 	public func endRefresh() {
+		refreshWillEnd?(self)
 		self.refreshControl?.endRefreshing()
 		isRefreshing = false;
 
+
 		// If content is already past the top, no need for scroll
 		if tableView.contentOffset.y > -tableView.contentInset.top {
+			refreshDidEnd?(self)
 			return;
 		}
 
@@ -388,15 +399,28 @@ public class WorktableViewController: UITableViewController {
 		// Since there is no way to detect the above a scroll is issued every
 		// time. If `endRefreshing()` issued a scroll it will stop automatically
 		// and be replaced with this one.
-		scrollToTop()
+		debugPrint("starting scroll")
+		scrollToTop(animated: true) {
+			[unowned self] in
+			self.refreshDidEnd?(self)
+		}
+
+		debugPrint("scroll started")
 	}
 
 
 	/// Scrolls the `tableView` to the top of the scrollable area. If the
 	/// `refreshControl` is active it will be displayed as part of the scroll.
-	public func scrollToTop(animated: Bool = true) {
+	public func scrollToTop(animated animated: Bool = true, completition:(()->())? = nil) {
 		let topPoint = CGPoint(x: 0, y: -tableView.contentInset.top)
 		tableView.setContentOffset(topPoint, animated: animated)
+		transientScrollAnimationDidEnd = completition
+	}
+
+
+	override public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+		transientScrollAnimationDidEnd?()
+		transientScrollAnimationDidEnd = nil
 	}
 
 
@@ -409,11 +433,6 @@ public class WorktableViewController: UITableViewController {
 
 //	override public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
 //		debugPrint("view end deceleration")
-//	}
-
-
-//	override public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-//		debugPrint("scroll animation ended")
 //	}
 
 
