@@ -424,6 +424,16 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
+// Order of important method calls:
+// viewDidLoad
+// viewWillAppear
+// (before this, if a cell is requested by tableView.cellForRow the whole block happens right there)
+// for each cell
+//  |-cellForRow
+//  |-cellWillAppear
+// viewDidAppear
+
+
 // MARK: Debugging methods
 
 //	override public func scrollViewDidScroll(scrollView: UIScrollView) {
