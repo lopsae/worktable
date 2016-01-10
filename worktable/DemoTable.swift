@@ -7,13 +7,25 @@ class DemoTable: WorktableViewController {
 		super.init(style: .Grouped)
 		navigationItem.title = "Demo table"
 
-		let reloadButton = UIBarButtonItem(
-			title: "Refresh",
+//		let reloadButton = UIBarButtonItem(
+//			title: "Refresh",
+//			style: .Plain,
+//			target: self,
+//			action: "refreshTable"
+//		)
+
+		// TODO: move this actions into an ActionSheet
+		let removeRefreshControlButton = UIBarButtonItem(
+			title: "Remove Ind",
 			style: .Plain,
 			target: self,
-			action: "refreshTable"
-		)
-		navigationItem.rightBarButtonItem = reloadButton
+			action: "removeRefresh")
+
+		navigationItem.rightBarButtonItem = removeRefreshControlButton
+
+		refreshDidEnd = {_ in
+			self.removeRefresh()
+		}
 	}
 
 
@@ -57,6 +69,10 @@ class DemoTable: WorktableViewController {
 
 	func refreshTable() {
 		beginRefresh()
+	}
+
+	func removeRefresh() {
+		self.refreshEnabled = false
 	}
 
 }

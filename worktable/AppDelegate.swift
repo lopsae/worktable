@@ -26,13 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		let viewController = UIViewController()
 		viewController.navigationItem.title = "worktable"
+		viewController.view.backgroundColor = UIColor.darkGrayColor()
 		viewController.navigationItem.rightBarButtonItem = tableButton
 
 		demoTable = DemoTable()
 		navController = UINavigationController()
 
 		navController.viewControllers = [viewController, demoTable!]
-//		navController.viewControllers = [viewController]
 
 		window!.rootViewController = navController;
 		window!.makeKeyAndVisible()
