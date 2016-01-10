@@ -255,8 +255,6 @@ public class WorktableViewController: UITableViewController {
 
 	// TODO: use this method to notify cellView of its display, frame and height
 	// happened before and should be correct
-	// TODO: implement cell that height changes after display, with animation
-	// and without
 
 	/// Method called as each cellView is about to be displayed.
 	override public func tableView(_: UITableView,
