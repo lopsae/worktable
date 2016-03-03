@@ -14,17 +14,10 @@ class DemoTable: WorktableViewController {
 //			action: "refreshTable"
 //		)
 
-		// TODO: move this actions into an ActionSheet
-		let removeRefreshControlButton = UIBarButtonItem(
-			title: "Remove Ind",
-			style: .Plain,
-			target: self,
-			action: "removeRefresh")
-
-		navigationItem.rightBarButtonItem = removeRefreshControlButton
+		addRefreshIndicator()
 
 		refreshDidEnd = {_ in
-			self.removeRefresh()
+			self.removeRefreshIndicator()
 		}
 	}
 
@@ -71,8 +64,30 @@ class DemoTable: WorktableViewController {
 		beginRefresh()
 	}
 
-	func removeRefresh() {
-		self.refreshEnabled = false
+	// TODO: move this actions into an ActionSheet
+	func removeRefreshIndicator() {
+		refreshEnabled = false
+
+		let removeRefreshControlButton = UIBarButtonItem(
+			title: "Add Ind",
+			style: .Plain,
+			target: self,
+			action: "addRefreshIndicator")
+
+		navigationItem.rightBarButtonItem = removeRefreshControlButton
+	}
+
+	// TODO: move this actions into an ActionSheet
+	func addRefreshIndicator() {
+		refreshEnabled = true
+
+		let removeRefreshControlButton = UIBarButtonItem(
+			title: "Remove Ind",
+			style: .Plain,
+			target: self,
+			action: "removeRefreshIndicator")
+
+		navigationItem.rightBarButtonItem = removeRefreshControlButton
 	}
 
 }
