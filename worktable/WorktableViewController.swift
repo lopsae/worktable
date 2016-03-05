@@ -47,8 +47,21 @@ public class WorktableViewController: UITableViewController {
 
 // MARK: Events closures
 
+	/// Called when a refresh using the `refreshControl` has begun. If the
+	/// refresh start with a user gesture, then the `refreshControl` will be
+	/// already visible. If the refresh started through a call to the
+	/// `beginRefresh` method, then the `refreshControl` will be about to scroll
+	/// into display.
 	public var refreshDidBegin: ((WorktableViewController) -> ())?
+
+	/// Called when a refresh using the `refreshControl` will end. At the
+	/// moment of the call the `refreshControl` may be visible depending on the
+	/// scroll position of the table, and afterwards will animate into idle.
 	public var refreshWillEnd: ((WorktableViewController) -> ())?
+
+	/// Called after a refresh using the refreshControl has ended. At the moment
+	/// of the call the refreshControl is already hidden and idle so it can be
+	/// removed safely.
 	public var refreshDidEnd: ((WorktableViewController) -> ())?
 
 	private var transientScrollAnimationDidEnd: (()->())?
