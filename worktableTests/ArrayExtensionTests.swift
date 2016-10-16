@@ -167,38 +167,23 @@ class ArrayExtension: XCTestCase {
 		let multiDimentional: [[String]] = [["one"], ["two, three"], ["four"]]
 
 		// Unexisting index
-		XCTAssertNil(multiDimentional[[9, 9]])
+		XCTAssertNil(multiDimentional.follow(path: [9, 9]))
 
 		// Find an existing index
-		let stringAsAny = multiDimentional[[0, 0]]
+		let stringAsAny = multiDimentional.follow(path: [0, 0])
 		XCTAssertNotNil(stringAsAny)
 		XCTAssertEqual(stringAsAny as? String, "one")
 
 		// Partial index
-		let arrayAsAny = multiDimentional[[2]]
+		let arrayAsAny = multiDimentional.follow(path: [2])
 		XCTAssertNotNil(arrayAsAny)
 		XCTAssertEqual(arrayAsAny as! [String], ["four"])
 
 		// Index that goes into a non-array
-		XCTAssertNil(multiDimentional[[1, 1, 1]])
+		XCTAssertNil(multiDimentional.follow(path: [1, 1, 1]))
 	}
 
 
-	// TODO: add subscriptIndexPath test with optionals
-
-
-	func testIndexPathWithArrays() {
-		var indexPath = IndexPath.withIndexes()
-		XCTAssertEqual(indexPath.toArray(), [])
-
-		indexPath = IndexPath.withIndexes(1)
-		XCTAssertEqual(indexPath.toArray(), [1])
-
-		indexPath = IndexPath.withIndexes(1, 2, 3)
-		XCTAssertEqual(indexPath.toArray(), [1, 2, 3])
-
-		indexPath = IndexPath.withIndexes([4, 5, 6])
-		XCTAssertEqual(indexPath.toArray(), [4, 5, 6])
-	}
+	// TODO: test array.follow using indexpath
 
 }
