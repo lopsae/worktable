@@ -170,33 +170,47 @@ class ArrayExtension: XCTestCase {
 			["two,zero"]
 		]
 
+		func assertIndexPathMatch(_ path: [Array<Any>.Index]) -> Any? {
+			let arrayReturn = multiDimentional.follow(path: path)
+			let indexReturn = multiDimentional.follow(path: IndexPath(indexes: path))
+
+			if arrayReturn == nil {
+				XCTAssertNil(arrayReturn)
+				XCTAssertNil(indexReturn)
+			}
+
+			if arrayReturn is [String] {
+				XCTAssertNotNil(indexReturn as? [String])
+				XCTAssertEqual(arrayReturn as! [String], indexReturn as! [String])
+			}
+
+			if arrayReturn is String {
+				XCTAssertNotNil(indexReturn as? String)
+				XCTAssertEqual(arrayReturn as! String, indexReturn as! String)
+			}
+
+			return arrayReturn
+		}
+
 		// Test double out of bounds
-		XCTAssertNil(multiDimentional.follow(path: [9, 9]))
-		XCTAssertNil(multiDimentional.follow(path: IndexPath(indexes: [9, 9])))
+		var pathReturn = assertIndexPathMatch([9, 9])
+		XCTAssertNil(pathReturn)
+
+		// Test path into a non array
+		pathReturn = assertIndexPathMatch([1, 1, 1])
+		XCTAssertNil(pathReturn)
+
+		// TODO: add out of bounds?
 
 		// Test partial path
-		var arrayAsAny = multiDimentional.follow(path: [2])
-		XCTAssertNotNil(arrayAsAny)
-		XCTAssertEqual(arrayAsAny as! [String], ["two,zero"])
-
-		arrayAsAny = multiDimentional.follow(path: IndexPath(indexes: [2]))
+		let arrayAsAny = assertIndexPathMatch([2])
 		XCTAssertNotNil(arrayAsAny)
 		XCTAssertEqual(arrayAsAny as! [String], ["two,zero"])
 
 		// Test valid path
-		var stringAsAny = multiDimentional.follow(path: [0, 0])
+		let stringAsAny = assertIndexPathMatch([0, 0])
 		XCTAssertNotNil(stringAsAny)
 		XCTAssertEqual(stringAsAny as? String, "zero,zero")
-
-		stringAsAny = multiDimentional.follow(path: IndexPath(indexes: [0, 0]))
-		XCTAssertNotNil(stringAsAny)
-		XCTAssertEqual(stringAsAny as? String, "zero,zero")
-
-		// Test path into a non array
-		XCTAssertNil(multiDimentional.follow(path: [1, 1, 1]))
-		XCTAssertNil(multiDimentional.follow(path: IndexPath(indexes: [1, 1, 1])))
-
-		// TODO: add out of bounds?
 	}
 
 }
