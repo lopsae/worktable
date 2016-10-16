@@ -2,14 +2,16 @@
 
 protocol ArrayProtocol {
 
-	func get(_ index: Int) -> Any
-	var count: Int { get }
+	typealias ArrayIndex = Array<Any>.Index
+
+	func get(_ index: ArrayIndex) -> Any
+	var count: ArrayIndex { get }
 }
 
 
 extension Array: ArrayProtocol {
 
-	func get(_ index: Int) -> Any {
+	func get(_ index: ArrayProtocol.ArrayIndex) -> Any {
 		return self[index]
 	}
 
@@ -49,17 +51,18 @@ extension Array {
 			return nil
 		}
 
-		var pathPosition = 0
+		var pathPosition = path.startIndex
 		var arrayAtPosition: ArrayProtocol = self
 
 		while true {
 			let currentIndex = path[pathPosition]
-			guard arrayAtPosition.count > currentIndex else {
+			if arrayAtPosition.count <= currentIndex {
+				// Out of bounds
 				return nil
 			}
 
 			let currentElement = arrayAtPosition.get(currentIndex)
-			guard path.distance(from: pathPosition, to: path.endIndex) > 1 else {
+			if path.distance(from: pathPosition, to: path.endIndex) <= 1 {
 				// In last position, get item and return
 				return currentElement
 			}
@@ -71,7 +74,7 @@ extension Array {
 			}
 
 			// Prepare next loop
-			pathPosition += 1
+			pathPosition = path.index(after: pathPosition)
 			arrayAtPosition = nextArray
 		}
 	}
