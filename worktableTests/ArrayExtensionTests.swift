@@ -192,15 +192,21 @@ class ArrayExtension: XCTestCase {
 			return arrayReturn
 		}
 
-		// Test double out of bounds
+		// Test out of bounds since first index
+		// `9` will inmediately yield a nil
 		var pathReturn = assertIndexPathMatch([9, 9])
 		XCTAssertNil(pathReturn)
 
-		// Test path into a non array
-		pathReturn = assertIndexPathMatch([1, 1, 1])
+		// Test out of bounds on a intenral array
+		// `1` will yield an array, `9` is out of bounds
+		pathReturn = assertIndexPathMatch([1, 9])
 		XCTAssertNil(pathReturn)
 
-		// TODO: add out of bounds?
+		// Test path into a non array
+		// `1, 1` yields a string, which is not indexable
+		// TODO: or is there access to that index?
+		pathReturn = assertIndexPathMatch([1, 1, 1])
+		XCTAssertNil(pathReturn)
 
 		// Test partial path
 		let arrayAsAny = assertIndexPathMatch([2])
