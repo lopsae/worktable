@@ -1,23 +1,5 @@
 
 
-protocol ArrayProtocol {
-
-	typealias ArrayIndex = Array<Any>.Index
-
-	func get(_ index: ArrayIndex) -> Any
-	var count: ArrayIndex { get }
-}
-
-
-extension Array: ArrayProtocol {
-
-	func get(_ index: ArrayProtocol.ArrayIndex) -> Any {
-		return self[index]
-	}
-
-}
-
-
 extension Array {
 
 	/// Overwrites the first element of the array with the `newFirst` element.
@@ -52,23 +34,23 @@ extension Array {
 		}
 
 		var pathPosition = path.startIndex
-		var arrayAtPosition: ArrayProtocol = self
+		var arrayAtPosition: Array<Any> = self
 
 		while true {
 			let currentIndex = path[pathPosition]
-			if arrayAtPosition.count <= currentIndex {
+			if arrayAtPosition.distance(from: currentIndex, to: arrayAtPosition.endIndex) <= 0 {
 				// Out of bounds
 				return nil
 			}
 
-			let currentElement = arrayAtPosition.get(currentIndex)
+			let currentElement = arrayAtPosition[currentIndex]
 			if path.distance(from: pathPosition, to: path.endIndex) <= 1 {
 				// In last position, get item and return
 				return currentElement
 			}
 
 			// Not last position, have to go deeper
-			guard let nextArray = currentElement as? ArrayProtocol else {
+			guard let nextArray = currentElement as? Array<Any> else {
 				// No array to go deeper
 				return nil
 			}
