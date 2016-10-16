@@ -1,7 +1,7 @@
 import UIKit
 
 
-public class WorktableViewController: UITableViewController {
+open class WorktableViewController: UITableViewController {
 
 	private var sections = [[WorktableCellItem]]()
 
@@ -16,9 +16,9 @@ public class WorktableViewController: UITableViewController {
 	private var viewsStorage = [[WorktableCellView?]]()
 
 	private(set)
-	public var isRefreshing = false
+	open var isRefreshing = false
 
-	public var refreshEnabled: Bool {
+	open var refreshEnabled: Bool {
 		get {
 			return refreshControl != nil
 		}
@@ -28,8 +28,8 @@ public class WorktableViewController: UITableViewController {
 				// TODO: respect refresh control if one is already there
 				refreshControl = UIRefreshControl()
 				refreshControl?.addTarget(self,
-					action: "refreshWithDrag",
-					forControlEvents: .ValueChanged
+					action: #selector(WorktableViewController.refreshWithDrag),
+					for: .valueChanged
 				)
 			} else {
 				// If refresh control is removed at any time before it being
@@ -52,36 +52,36 @@ public class WorktableViewController: UITableViewController {
 	/// already visible. If the refresh started through a call to the
 	/// `beginRefresh` method, then the `refreshControl` will be about to scroll
 	/// into display.
-	public var refreshDidBegin: ((WorktableViewController) -> ())?
+	open var refreshDidBegin: ((WorktableViewController) -> ())?
 
 	/// Called when a refresh using the `refreshControl` will end. At the
 	/// moment of the call the `refreshControl` may be visible depending on the
 	/// scroll position of the table, and afterwards will animate into idle.
-	public var refreshWillEnd: ((WorktableViewController) -> ())?
+	open var refreshWillEnd: ((WorktableViewController) -> ())?
 
 	/// Called after a refresh using the refreshControl has ended. At the moment
 	/// of the call the refreshControl is already hidden and idle so it can be
 	/// removed safely.
-	public var refreshDidEnd: ((WorktableViewController) -> ())?
+	open var refreshDidEnd: ((WorktableViewController) -> ())?
 
 	private var transientScrollAnimationDidEnd: (()->())?
 
 
 // MARK: Cell and section register and creation
 
-	public func registerCellItemForReuse(cellItem: WorktableCellItem) {
+	open func registerCellItemForReuse(_ cellItem: WorktableCellItem) {
 		if let nibName = cellItem.cellViewSource as? String {
 			// TODO: string could have special format to allow bundle
 			// say, separate with # or character not allowed in nib/bundle names
 			let nib = UINib(nibName: nibName, bundle: nil);
 			let reuseId = reuseIdentifierForCellItem(cellItem)
-			tableView.registerNib(nib, forCellReuseIdentifier: reuseId!)
+			tableView.register(nib, forCellReuseIdentifier: reuseId!)
 			return
 		}
 
 		if let cellViewClass = cellItem.cellViewSource as? UITableViewCell.Type {
 			let reuseId = reuseIdentifierForCellItem(cellItem)
-			tableView.registerClass(cellViewClass,
+			tableView.register(cellViewClass,
 				forCellReuseIdentifier: reuseId!
 			)
 			return
@@ -92,26 +92,26 @@ public class WorktableViewController: UITableViewController {
 
 
 	private func reuseIdentifierForCellItem(
-		cellItem: WorktableCellItem
+		_ cellItem: WorktableCellItem
 	) -> String? {
 		if let nibName = cellItem.cellViewSource as? String {
 			return nibName
 		}
 
 		if cellItem.cellViewSource is UITableViewCell.Type {
-			return String(cellItem.cellViewSource)
+			return String(describing: cellItem.cellViewSource)
 		}
 
 		preconditionFailure("Unexpected type of viewSource: \(cellItem.cellViewSource)")
 	}
 
 
-	public func addNewSection () {
+	open func addNewSection () {
 		sections.append([WorktableCellItem]())
 	}
 
 
-	public func pushCellItem(cellItem: WorktableCellItem) {
+	open func pushCellItem(_ cellItem: WorktableCellItem) {
 		if sections.isEmpty {
 			addNewSection()
 		}
@@ -122,10 +122,10 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	public func cellItemAtIndexPath(indexPath: NSIndexPath)
+	open func cellItemAtIndexPath(_ indexPath: IndexPath)
 	-> WorktableCellItem {
-		let section = sections[indexPath.section]
-		return section[indexPath.row]
+		let section = sections[(indexPath as NSIndexPath).section]
+		return section[(indexPath as NSIndexPath).row]
 	}
 
 
@@ -141,7 +141,7 @@ public class WorktableViewController: UITableViewController {
 	// and this cell may be later reused in the same or different position
 	// the only assumption that can be made for this method is that it returns
 	// the last cell created for the given indexPath, regardless of if it was displayed or not
-	public func cellViewAtIndexPath(indexPath: NSIndexPath)
+	open func cellViewAtIndexPath(_ indexPath: IndexPath)
 	-> WorktableCellView? {
 		guard let anyElement = viewsStorage[indexPath.toArray()] else {
 			// Tried to access an unexisting position
@@ -163,36 +163,36 @@ public class WorktableViewController: UITableViewController {
 
 // MARK: Cell private storage handlers
 
-	private func storeCellView(cellView: WorktableCellView,
-		indexPath: NSIndexPath
+	private func storeCellView(_ cellView: WorktableCellView,
+		indexPath: IndexPath
 	) {
-		var sectionArray = viewsStorage[indexPath.section,
+		var sectionArray = viewsStorage[(indexPath as NSIndexPath).section,
 			filler:[WorktableCellView?]()
 		]
-		sectionArray[indexPath.row, filler: nil] = cellView
-		viewsStorage[indexPath.section] = sectionArray
+		sectionArray[(indexPath as NSIndexPath).row, filler: nil] = cellView
+		viewsStorage[(indexPath as NSIndexPath).section] = sectionArray
 	}
 
 
-	private func clearCellView(indexPath indexPath: NSIndexPath) {
-		var sectionArray = viewsStorage[indexPath.section,
+	private func clearCellView(indexPath: IndexPath) {
+		var sectionArray = viewsStorage[(indexPath as NSIndexPath).section,
 			filler: [WorktableCellView?]()
 		]
-		sectionArray[indexPath.row, filler: nil] = nil
-		viewsStorage[indexPath.section] = sectionArray
+		sectionArray[(indexPath as NSIndexPath).row, filler: nil] = nil
+		viewsStorage[(indexPath as NSIndexPath).section] = sectionArray
 	}
 
 
 // MARK: Table data source methods
 
-	override public func numberOfSectionsInTableView(tableView: UITableView)
+	override open func numberOfSections(in tableView: UITableView)
 	-> Int {
 		return sections.count
 	}
 
 
-	override public func tableView(
-		tableView: UITableView,
+	override open func tableView(
+		_ tableView: UITableView,
 		numberOfRowsInSection sectionIndex: Int
 	) -> Int {
 		return sections[sectionIndex].count
@@ -203,15 +203,15 @@ public class WorktableViewController: UITableViewController {
 	/// given `indexPath`. As cellViews are created or dequeued they are updated
 	/// with the corresponding cellItem. The created cellViews are available
 	/// immediately through the instance `cellViewForIndexPath` method.
-	override public func tableView(
-		tableView: UITableView,
-		cellForRowAtIndexPath indexPath: NSIndexPath
+	override open func tableView(
+		_ tableView: UITableView,
+		cellForRowAt indexPath: IndexPath
 	) -> UITableViewCell {
-		debugPrint("created or dequeued at: \(indexPath.section),\(indexPath.row)")
+		debugPrint("created or dequeued at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
 
 		let cellItem = cellItemAtIndexPath(indexPath)
 		let reuseId = reuseIdentifierForCellItem(cellItem)
-		let cellView = tableView.dequeueReusableCellWithIdentifier(reuseId!)
+		let cellView = tableView.dequeueReusableCell(withIdentifier: reuseId!)
 
 		// The table width is updated inmediately on all cellViews to allow
 		// height to be calculated during `heightForCell`
@@ -238,8 +238,8 @@ public class WorktableViewController: UITableViewController {
 	/// This method must exist, otherwise calling
 	/// `tableView::cellForRowAtIndexPath` from within `heightForRowAtIndexPath`
 	/// causes an infinite loop.
-	override public func tableView(_: UITableView,
-		estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
+	override open func tableView(_: UITableView,
+		estimatedHeightForRowAt indexPath: IndexPath
 	) -> CGFloat {
 		let cellItem = cellItemAtIndexPath(indexPath)
 		return cellItem.cellEstimatedHeight
@@ -258,8 +258,8 @@ public class WorktableViewController: UITableViewController {
 	///
 	/// CellViews that use autolayout should return
 	/// `UITableViewAutomaticDimension` to properly adjust themselves.
-	override public func tableView(_: UITableView,
-		heightForRowAtIndexPath indexPath: NSIndexPath
+	override open func tableView(_: UITableView,
+		heightForRowAt indexPath: IndexPath
 	) -> CGFloat {
 		if let cellView = cellViewAtIndexPath(indexPath) {
 			cellView.willReportCellHeight(self)
@@ -276,11 +276,11 @@ public class WorktableViewController: UITableViewController {
 	// happened before and should be correct
 
 	/// Method called as each cellView is about to be displayed.
-	override public func tableView(_: UITableView,
-		willDisplayCell cellView: UITableViewCell,
-		forRowAtIndexPath indexPath: NSIndexPath
+	override open func tableView(_: UITableView,
+		willDisplay cellView: UITableViewCell,
+		forRowAt indexPath: IndexPath
 	) {
-		debugPrint("will display at: \(indexPath.section),\(indexPath.row)")
+		debugPrint("will display at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
 
 		if let cellView = cellView as? WorktableCellView {
 			cellView.willDisplayCell(self)
@@ -288,11 +288,11 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	override public func tableView(_: UITableView,
-		didEndDisplayingCell cellView: UITableViewCell,
-		forRowAtIndexPath indexPath: NSIndexPath
+	override open func tableView(_: UITableView,
+		didEndDisplaying cellView: UITableViewCell,
+		forRowAt indexPath: IndexPath
 	) {
-		debugPrint("end display at: \(indexPath.section),\(indexPath.row)")
+		debugPrint("end display at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
 
 		if let cellView = cellView as? WorktableCellView {
 			cellView.didEndDisplayingCell(self)
@@ -304,10 +304,10 @@ public class WorktableViewController: UITableViewController {
 
 // MARK: Cell selection and highlight
 
-	override public func tableView(_: UITableView,
-		didSelectRowAtIndexPath indexPath: NSIndexPath
+	override open func tableView(_: UITableView,
+		didSelectRowAt indexPath: IndexPath
 	) {
-		debugPrint("selected at: \(indexPath.section),\(indexPath.row)")
+		debugPrint("selected at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
 
 		let cellItem = cellItemAtIndexPath(indexPath)
 		let cellView = cellViewAtIndexPath(indexPath)
@@ -320,10 +320,10 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	override public func tableView(_: UITableView,
-		didDeselectRowAtIndexPath indexPath: NSIndexPath
+	override open func tableView(_: UITableView,
+		didDeselectRowAt indexPath: IndexPath
 	) {
-		debugPrint("deselected at: \(indexPath.section),\(indexPath.row)")
+		debugPrint("deselected at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
 
 		let cellItem = cellItemAtIndexPath(indexPath)
 		let cellView = cellViewAtIndexPath(indexPath)
@@ -336,10 +336,10 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	override public func tableView(_: UITableView,
-		didHighlightRowAtIndexPath indexPath: NSIndexPath
+	override open func tableView(_: UITableView,
+		didHighlightRowAt indexPath: IndexPath
 	) {
-		debugPrint("highlighed at: \(indexPath.section),\(indexPath.row)")
+		debugPrint("highlighed at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
 
 		if let cellView = cellViewAtIndexPath(indexPath) {
 			let cellItem = cellItemAtIndexPath(indexPath)
@@ -348,8 +348,8 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	override public func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
-		debugPrint("unhighlighed at: \(indexPath.section),\(indexPath.row)")
+	override open func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+		debugPrint("unhighlighed at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
 
 		if let cellView = cellViewAtIndexPath(indexPath) {
 			let cellItem = cellItemAtIndexPath(indexPath)
@@ -365,9 +365,7 @@ public class WorktableViewController: UITableViewController {
 	internal func refreshWithDrag() {
 		debugPrint("refresh started by drag")
 
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC))),
-			dispatch_get_main_queue()
-		) {
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
 			self.endRefresh()
 		}
 
@@ -375,15 +373,13 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	public func beginRefresh() {
+	open func beginRefresh() {
 		debugPrint("refresh started by code")
 
 		refreshControl?.beginRefreshing()
 		scrollToTop()
 
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC))),
-			dispatch_get_main_queue()
-		) {
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
 			self.endRefresh()
 		}
 
@@ -397,7 +393,7 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	public func endRefresh() {
+	open func endRefresh() {
 		refreshWillEnd?(self)
 		self.refreshControl?.endRefreshing()
 		isRefreshing = false;
@@ -428,14 +424,14 @@ public class WorktableViewController: UITableViewController {
 
 	/// Scrolls the `tableView` to the top of the scrollable area. If the
 	/// `refreshControl` is active it will be displayed as part of the scroll.
-	public func scrollToTop(animated animated: Bool = true, completition:(()->())? = nil) {
+	open func scrollToTop(animated: Bool = true, completition:(()->())? = nil) {
 		let topPoint = CGPoint(x: 0, y: -tableView.contentInset.top)
 		tableView.setContentOffset(topPoint, animated: animated)
 		transientScrollAnimationDidEnd = completition
 	}
 
 
-	override public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+	override open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
 		transientScrollAnimationDidEnd?()
 		transientScrollAnimationDidEnd = nil
 	}
@@ -465,18 +461,18 @@ public class WorktableViewController: UITableViewController {
 
 	// happens before any requests for cell views
 	// this is why it is usualy used to populate cellItems
-	override public func viewDidLoad() {
+	override open func viewDidLoad() {
 		super.viewDidLoad()
 	}
 
 
 	// also happens before any cellViews are requested
-	override public func viewWillAppear(animated: Bool) {
+	override open func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	}
 
 
-	override public func viewDidAppear(animated: Bool) {
+	override open func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 	}
 

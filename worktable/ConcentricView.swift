@@ -9,7 +9,7 @@ class ConcentricView: UIView {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		self.backgroundColor = UIColor.lightGrayColor()
+		self.backgroundColor = UIColor.lightGray
 	}
 
 
@@ -18,31 +18,34 @@ class ConcentricView: UIView {
 	}
 
 
-	override func drawRect(rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		// Concentric circles
 		let largestRadius = bounds.distanceCenterToCorner
 		let circlesPath = UIBezierPath()
 
-		for var currentRadius: CGFloat = 10; currentRadius < largestRadius; currentRadius += 30 {
+		var currentRadius:CGFloat = 10
+		while currentRadius < largestRadius {
 			var startPoint = bounds.center
 			startPoint.x += currentRadius
-			circlesPath.moveToPoint(startPoint)
-			circlesPath.addArcWithCenter(bounds.center,
-				radius: currentRadius,
-				startAngle: 0,
-				endAngle: CGFloat(M_PI)*2,
-				clockwise: true
+			circlesPath.move(to: startPoint)
+			circlesPath.addArc(withCenter: bounds.center,
+			                   radius: currentRadius,
+			                   startAngle: 0,
+			                   endAngle: CGFloat(M_PI)*2,
+			                   clockwise: true
 			)
+
+			currentRadius += 30
 		}
 
 		circlesPath.lineWidth = 10
-		UIColor.darkGrayColor().setStroke()
+		UIColor.darkGray.setStroke()
 		circlesPath.stroke()
 
 		// View border
 		let borderPath = UIBezierPath(rect: bounds)
 		borderPath.lineWidth = 10
-		UIColor.redColor().setStroke()
+		UIColor.red.setStroke()
 		borderPath.stroke()
 
 		// Frame label
@@ -51,7 +54,7 @@ class ConcentricView: UIView {
 		labelPlaceBounds.pushMarginX(10)
 
 		let labelFont = UIFont(name: "HelveticaNeue", size: 14)
-		let labelForeColor = UIColor.redColor()
+		let labelForeColor = UIColor.red
 
 		var labelAttributes = [String: AnyObject]()
 		labelAttributes[NSFontAttributeName] = labelFont
@@ -62,10 +65,10 @@ class ConcentricView: UIView {
 			attributes: labelAttributes
 		)
 
-		let drawOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .TruncatesLastVisibleLine]
+		let drawOptions: NSStringDrawingOptions = [.usesLineFragmentOrigin, .truncatesLastVisibleLine]
 
 		// Draw bounds is the rectangle that the drawed text will ocupy exactly
-		let labelDrawBounds = label.boundingRectWithSize(labelPlaceBounds.size,
+		let labelDrawBounds = label.boundingRect(with: labelPlaceBounds.size,
 			options: drawOptions,
 			context: nil
 		)
@@ -74,7 +77,7 @@ class ConcentricView: UIView {
 		centeredRect.x = labelPlaceBounds.x
 		centeredRect.centerHeightInto(labelPlaceBounds)
 
-		label.drawWithRect(centeredRect, options: drawOptions, context: nil)
+		label.draw(with: centeredRect, options: drawOptions, context: nil)
 	}
 
 }

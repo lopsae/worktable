@@ -9,14 +9,14 @@ to only implement the functionality they need.
 As it is this cellView will create a UITableViewCell cellView with the default
 height and no content.
 */
-public class BaseCellView: UITableViewCell, WorktableCellView {
+open class BaseCellView: UITableViewCell, WorktableCellView {
 
 	private(set)
-	public var cellHeight = UITableViewAutomaticDimension
+	open var cellHeight = UITableViewAutomaticDimension
 
 
 	private(set)
-	public var isDisplayed = false
+	open var isDisplayed = false
 
 
 	/// Convenience property to enable and disable the default hightlight and
@@ -24,13 +24,13 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 	///
 	/// Regardless of the value of this property the cellView will still receive
 	/// calls for highlight and selection events.
-	public var isSelectionVisible: Bool {
+	open var isSelectionVisible: Bool {
 		get {
-			return selectionStyle != .None
+			return selectionStyle != .none
 		}
 
 		set {
-			selectionStyle = newValue ? .Default : .None
+			selectionStyle = newValue ? .default : .none
 		}
 	}
 
@@ -71,53 +71,53 @@ public class BaseCellView: UITableViewCell, WorktableCellView {
 	}
 
 
-	public func postInit() {
+	open func postInit() {
 		// To override
 	}
 
 
-	public func updateCellHeight(height: CGFloat) {
+	open func updateCellHeight(_ height: CGFloat) {
 		cellHeight = height
 		// TODO: trigger update in table view if not in creation or scroll
 	}
 
 
-	public func updateWithCellItem(cellItem: WorktableCellItem) {
+	open func updateWithCellItem(_ cellItem: WorktableCellItem) {
 		// To override
 	}
 
 
-	public func willReportCellHeight(controller: WorktableViewController) {
+	open func willReportCellHeight(_ controller: WorktableViewController) {
 			layoutIfNeeded()
 	}
 
 
-	public func willDisplayCell(controller: WorktableViewController) {
+	open func willDisplayCell(_ controller: WorktableViewController) {
 		isDisplayed = true
 	}
 
 
-	public func didEndDisplayingCell(controller: WorktableViewController) {
+	open func didEndDisplayingCell(_ controller: WorktableViewController) {
 		isDisplayed = false
 	}
 
 
-	public func cellHightlightedWithItem(cellItem: WorktableCellItem) {
+	open func cellHightlightedWithItem(_ cellItem: WorktableCellItem) {
 		// To override
 	}
 
 
-	public func cellUnhightlightedWithItem(cellItem: WorktableCellItem) {
+	open func cellUnhightlightedWithItem(_ cellItem: WorktableCellItem) {
 		// To override
 	}
 
 
-	public func cellSelectedWithItem(cellItem: WorktableCellItem) {
+	open func cellSelectedWithItem(_ cellItem: WorktableCellItem) {
 		updateWithCellItem(cellItem)
 	}
 
 
-	public func cellDeselectedWithItem(cellItem: WorktableCellItem) {
+	open func cellDeselectedWithItem(_ cellItem: WorktableCellItem) {
 		// To override
 	}
 

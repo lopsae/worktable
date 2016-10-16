@@ -13,24 +13,24 @@ extension Optional : OptionalProtocol {
 
 	func isSome() -> Bool {
 		switch self {
-			case .None: return false
-			case .Some: return true
+			case .none: return false
+			case .some: return true
 		}
 	}
 
 
 	func isNone() -> Bool {
 		switch self {
-			case .None: return true
-			case .Some: return false
+			case .none: return true
+			case .some: return false
 		}
 	}
 
 
 	func unwrap() -> Any {
 		switch self {
-			case .None: preconditionFailure("nil unwrapped")
-			case .Some(let unwrapped): return unwrapped
+			case .none: preconditionFailure("nil unwrapped")
+			case .some(let unwrapped): return unwrapped
 		}
 	}
 

@@ -22,7 +22,7 @@ class ArrayExtension: XCTestCase {
 	filler string to return. Each call to the returned function will also call
 	`counter.increase()` once.
 	*/
-	func mockFiller(filler: String) -> Int -> String {
+	func mockFiller(_ filler: String) -> (Int) -> String {
 		return counter.wrapIncrement(){
 			(_: Int) in
 			return filler
@@ -35,7 +35,7 @@ class ArrayExtension: XCTestCase {
 	the counter once. This method is intended for the autoclosure filler
 	methods.
 	*/
-	func mockFillerAuto(filler: String) -> String {
+	func mockFillerAuto(_ filler: String) -> String {
 		counter.increment()
 		return filler
 	}
@@ -188,16 +188,16 @@ class ArrayExtension: XCTestCase {
 
 
 	func testIndexPathWithArrays() {
-		var indexPath = NSIndexPath.withIndexes()
+		var indexPath = IndexPath.withIndexes()
 		XCTAssertEqual(indexPath.toArray(), [])
 
-		indexPath = NSIndexPath.withIndexes(1)
+		indexPath = IndexPath.withIndexes(1)
 		XCTAssertEqual(indexPath.toArray(), [1])
 
-		indexPath = NSIndexPath.withIndexes(1, 2, 3)
+		indexPath = IndexPath.withIndexes(1, 2, 3)
 		XCTAssertEqual(indexPath.toArray(), [1, 2, 3])
 
-		indexPath = NSIndexPath.withIndexes([4, 5, 6])
+		indexPath = IndexPath.withIndexes([4, 5, 6])
 		XCTAssertEqual(indexPath.toArray(), [4, 5, 6])
 	}
 

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D1DC37F1BB9FC98009131B6 /* NSIndexPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1DC37E1BB9FC98009131B6 /* NSIndexPathExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		2D1DC3801BB9FC98009131B6 /* NSIndexPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1DC37E1BB9FC98009131B6 /* NSIndexPathExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		2D1DC37F1BB9FC98009131B6 /* NSIndexPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1DC37E1BB9FC98009131B6 /* NSIndexPathExtension.swift */; };
+		2D1DC3801BB9FC98009131B6 /* NSIndexPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1DC37E1BB9FC98009131B6 /* NSIndexPathExtension.swift */; };
 		2D3E76341B42490D004B6F01 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D3E76331B42490D004B6F01 /* assets.xcassets */; };
 		2D3E76351B42490D004B6F01 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D3E76331B42490D004B6F01 /* assets.xcassets */; };
 		2D45EC4E1B853F510078567C /* AutolayoutCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC4C1B853F510078567C /* AutolayoutCellView.swift */; };
@@ -39,10 +39,10 @@
 		2D46B5411B84428000663A40 /* WorktableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46B53F1B84428000663A40 /* WorktableCellView.swift */; };
 		2D8D7F6F1B9A5EFF00169A16 /* BaseCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */; };
 		2D8D7F701B9A5EFF00169A16 /* BaseCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D7F6E1B9A5EFF00169A16 /* BaseCellItem.swift */; };
-		2DC3FE411BAF9EA300C13B6F /* ArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE401BAF9EA300C13B6F /* ArrayExtensionTests.swift */; settings = {ASSET_TAGS = (); }; };
-		2DC3FE441BAFC86A00C13B6F /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE431BAFC86A00C13B6F /* Counter.swift */; settings = {ASSET_TAGS = (); }; };
-		2DC3FE491BB661B400C13B6F /* OptionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE481BB661B400C13B6F /* OptionalExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		2DC3FE4A1BB661B400C13B6F /* OptionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE481BB661B400C13B6F /* OptionalExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		2DC3FE411BAF9EA300C13B6F /* ArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE401BAF9EA300C13B6F /* ArrayExtensionTests.swift */; };
+		2DC3FE441BAFC86A00C13B6F /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE431BAFC86A00C13B6F /* Counter.swift */; };
+		2DC3FE491BB661B400C13B6F /* OptionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE481BB661B400C13B6F /* OptionalExtension.swift */; };
+		2DC3FE4A1BB661B400C13B6F /* OptionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3FE481BB661B400C13B6F /* OptionalExtension.swift */; };
 		2DD7B5391B9C16F000678ABF /* BaseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7B5381B9C16F000678ABF /* BaseCellView.swift */; };
 		2DD7B53A1B9C16F000678ABF /* BaseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7B5381B9C16F000678ABF /* BaseCellView.swift */; };
 		2DE0CC501B8EA79F00BE16E5 /* VariableHeightCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC4F1B8EA79F00BE16E5 /* VariableHeightCellItem.swift */; };
@@ -280,9 +280,11 @@
 				TargetAttributes = {
 					2DF100F81AC231B300CCCB7F = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 0800;
 					};
 					2DF1010D1AC231B300CCCB7F = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 2DF100F81AC231B300CCCB7F;
 					};
 				};
@@ -481,6 +483,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lopsae.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -493,6 +496,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lopsae.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -509,6 +513,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lopsae.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/worktable.app/worktable";
 			};
 			name = Debug;
@@ -521,6 +526,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lopsae.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/worktable.app/worktable";
 			};
 			name = Release;

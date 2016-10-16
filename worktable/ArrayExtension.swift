@@ -2,14 +2,14 @@
 
 protocol ArrayProtocol {
 
-	func get(index: Int) -> Any
+	func get(_ index: Int) -> Any
 	var count: Int { get }
 }
 
 
 extension Array: ArrayProtocol {
 
-	func get(index: Int) -> Any {
+	func get(_ index: Int) -> Any {
 		return self[index]
 	}
 
@@ -20,7 +20,7 @@ extension Array {
 
 	/// Overwrites the first element of the array with the `newFirst` element.
 	/// If the array is empty the `newFirst` element is appended.
-	mutating func setFirst(newFirst: Element) {
+	mutating func setFirst(_ newFirst: Element) {
 		if isEmpty {
 			append(newFirst)
 		} else {
@@ -31,7 +31,7 @@ extension Array {
 
 	/// Overwrites the last element of the array with the `newLast` element. If
 	/// the array is empty the `newFirst` element is appended.
-	mutating func setLast(newLast: Element) {
+	mutating func setLast(_ newLast: Element) {
 		if isEmpty {
 			append(newLast)
 		} else {
@@ -71,7 +71,7 @@ extension Array {
 				}
 
 				// Prepare next loop
-				pathPosition++
+				pathPosition += 1
 				arrayAtPosition = nextArray
 			}
 		}
@@ -92,7 +92,7 @@ extension Array {
 	/// When setting — overwrites the element at the `index` position if it
 	/// exists, otherwise the array is filled with `filler` elements until
 	/// the `newValue` element can be appended at the `index` position.
-	subscript(index: Int, @autoclosure filler filler: () -> Element) -> Element {
+	subscript(index: Int, filler filler: @autoclosure () -> Element) -> Element {
 		mutating get {
 			fill(to: index, filler: {_ in filler()})
 			return self[index]
@@ -127,7 +127,7 @@ extension Array {
 	/// exists, otherwise the array is filled with the elements returned by the
 	/// `filler` closure until the `newValue` element can be appended at the
 	/// `index` position.
-	subscript(index: Int, @noescape filler filler: Int -> Element) -> Element {
+	subscript(index: Int, filler filler: (Int) -> Element) -> Element {
 		mutating get {
 			fill(to: index, filler: filler)
 			return self[index]
@@ -151,7 +151,7 @@ extension Array {
 	///
 	/// If the array already contains more elements that the `to` index then no
 	/// operation is performed.
-	mutating func fill(to fillIndex: Int, @autoclosure filler: () -> Element) {
+	mutating func fill(to fillIndex: Int, filler: @autoclosure () -> Element) {
 		while count <= fillIndex {
 			append(filler())
 		}
@@ -163,7 +163,7 @@ extension Array {
 	///
 	/// If the array already contains more elements that the `to` index then no
 	/// operation is performed.
-	mutating func fill(to fillIndex: Int, @noescape filler: Int -> Element) {
+	mutating func fill(to fillIndex: Int, filler: (Int) -> Element) {
 		if count > fillIndex {
 			return
 		}

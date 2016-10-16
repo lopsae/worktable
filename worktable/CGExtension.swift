@@ -4,12 +4,12 @@ import UIKit
 extension CGRect {
 
 	init(originOf originRect: CGRect) {
-		self = CGRect(origin: originRect.origin, size: CGSizeZero)
+		self = CGRect(origin: originRect.origin, size: CGSize.zero)
 	}
 
 
 	init(sizeOf sizeRect: CGRect) {
-		self = CGRect(origin: CGPointZero, size: sizeRect.size)
+		self = CGRect(origin: CGPoint.zero, size: sizeRect.size)
 	}
 
 
@@ -97,7 +97,7 @@ extension CGRect {
 	// x and y values increase
 	// w and h values decrease
 
-	mutating func pushMarginX(push: CGFloat) {
+	mutating func pushMarginX(_ push: CGFloat) {
 		x += push
 		if (w > push) {
 			w -= push
@@ -107,7 +107,7 @@ extension CGRect {
 	}
 
 
-	mutating func pushMarginY(push: CGFloat) {
+	mutating func pushMarginY(_ push: CGFloat) {
 		y += push
 		if (h > push) {
 			h -= push
@@ -117,7 +117,7 @@ extension CGRect {
 	}
 
 
-	mutating func pushMarginW(push: CGFloat) {
+	mutating func pushMarginW(_ push: CGFloat) {
 		if (w > push) {
 			w -= push
 		} else {
@@ -127,7 +127,7 @@ extension CGRect {
 	}
 
 
-	mutating func pushMarginH(push: CGFloat) {
+	mutating func pushMarginH(_ push: CGFloat) {
 		if (h > push) {
 			h -= push
 		} else {
@@ -137,17 +137,17 @@ extension CGRect {
 	}
 
 
-	mutating func centerWidthInto(centerRect: CGRect) {
+	mutating func centerWidthInto(_ centerRect: CGRect) {
 		x = centerRect.x + (centerRect.w - w) / 2
 	}
 
 
-	mutating func centerHeightInto(centerRect: CGRect) {
+	mutating func centerHeightInto(_ centerRect: CGRect) {
 		y = centerRect.y + (centerRect.h - h) / 2
 	}
 
 
-	mutating func centerInto(centerRect: CGRect) {
+	mutating func centerInto(_ centerRect: CGRect) {
 		centerWidthInto(centerRect)
 		centerHeightInto(centerRect)
 	}

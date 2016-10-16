@@ -7,11 +7,11 @@ class AutolayoutCellView: BaseCellView {
 	@IBOutlet weak var button: UIButton?
 
 
-	override func updateWithCellItem(cellItem: WorktableCellItem) {
+	override func updateWithCellItem(_ cellItem: WorktableCellItem) {
 		super.updateWithCellItem(cellItem)
 		if let cellItem = cellItem as? AutolayoutCellItem {
 			label?.text = cellItem.labelText
-			button?.setTitle(cellItem.buttonText, forState: .Normal)
+			button?.setTitle(cellItem.buttonText, for: UIControlState())
 		}
 	}
 

@@ -8,7 +8,7 @@ class Counter {
 
 
 	func increment() {
-		count++
+		count += 1
 	}
 
 
@@ -17,7 +17,7 @@ class Counter {
 	}
 
 
-	func assertCount(expected: Int, reset: Bool = true) {
+	func assertCount(_ expected: Int, reset: Bool = true) {
 		XCTAssertEqual(count, expected)
 		if reset {
 			self.reset()
@@ -25,7 +25,7 @@ class Counter {
 	}
 
 
-	func wrapIncrement<Return>(f: () -> Return) -> () -> Return {
+	func wrapIncrement<Return>(_ f: @escaping () -> Return) -> () -> Return {
 		return {
 			[weak self] in
 			self?.increment()
@@ -34,7 +34,7 @@ class Counter {
 	}
 
 
-	func wrapIncrement<Param, Return>(f: Param -> Return) -> Param -> Return {
+	func wrapIncrement<Param, Return>(_ f: @escaping (Param) -> Return) -> (Param) -> Return {
 		return {
 			[weak self]
 			param in

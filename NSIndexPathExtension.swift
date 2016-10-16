@@ -1,26 +1,26 @@
 import Foundation
 
 
-extension NSIndexPath {
+extension IndexPath {
 
-	static func withIndexes(indexes: [Int]) -> NSIndexPath {
-		var indexPath = NSIndexPath()
+	static func withIndexes(_ indexes: [Int]) -> IndexPath {
+		var indexPath = IndexPath()
 		for index in indexes {
-			indexPath = indexPath.indexPathByAddingIndex(index)
+			indexPath = indexPath.appending(index)
 		}
 		return indexPath
 	}
 
 
-	static func withIndexes(indexes: Int...) -> NSIndexPath {
+	static func withIndexes(_ indexes: Int...) -> IndexPath {
 		return self.withIndexes(indexes)
 	}
 
 
 	func toArray() -> [Int] {
-		var indexes = [Int](count: self.length, repeatedValue: 0)
-		for index in 0 ..< self.length {
-			indexes[index] = self.indexAtPosition(index)
+		var indexes = [Int](repeating: 0, count: self.count)
+		for index in 0 ..< self.count {
+			indexes[index] = self[index]
 		}
 		return indexes
 	}

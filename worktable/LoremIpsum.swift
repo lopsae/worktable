@@ -6,9 +6,9 @@ class LoremIpsum {
 	static var splitLorem: [String]?
 
 
-	static func string(words: Int) -> String {
+	static func string(_ words: Int) -> String {
 		if splitLorem == nil {
-			splitLorem = LOREM.componentsSeparatedByString(" ")
+			splitLorem = LOREM.components(separatedBy: " ")
 		}
 
 		if words <= 0 {
@@ -19,14 +19,14 @@ class LoremIpsum {
 		var wordIndex = 0
 		while wordIndex < words {
 			let wordLength = splitLorem![wordIndex].characters.count
-			substringIndex = substringIndex.advancedBy(wordLength + 1)
+			substringIndex = LOREM.index(substringIndex, offsetBy: wordLength + 1)
 			wordIndex += 1
 		}
 
 		// Remove the last space
-		substringIndex = substringIndex.predecessor()
+		substringIndex = LOREM.index(before: substringIndex)
 
-		return LOREM.substringToIndex(substringIndex)
+		return LOREM.substring(to: substringIndex)
 	}
 
 }

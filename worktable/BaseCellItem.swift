@@ -9,13 +9,13 @@ import UIKit
 /// By default an instance of this class will create a `UITableViewCell`
 /// cellView with with an estimated height of `UITableViewAutomaticDimension`
 /// and no content.
-public class BaseCellItem: WorktableCellItem {
+open class BaseCellItem: WorktableCellItem {
 
 	private(set)
-	public var cellViewSource: Any = UITableViewCell.self
+	open var cellViewSource: Any = UITableViewCell.self
 
 	private(set)
-	public var cellEstimatedHeight: CGFloat = UITableViewAutomaticDimension
+	open var cellEstimatedHeight: CGFloat = UITableViewAutomaticDimension
 
 
 	/// Creates an instance with the default values.
@@ -47,12 +47,12 @@ public class BaseCellItem: WorktableCellItem {
 	}
 
 
-	public func cellSelectedWithView(cellview: WorktableCellView?) {
+	open func cellSelectedWithView(_ cellview: WorktableCellView?) {
 		// To override
 	}
 
 
-	public func cellDeselectedWithView(cellview: WorktableCellView?) {
+	open func cellDeselectedWithView(_ cellview: WorktableCellView?) {
 		// To override
 	}
 

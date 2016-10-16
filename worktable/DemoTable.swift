@@ -4,7 +4,7 @@ import UIKit
 class DemoTable: WorktableViewController {
 
 	init () {
-		super.init(style: .Grouped)
+		super.init(style: .grouped)
 		navigationItem.title = "Demo table"
 
 //		let reloadButton = UIBarButtonItem(
@@ -22,7 +22,7 @@ class DemoTable: WorktableViewController {
 	}
 
 
-	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
 
@@ -70,9 +70,9 @@ class DemoTable: WorktableViewController {
 
 		let removeRefreshControlButton = UIBarButtonItem(
 			title: "Add Ind",
-			style: .Plain,
+			style: .plain,
 			target: self,
-			action: "addRefreshIndicator")
+			action: #selector(DemoTable.addRefreshIndicator))
 
 		navigationItem.rightBarButtonItem = removeRefreshControlButton
 	}
@@ -83,9 +83,9 @@ class DemoTable: WorktableViewController {
 
 		let removeRefreshControlButton = UIBarButtonItem(
 			title: "Remove Ind",
-			style: .Plain,
+			style: .plain,
 			target: self,
-			action: "removeRefreshIndicator")
+			action: #selector(DemoTable.removeRefreshIndicator))
 
 		navigationItem.rightBarButtonItem = removeRefreshControlButton
 	}

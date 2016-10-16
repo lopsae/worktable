@@ -15,7 +15,7 @@ class DefaultCellItem : BaseCellItem {
 	}
 
 
-	override func cellSelectedWithView(cellview: WorktableCellView?) {
+	override func cellSelectedWithView(_ cellview: WorktableCellView?) {
 		text =  "\(baseText) selected"
 	}
 

@@ -10,14 +10,14 @@ class VariableHeightCellView: BaseCellView {
 	override func postInit() {
 		super.postInit()
 		initialHeight = UITableViewAutomaticDimension
-		testView = ConcentricView(frame: CGRectZero)
+		testView = ConcentricView(frame: CGRect.zero)
 		contentView.addSubview(testView)
 
 		isSelectionVisible = false
 	}
 
 
-	override func updateWithCellItem(cellItem: WorktableCellItem) {
+	override func updateWithCellItem(_ cellItem: WorktableCellItem) {
 		super.updateWithCellItem(cellItem)
 		if let cellItem = cellItem as? VariableHeightCellItem {
 			updateCellHeight(cellItem.initialHeight)
