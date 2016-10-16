@@ -170,54 +170,31 @@ class ArrayExtension: XCTestCase {
 			["two,zero"]
 		]
 
-		XCTAssertNil(multiDimentional.follow(path: [9, 9]),
-			"invalid array path should return nil"
-		)
+		// Test double out of bounds
+		XCTAssertNil(multiDimentional.follow(path: [9, 9]))
+		XCTAssertNil(multiDimentional.follow(path: IndexPath(indexes: [9, 9])))
 
-		XCTAssertNil(multiDimentional.follow(path: IndexPath(indexes: [9, 9])),
-			"invalid IndexPath path should return nil"
-		)
-
+		// Test partial path
 		var arrayAsAny = multiDimentional.follow(path: [2])
-		XCTAssertNotNil(arrayAsAny,
-			"partial array path should return array"
-		)
-		XCTAssertEqual(arrayAsAny as! [String], ["two,zero"],
-			"partial array path should return specific array"
-		)
+		XCTAssertNotNil(arrayAsAny)
+		XCTAssertEqual(arrayAsAny as! [String], ["two,zero"])
 
 		arrayAsAny = multiDimentional.follow(path: IndexPath(indexes: [2]))
-		XCTAssertNotNil(arrayAsAny,
-			"partial IndexPath path should return array"
-		)
-		XCTAssertEqual(arrayAsAny as! [String], ["two,zero"],
-			"partial IndexPath path should return specific array"
-		)
+		XCTAssertNotNil(arrayAsAny)
+		XCTAssertEqual(arrayAsAny as! [String], ["two,zero"])
 
-		// Find an existing index
+		// Test valid path
 		var stringAsAny = multiDimentional.follow(path: [0, 0])
-		XCTAssertNotNil(stringAsAny,
-			"full array path should return string"
-		)
-		XCTAssertEqual(stringAsAny as? String, "zero,zero",
-			"full array path should return specific string"
-		)
+		XCTAssertNotNil(stringAsAny)
+		XCTAssertEqual(stringAsAny as? String, "zero,zero")
 
 		stringAsAny = multiDimentional.follow(path: IndexPath(indexes: [0, 0]))
-		XCTAssertNotNil(stringAsAny,
-			"full IndexPath path should return string"
-		)
-		XCTAssertEqual(stringAsAny as? String, "zero,zero",
-			"full IndexPath path should return specific string"
-		)
+		XCTAssertNotNil(stringAsAny)
+		XCTAssertEqual(stringAsAny as? String, "zero,zero")
 
-		XCTAssertNil(multiDimentional.follow(path: [1, 1, 1]),
-			"invalid array path should return nil"
-		)
-
-		XCTAssertNil(multiDimentional.follow(path: IndexPath(indexes: [1, 1, 1])),
-			"invalid IndexPath path should return nil"
-		)
+		// Test path into a non array
+		XCTAssertNil(multiDimentional.follow(path: [1, 1, 1]))
+		XCTAssertNil(multiDimentional.follow(path: IndexPath(indexes: [1, 1, 1])))
 
 		// TODO: add out of bounds?
 	}
