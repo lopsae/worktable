@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D1DC37F1BB9FC98009131B6 /* NSIndexPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1DC37E1BB9FC98009131B6 /* NSIndexPathExtension.swift */; };
-		2D1DC3801BB9FC98009131B6 /* NSIndexPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1DC37E1BB9FC98009131B6 /* NSIndexPathExtension.swift */; };
 		2D3E76341B42490D004B6F01 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D3E76331B42490D004B6F01 /* assets.xcassets */; };
 		2D3E76351B42490D004B6F01 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D3E76331B42490D004B6F01 /* assets.xcassets */; };
 		2D45EC4E1B853F510078567C /* AutolayoutCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45EC4C1B853F510078567C /* AutolayoutCellView.swift */; };
@@ -66,7 +64,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D1DC37E1BB9FC98009131B6 /* NSIndexPathExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSIndexPathExtension.swift; sourceTree = "<group>"; };
 		2D3E76321B4247F0004B6F01 /* info */ = {isa = PBXFileReference; lastKnownFileType = folder; path = info; sourceTree = "<group>"; };
 		2D3E76331B42490D004B6F01 /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		2D45EC4C1B853F510078567C /* AutolayoutCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutolayoutCellView.swift; path = worktable/AutolayoutCellView.swift; sourceTree = "<group>"; };
@@ -152,7 +149,6 @@
 				2DC3FE481BB661B400C13B6F /* OptionalExtension.swift */,
 				2D45EC551B8982A90078567C /* LoremIpsum.swift */,
 				2DE0CC581B8EE30D00BE16E5 /* CGExtension.swift */,
-				2D1DC37E1BB9FC98009131B6 /* NSIndexPathExtension.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -339,7 +335,6 @@
 				2D46B52B1B82F9BD00663A40 /* AppDelegate.swift in Sources */,
 				2D46B5351B82F9BD00663A40 /* WorktableCellItem.swift in Sources */,
 				2D45EC4E1B853F510078567C /* AutolayoutCellView.swift in Sources */,
-				2D1DC37F1BB9FC98009131B6 /* NSIndexPathExtension.swift in Sources */,
 				2D46B52F1B82F9BD00663A40 /* DemoTable.swift in Sources */,
 				2DE0CC591B8EE30D00BE16E5 /* CGExtension.swift in Sources */,
 				2DE0CC531B8EA7CC00BE16E5 /* VariableHeightCellView.swift in Sources */,
@@ -368,7 +363,6 @@
 				2D46B5411B84428000663A40 /* WorktableCellView.swift in Sources */,
 				2DE0CC5A1B8EE30D00BE16E5 /* CGExtension.swift in Sources */,
 				2DC3FE4A1BB661B400C13B6F /* OptionalExtension.swift in Sources */,
-				2D1DC3801BB9FC98009131B6 /* NSIndexPathExtension.swift in Sources */,
 				2D46B52C1B82F9BD00663A40 /* AppDelegate.swift in Sources */,
 				2D46B53E1B82F9BD00663A40 /* WorktableViewController.swift in Sources */,
 				2D8D7F701B9A5EFF00169A16 /* BaseCellItem.swift in Sources */,

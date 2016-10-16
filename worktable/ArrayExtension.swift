@@ -43,37 +43,36 @@ extension Array {
 	// TODO: docs
 	// TODO: should return Optional<Any>? it could return Any and have another
 	// method to check if the given subindex exists
-	subscript(indexPath: [Int]) -> Any? {
-		get {
-			guard indexPath.count > 0 else {
+	func follow<IndexPath: RandomAccessCollection>(path: IndexPath) -> Any?
+	where IndexPath.Index == Array.Index, IndexPath.Iterator.Element == Array.Index {
+		guard path.count > 0 else {
+			return nil
+		}
+
+		var pathPosition = 0
+		var arrayAtPosition: ArrayProtocol = self
+
+		while true {
+			let currentIndex = path[pathPosition]
+			guard arrayAtPosition.count > currentIndex else {
 				return nil
 			}
 
-			var pathPosition = 0
-			var arrayAtPosition: ArrayProtocol = self
-
-			while true {
-				let currentIndex = indexPath[pathPosition]
-				guard arrayAtPosition.count > currentIndex else {
-					return nil
-				}
-
-				let currentElement = arrayAtPosition.get(currentIndex)
-				guard pathPosition < indexPath.count - 1 else {
-					// In last position, get item and return
-					return currentElement
-				}
-
-				// Not last position, we have to go deeper
-				guard let nextArray = currentElement as? ArrayProtocol else {
-					// No array to go deeper
-					return nil
-				}
-
-				// Prepare next loop
-				pathPosition += 1
-				arrayAtPosition = nextArray
+			let currentElement = arrayAtPosition.get(currentIndex)
+			guard path.distance(from: pathPosition, to: path.endIndex) > 1 else {
+				// In last position, get item and return
+				return currentElement
 			}
+
+			// Not last position, have to go deeper
+			guard let nextArray = currentElement as? ArrayProtocol else {
+				// No array to go deeper
+				return nil
+			}
+
+			// Prepare next loop
+			pathPosition += 1
+			arrayAtPosition = nextArray
 		}
 	}
 

@@ -143,7 +143,7 @@ open class WorktableViewController: UITableViewController {
 	// the last cell created for the given indexPath, regardless of if it was displayed or not
 	open func cellViewAtIndexPath(_ indexPath: IndexPath)
 	-> WorktableCellView? {
-		guard let anyElement = viewsStorage[indexPath.toArray()] else {
+		guard let anyElement = viewsStorage.follow(path: indexPath) else {
 			// Tried to access an unexisting position
 			return nil
 		}
