@@ -124,8 +124,8 @@ open class WorktableViewController: UITableViewController {
 
 	open func cellItemAtIndexPath(_ indexPath: IndexPath)
 	-> WorktableCellItem {
-		let section = sections[(indexPath as NSIndexPath).section]
-		return section[(indexPath as NSIndexPath).row]
+		let section = sections[indexPath.section]
+		return section[indexPath.row]
 	}
 
 
@@ -166,20 +166,20 @@ open class WorktableViewController: UITableViewController {
 	private func storeCellView(_ cellView: WorktableCellView,
 		indexPath: IndexPath
 	) {
-		var sectionArray = viewsStorage[(indexPath as NSIndexPath).section,
+		var sectionArray = viewsStorage[indexPath.section,
 			filler:[WorktableCellView?]()
 		]
-		sectionArray[(indexPath as NSIndexPath).row, filler: nil] = cellView
-		viewsStorage[(indexPath as NSIndexPath).section] = sectionArray
+		sectionArray[indexPath.row, filler: nil] = cellView
+		viewsStorage[indexPath.section] = sectionArray
 	}
 
 
 	private func clearCellView(indexPath: IndexPath) {
-		var sectionArray = viewsStorage[(indexPath as NSIndexPath).section,
+		var sectionArray = viewsStorage[indexPath.section,
 			filler: [WorktableCellView?]()
 		]
-		sectionArray[(indexPath as NSIndexPath).row, filler: nil] = nil
-		viewsStorage[(indexPath as NSIndexPath).section] = sectionArray
+		sectionArray[indexPath.row, filler: nil] = nil
+		viewsStorage[indexPath.section] = sectionArray
 	}
 
 
@@ -207,7 +207,7 @@ open class WorktableViewController: UITableViewController {
 		_ tableView: UITableView,
 		cellForRowAt indexPath: IndexPath
 	) -> UITableViewCell {
-		debugPrint("created or dequeued at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
+		debugPrint("created or dequeued at: \(indexPath.section),\(indexPath.row)")
 
 		let cellItem = cellItemAtIndexPath(indexPath)
 		let reuseId = reuseIdentifierForCellItem(cellItem)
@@ -280,7 +280,7 @@ open class WorktableViewController: UITableViewController {
 		willDisplay cellView: UITableViewCell,
 		forRowAt indexPath: IndexPath
 	) {
-		debugPrint("will display at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
+		debugPrint("will display at: \(indexPath.section),\(indexPath.row)")
 
 		if let cellView = cellView as? WorktableCellView {
 			cellView.willDisplayCell(self)
@@ -292,7 +292,7 @@ open class WorktableViewController: UITableViewController {
 		didEndDisplaying cellView: UITableViewCell,
 		forRowAt indexPath: IndexPath
 	) {
-		debugPrint("end display at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
+		debugPrint("end display at: \(indexPath.section),\(indexPath.row)")
 
 		if let cellView = cellView as? WorktableCellView {
 			cellView.didEndDisplayingCell(self)
@@ -307,7 +307,7 @@ open class WorktableViewController: UITableViewController {
 	override open func tableView(_: UITableView,
 		didSelectRowAt indexPath: IndexPath
 	) {
-		debugPrint("selected at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
+		debugPrint("selected at: \(indexPath.section),\(indexPath.row)")
 
 		let cellItem = cellItemAtIndexPath(indexPath)
 		let cellView = cellViewAtIndexPath(indexPath)
@@ -323,7 +323,7 @@ open class WorktableViewController: UITableViewController {
 	override open func tableView(_: UITableView,
 		didDeselectRowAt indexPath: IndexPath
 	) {
-		debugPrint("deselected at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
+		debugPrint("deselected at: \(indexPath.section),\(indexPath.row)")
 
 		let cellItem = cellItemAtIndexPath(indexPath)
 		let cellView = cellViewAtIndexPath(indexPath)
@@ -339,7 +339,7 @@ open class WorktableViewController: UITableViewController {
 	override open func tableView(_: UITableView,
 		didHighlightRowAt indexPath: IndexPath
 	) {
-		debugPrint("highlighed at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
+		debugPrint("highlighed at: \(indexPath.section),\(indexPath.row)")
 
 		if let cellView = cellViewAtIndexPath(indexPath) {
 			let cellItem = cellItemAtIndexPath(indexPath)
@@ -349,7 +349,7 @@ open class WorktableViewController: UITableViewController {
 
 
 	override open func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-		debugPrint("unhighlighed at: \((indexPath as NSIndexPath).section),\((indexPath as NSIndexPath).row)")
+		debugPrint("unhighlighed at: \(indexPath.section),\(indexPath.row)")
 
 		if let cellView = cellViewAtIndexPath(indexPath) {
 			let cellItem = cellItemAtIndexPath(indexPath)
