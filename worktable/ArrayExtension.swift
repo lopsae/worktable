@@ -24,9 +24,16 @@ extension Array {
 	}
 
 
-	// TODO: docs
 	// TODO: should return Optional<Any>? it could return Any and have another
 	// method to check if the given subindex exists
+
+	/// Returns an element in the given array following the given sequence of 
+	/// indexes. The `path` specifies indexes that should be followed: the first
+	/// index will retrieve the `instance[index]` element from the instance, if
+	/// there are more indexes in the `path`, that element is expected to be an
+	/// array and the next index is followed. This continues until the indexes
+	/// in `path` are exhausted, in which an element is returned. If at any
+	/// point an index cannot be followed then `nil` is returned.
 	func follow<IndexPath: RandomAccessCollection>(path: IndexPath) -> Any?
 	where IndexPath.Index == Array.Index, IndexPath.Iterator.Element == Array.Index {
 		guard path.count > 0 else {
