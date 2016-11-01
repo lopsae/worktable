@@ -24,19 +24,17 @@ open class WorktableViewController: UITableViewController {
 		}
 
 		set {
+			if let refreshControl = refreshControl {
+				refreshControl.removeTarget(self, action: nil, for: .valueChanged)
+			}
+
 			if newValue {
-				// TODO: respect refresh control if one is already there
 				refreshControl = UIRefreshControl()
 				refreshControl?.addTarget(self,
 					action: #selector(WorktableViewController.refreshWithDrag),
 					for: .valueChanged
 				)
 			} else {
-				// If refresh control is removed at any time before it being
-				// used (beginRefresh and endRefresh being called), a warning
-				// will be printed.
-				// After it has been used at least once it can be removed
-				// without warning whenever the control is not being used.
 				// Removing the control with the `refreshDidEnd` callback works
 				// properly.
 				refreshControl = nil
