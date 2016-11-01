@@ -12,7 +12,10 @@ class VariableHeightCellItem: BaseCellItem {
 
 	init(initialHeight: CGFloat) {
 		self.initialHeight = initialHeight
-		super.init(viewSource: VIEW_CLASS, estimatedHeight: initialHeight)
+		super.init(
+			type: VIEW_CLASS,
+			estimatedHeight: initialHeight
+		)
 	}
 
 }

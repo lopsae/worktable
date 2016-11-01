@@ -68,39 +68,40 @@ open class WorktableViewController: UITableViewController {
 // MARK: Cell and section register and creation
 
 	open func registerCellItemForReuse(_ cellItem: WorktableCellItem) {
-		if let nibName = cellItem.cellViewSource as? String {
-			// TODO: string could have special format to allow bundle
-			// say, separate with # or character not allowed in nib/bundle names
-			let nib = UINib(nibName: nibName, bundle: nil);
-			let reuseId = reuseIdentifierForCellItem(cellItem)
-			tableView.register(nib, forCellReuseIdentifier: reuseId!)
-			return
-		}
+		switch cellItem.viewSource {
+		case let .type(viewType):
+			guard viewType is UITableViewCell.Type else {
+				preconditionFailure("Unexpected type of viewSource: \(viewType)")
+			}
+			let reuseId = createReuseIdentifier(cellItem)
+			tableView.register(viewType, forCellReuseIdentifier: reuseId)
 
-		if let cellViewClass = cellItem.cellViewSource as? UITableViewCell.Type {
-			let reuseId = reuseIdentifierForCellItem(cellItem)
-			tableView.register(cellViewClass,
-				forCellReuseIdentifier: reuseId!
-			)
-			return
+		case let .nib(nibName, bundleId):
+			var bundle: Bundle?
+			if bundleId != nil {
+				bundle = Bundle(identifier: bundleId!)
+			}
+			let nib = UINib(nibName: nibName, bundle: bundle)
+			let reuseId = createReuseIdentifier(cellItem)
+			tableView.register(nib, forCellReuseIdentifier: reuseId)
 		}
-
-		preconditionFailure("Unexpected type of viewSource to register for reuse: \(cellItem.cellViewSource)")
 	}
 
 
-	private func reuseIdentifierForCellItem(
+	private func createReuseIdentifier(
 		_ cellItem: WorktableCellItem
-	) -> String? {
-		if let nibName = cellItem.cellViewSource as? String {
-			return nibName
-		}
+	) -> String {
+		switch cellItem.viewSource {
+		case let .type(viewType):
+			return String(describing: viewType)
 
-		if cellItem.cellViewSource is UITableViewCell.Type {
-			return String(describing: cellItem.cellViewSource)
+		case let .nib(nibName, bundleId):
+			if bundleId != nil {
+				return "\(bundleId)#\(nibName)"
+			} else {
+				return nibName
+			}
 		}
-
-		preconditionFailure("Unexpected type of viewSource: \(cellItem.cellViewSource)")
 	}
 
 
@@ -208,8 +209,8 @@ open class WorktableViewController: UITableViewController {
 		debugPrint("created or dequeued at: \(indexPath.section),\(indexPath.row)")
 
 		let cellItem = cellItemAtIndexPath(indexPath)
-		let reuseId = reuseIdentifierForCellItem(cellItem)
-		let cellView = tableView.dequeueReusableCell(withIdentifier: reuseId!)
+		let reuseId = createReuseIdentifier(cellItem)
+		let cellView = tableView.dequeueReusableCell(withIdentifier: reuseId)
 
 		// The table width is updated inmediately on all cellViews to allow
 		// height to be calculated during `heightForCell`

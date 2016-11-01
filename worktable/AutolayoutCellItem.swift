@@ -18,7 +18,11 @@ class AutolayoutCellItem: BaseCellItem {
 	init(_ labelText: String, buttonText: String) {
 		self.labelText = labelText
 		self.buttonText = buttonText
-		super.init(viewSource: NIB_NAME, estimatedHeight: ESTIMATED_HEIGHT)
+		super.init(
+			nibName: NIB_NAME,
+			bundleId: nil,
+			estimatedHeight: ESTIMATED_HEIGHT
+		)
 	}
 
 }

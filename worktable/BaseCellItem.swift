@@ -4,7 +4,7 @@ import UIKit
 
 /// Base implementation of the WorktableCellItem protocol. Provides default
 /// values, basic functionality, and empty method implementations to allow
-/// extending classes to only implement the functionality as needed.
+/// extending classes to only implement functionality as needed.
 ///
 /// By default an instance of this class will create a `UITableViewCell`
 /// cellView with with an estimated height of `UITableViewAutomaticDimension`
@@ -12,7 +12,7 @@ import UIKit
 open class BaseCellItem: WorktableCellItem {
 
 	private(set)
-	open var cellViewSource: Any = UITableViewCell.self
+	open var viewSource: WorktableCellViewSource = .type(UITableViewCell.self)
 
 	private(set)
 	open var cellEstimatedHeight: CGFloat = UITableViewAutomaticDimension
@@ -24,26 +24,26 @@ open class BaseCellItem: WorktableCellItem {
 	}
 
 
-	/// Creates an instance with the given `viewSource` instead of the default.
+	/// Creates an instance with the given `nibName` and `bundle`.
 	///
-	/// - Parameter viewSource: Any type that extends from
-	///   `UITableViewCell.Type` or a `String` with the name of the nib to use.
-	init(viewSource: Any) {
-		cellViewSource = viewSource
+	/// - Parameter nibName: The name of the nib used to create the view 
+	///	  for this cell item.
+	/// - Parameter bundleId: Bundle identifier for the nib, defaults to `nil`.
+	/// - Parameter estimatedHeight: Estimated height for the cell.
+	init(nibName: String, bundleId: String? = nil, estimatedHeight: CGFloat? = nil) {
+		viewSource = .nib(nibName, bundleId: bundleId)
+		cellEstimatedHeight = estimatedHeight ?? UITableViewAutomaticDimension
 	}
 
 
-	/// Creates an instance with the given `viewSource` and `estimatedHeight`
-	/// instead of the defaults.
+	/// Creates an instance with the given `type`.
 	///
-	/// - Parameter viewSource: Any type that extends from
-	///   `UITableViewCell.Type` or a `String` with the name of the nib to use.
-	///
-	/// - Parameter estimatedHeight: The estimated height of the cell.
-	///   default.
-	init(viewSource: Any, estimatedHeight:CGFloat) {
-		cellViewSource = viewSource
-		cellEstimatedHeight = estimatedHeight
+	/// - Parameter type: The type used to initialize the view for this cell.
+	///   Must be a subtype of `UITableViewCell.Type`.
+	/// - Parameter estimatedHeight: Estimated height for the cell.
+	init(type: AnyClass, estimatedHeight: CGFloat? = nil) {
+		viewSource = .type(type)
+		cellEstimatedHeight = estimatedHeight ?? UITableViewAutomaticDimension
 	}
 
 

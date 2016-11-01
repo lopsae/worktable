@@ -3,6 +3,7 @@ import UIKit
 
 public protocol WorktableCellItem {
 
+	/// TODO: redo documentation for enum
 	/// Class or nibName of the cellView for this cellItem. This object is used
 	/// by the WorktableViewController to register the Type or nib that will be
 	/// used to create cellViews for the instance.
@@ -14,7 +15,7 @@ public protocol WorktableCellItem {
 	///
 	/// - Note: Any unexpected value will cause a `preconditionFailure` when the
 	///   cellItem is added to a `WorktableViewController` instance.
-	var cellViewSource: Any { get }
+	var viewSource: WorktableCellViewSource { get }
 
 
 	/// Estimated height of the cellView that will be created for this cellItem.
@@ -35,4 +36,10 @@ public protocol WorktableCellItem {
 
 	func cellDeselectedWithView(_ cellview: WorktableCellView?)
 
+}
+
+
+public enum WorktableCellViewSource {
+	case nib(String, bundleId: String?)
+	case type(AnyClass)
 }

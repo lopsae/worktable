@@ -11,7 +11,7 @@ class DefaultCellItem : BaseCellItem {
 	init(_ initialText: String) {
 		baseText = initialText
 		text = initialText
-		super.init(viewSource: DefaultCellView.self)
+		super.init(type: DefaultCellView.self)
 	}
 
 
