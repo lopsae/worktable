@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		didFinishLaunchingWithOptions
 		launchOptions: [UIApplicationLaunchOptionsKey: Any]?
 	) -> Bool {
-		window = UIWindow(frame: UIScreen.main.bounds);
+		window = UIWindow(frame: UIScreen.main.bounds)
 		window!.tintColor = UIColor.red
 
 		let tableButton = UIBarButtonItem(
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		navController.viewControllers = [viewController, demoTable!]
 
-		window!.rootViewController = navController;
+		window!.rootViewController = navController
 		window!.makeKeyAndVisible()
 
 		return true

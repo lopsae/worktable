@@ -62,6 +62,7 @@ open class WorktableViewController: UITableViewController {
 	/// removed safely.
 	open var refreshDidEnd: ((WorktableViewController) -> ())?
 
+	/// Used to provide a completion closure with the `scrollToTop` method.
 	private var scrollToTopCompletion: (()->())?
 
 
@@ -351,7 +352,7 @@ open class WorktableViewController: UITableViewController {
 		debugPrint("highlighed at: \(indexPath.section),\(indexPath.row)")
 
 		guard let cellView = getCellView(at: indexPath) else {
-			return;
+			return
 		}
 
 		let cellItem = getCellItem(at: indexPath)
@@ -366,7 +367,7 @@ open class WorktableViewController: UITableViewController {
 		debugPrint("unhighlighed at: \(indexPath.section),\(indexPath.row)")
 
 		guard let cellView = getCellView(at: indexPath) else {
-			return;
+			return
 		}
 
 		let cellItem = getCellItem(at: indexPath)
@@ -414,13 +415,13 @@ open class WorktableViewController: UITableViewController {
 	open func endRefresh() {
 		refreshWillEnd?(self)
 		self.refreshControl?.endRefreshing()
-		isRefreshing = false;
+		isRefreshing = false
 
 
 		// If content is already past the top, no need for scroll
 		if tableView.contentOffset.y > -tableView.contentInset.top {
 			refreshDidEnd?(self)
-			return;
+			return
 		}
 
 		// `refreshContro.endRefreshing()` will trigger scroll animations if the
