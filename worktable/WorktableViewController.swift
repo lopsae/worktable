@@ -62,8 +62,7 @@ open class WorktableViewController: UITableViewController {
 	/// removed safely.
 	open var refreshDidEnd: ((WorktableViewController) -> ())?
 
-	// TODO: rename and maybe move to methods using it?
-	private var transientScrollAnimationDidEnd: (()->())?
+	private var scrollToTopCompletion: (()->())?
 
 
 // MARK: Cell and section register and creation
@@ -446,19 +445,19 @@ open class WorktableViewController: UITableViewController {
 	/// `refreshControl` is active it will be displayed as part of the scroll.
 	open func scrollToTop(
 		animated: Bool = true,
-		completition:(()->())? = nil
+		completion:(()->())? = nil
 	) {
 		let topPoint = CGPoint(x: 0, y: -tableView.contentInset.top)
 		tableView.setContentOffset(topPoint, animated: animated)
-		transientScrollAnimationDidEnd = completition
+		scrollToTopCompletion = completion
 	}
 
 
 	override open func scrollViewDidEndScrollingAnimation(
 		_ scrollView: UIScrollView
 	) {
-		transientScrollAnimationDidEnd?()
-		transientScrollAnimationDidEnd = nil
+		scrollToTopCompletion?()
+		scrollToTopCompletion = nil
 	}
 
 
