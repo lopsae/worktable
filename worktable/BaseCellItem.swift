@@ -47,12 +47,12 @@ open class BaseCellItem: WorktableCellItem {
 	}
 
 
-	open func cellSelectedWithView(_ cellview: WorktableCellView?) {
+	open func cellSelectedWithView(_ cellview: WorktableCellView) {
 		// To override
 	}
 
 
-	open func cellDeselectedWithView(_ cellview: WorktableCellView?) {
+	open func cellDeselectedWithView(_ cellview: WorktableCellView) {
 		// To override
 	}
 

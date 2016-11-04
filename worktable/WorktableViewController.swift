@@ -318,10 +318,13 @@ open class WorktableViewController: UITableViewController {
 		debugPrint("selected at: \(indexPath.section),\(indexPath.row)")
 
 		let cellItem = getCellItem(at: indexPath)
-		let cellView = getCellView(at: indexPath)
+
+		guard let cellView = getCellView(at: indexPath) else {
+			return
+		}
 
 		cellItem.cellSelectedWithView(cellView)
-		cellView?.cellSelectedWithItem(cellItem)
+		cellView.cellSelectedWithItem(cellItem)
 	}
 
 
@@ -332,10 +335,13 @@ open class WorktableViewController: UITableViewController {
 		debugPrint("deselected at: \(indexPath.section),\(indexPath.row)")
 
 		let cellItem = getCellItem(at: indexPath)
-		let cellView = getCellView(at: indexPath)
+
+		guard let cellView = getCellView(at: indexPath) else {
+			return
+		}
 
 		cellItem.cellDeselectedWithView(cellView)
-		cellView?.cellDeselectedWithItem(cellItem)
+		cellView.cellDeselectedWithItem(cellItem)
 	}
 
 
