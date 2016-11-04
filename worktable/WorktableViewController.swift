@@ -1,7 +1,6 @@
 import UIKit
 
-// TODO: remove unnecesary open inside
-open class WorktableViewController: UITableViewController {
+public class WorktableViewController: UITableViewController {
 
 	private var sections = [[WorktableCellItem]]()
 
@@ -16,9 +15,9 @@ open class WorktableViewController: UITableViewController {
 	private var viewsStorage = [[WorktableCellView?]]()
 
 	private(set)
-	open var isRefreshing = false
+	public var isRefreshing = false
 
-	open var refreshEnabled: Bool {
+	public var refreshEnabled: Bool {
 		get {
 			return refreshControl != nil
 		}
@@ -50,17 +49,17 @@ open class WorktableViewController: UITableViewController {
 	/// already visible. If the refresh started through a call to the
 	/// `beginRefresh` method, then the `refreshControl` will be about to scroll
 	/// into display.
-	open var refreshDidBegin: ((WorktableViewController) -> ())?
+	public var refreshDidBegin: ((WorktableViewController) -> ())?
 
 	/// Called when a refresh using the `refreshControl` will end. At the
 	/// moment of the call the `refreshControl` may be visible depending on the
 	/// scroll position of the table, and afterwards will animate into idle.
-	open var refreshWillEnd: ((WorktableViewController) -> ())?
+	public var refreshWillEnd: ((WorktableViewController) -> ())?
 
 	/// Called after a refresh using the refreshControl has ended. At the moment
 	/// of the call the refreshControl is already hidden and idle so it can be
 	/// removed safely.
-	open var refreshDidEnd: ((WorktableViewController) -> ())?
+	public var refreshDidEnd: ((WorktableViewController) -> ())?
 
 	/// Used to provide a completion closure with the `scrollToTop` method.
 	private var scrollToTopCompletion: (()->())?
@@ -68,7 +67,7 @@ open class WorktableViewController: UITableViewController {
 
 // MARK: Cell and section register and creation
 
-	open func registerForReuse(cellItem: WorktableCellItem) {
+	public func registerForReuse(cellItem: WorktableCellItem) {
 		switch cellItem.viewSource {
 		case let .type(viewType):
 			guard viewType is UITableViewCell.Type else {
@@ -90,7 +89,7 @@ open class WorktableViewController: UITableViewController {
 
 
 	// TODO: register function for header/footers
-	// open func registerForReuse(headerItem: ??)
+	// public func registerForReuse(headerItem: ??)
 
 
 	private func makeReuseIdentifier(
@@ -110,12 +109,12 @@ open class WorktableViewController: UITableViewController {
 	}
 
 
-	open func addNewSection () {
+	public func addNewSection () {
 		sections.append([WorktableCellItem]())
 	}
 
 
-	open func pushCellItem(_ cellItem: WorktableCellItem) {
+	public func pushCellItem(_ cellItem: WorktableCellItem) {
 		if sections.isEmpty {
 			addNewSection()
 		}
@@ -126,7 +125,7 @@ open class WorktableViewController: UITableViewController {
 	}
 
 
-	open func getCellItem(at indexPath: IndexPath) -> WorktableCellItem {
+	public func getCellItem(at indexPath: IndexPath) -> WorktableCellItem {
 		let section = sections[indexPath.section]
 		return section[indexPath.row]
 	}
@@ -144,7 +143,7 @@ open class WorktableViewController: UITableViewController {
 	// and this cell may be later reused in the same or different position
 	// the only assumption that can be made for this method is that it returns
 	// the last cell created for the given indexPath, regardless of if it was displayed or not
-	open func getCellView(at indexPath: IndexPath) -> WorktableCellView? {
+	public func getCellView(at indexPath: IndexPath) -> WorktableCellView? {
 		guard let anyElement = viewsStorage.follow(path: indexPath) else {
 			// Tried to access an unexisting position
 			return nil
@@ -380,8 +379,6 @@ open class WorktableViewController: UITableViewController {
 	/// Method called when the `refreshControl` is activated through user
 	/// interaction.
 	internal func refreshWithUserDrag() {
-		debugPrint("refresh started by drag")
-
 		// TODO: dummy code to limit refresh
 		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
 			self.endRefresh()
@@ -391,9 +388,7 @@ open class WorktableViewController: UITableViewController {
 	}
 
 
-	open func beginRefresh() {
-		debugPrint("refresh started by code")
-
+	public func beginRefresh() {
 		refreshControl?.beginRefreshing()
 		scrollToTop()
 
@@ -412,7 +407,7 @@ open class WorktableViewController: UITableViewController {
 	}
 
 
-	open func endRefresh() {
+	public func endRefresh() {
 		refreshWillEnd?(self)
 		self.refreshControl?.endRefreshing()
 		isRefreshing = false
@@ -432,19 +427,16 @@ open class WorktableViewController: UITableViewController {
 		// time. If `endRefreshing()` issued a scroll it will stop automatically
 		// and be replaced with this one. Thus a single call to `refreshDidEnd`
 		// still happens.
-		debugPrint("starting scroll")
 		scrollToTop(animated: true) {
 			[unowned self] in
 			self.refreshDidEnd?(self)
 		}
-
-		debugPrint("scroll started")
 	}
 
 
 	/// Scrolls the `tableView` to the top of the scrollable area. If the
 	/// `refreshControl` is active it will be displayed as part of the scroll.
-	open func scrollToTop(
+	public func scrollToTop(
 		animated: Bool = true,
 		completion:(()->())? = nil
 	) {
@@ -465,41 +457,13 @@ open class WorktableViewController: UITableViewController {
 // Order of important method calls:
 // viewDidLoad
 // viewWillAppear
-// (before this, if a cell is requested by tableView.cellForRow the whole block happens right there)
+//   (before this point if any cell is requested with `tableView.cellForRow`
+//   the viewDidLoad/Appear will happen before the cell is requested)
 // for each cell
 //  |-cellForRow
 //  |-cellWillAppear
 // viewDidAppear
 
-
-// MARK: Debugging methods
-
-//	override public func scrollViewDidScroll(scrollView: UIScrollView) {
-//		debugPrint("scrolling")
-//	}
-
-
-//	override public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-//		debugPrint("view end deceleration")
-//	}
-
-
-	// happens before any requests for cell views
-	// this is why it is usualy used to populate cellItems
-	override open func viewDidLoad() {
-		super.viewDidLoad()
-	}
-
-
-	// also happens before any cellViews are requested
-	override open func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-	}
-
-
-	override open func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-	}
 
 }
 
