@@ -3,32 +3,21 @@ import UIKit
 
 public protocol WorktableCellItem {
 
-	/// TODO: redo documentation for enum
-	/// Class or nibName of the cellView for this cellItem. This object is used
-	/// by the WorktableViewController to register the Type or nib that will be
-	/// used to create cellViews for the instance.
-	///
-	/// If viewSource is a String object it will be interpreted as the name of
-	/// the nib to use in the default bundle.
-	///
-	/// If viewSource is a Type it must extend from `UITableViewCell.Type`
-	///
-	/// - Note: Any unexpected value will cause a `preconditionFailure` when the
-	///   cellItem is added to a `WorktableViewController` instance.
+	/// Source of the cell-view that will be created for `self`.
 	var viewSource: WorktableCellViewSource { get }
 
 
-	/// Estimated height of the cellView that will be created for this cellItem.
+	/// Estimated height of the cell-view that will be created for `self`.
 	///
-	/// It is important that the value returned is the same through the lifetime
-	/// of the cellItem in a table. That is, while a cellItem is contained by a
-	/// table its estimated height should not change.
+	/// This value must be the same through the lifetime of a cell-item. While
+	/// a cell-item is contained by a table its estimated height should not
+	/// change.
 	///
 	/// This value is used for both the estimated height and the actual height
-	/// while the cellView is created. If different values are provided between
+	/// while the cell-view is created. If different values are provided between
 	/// calls the table may not adjust properly to changes in the height
-	/// provided by the cellView.
-	var cellEstimatedHeight: CGFloat { get }
+	/// provided by the cell-view.
+	var estimatedHeight: CGFloat { get }
 
 
 	func cellSelectedWithView(_ cellview: WorktableCellView)
@@ -39,7 +28,17 @@ public protocol WorktableCellItem {
 }
 
 
+/// Defines the means in which a cell-view is instantiated.
 public enum WorktableCellViewSource {
-	case nib(String, bundleId: String?)
+
+	/// Nib name and bundle identifier of a xib file that contains an
+	/// `UITableViewCell` instance.
+	case nib(name:String, bundleId: String?)
+
+	/// Type to instantiate a `UITableViewCell` instance.
+	///
+	/// - Note: The contained type must be a subtype of `UITableViewCell.Type`,
+	///   otherwise a `preconditionFailure` will ocurr when the cell-item is
+	///   added to a `WorktableViewController` instance.
 	case type(AnyClass)
 }

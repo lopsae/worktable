@@ -15,7 +15,7 @@ open class BaseCellItem: WorktableCellItem {
 	open var viewSource: WorktableCellViewSource = .type(UITableViewCell.self)
 
 	private(set)
-	open var cellEstimatedHeight: CGFloat = UITableViewAutomaticDimension
+	open var estimatedHeight: CGFloat = UITableViewAutomaticDimension
 
 
 	/// Creates an instance with the default values.
@@ -31,8 +31,8 @@ open class BaseCellItem: WorktableCellItem {
 	/// - Parameter bundleId: Bundle identifier for the nib, defaults to `nil`.
 	/// - Parameter estimatedHeight: Estimated height for the cell.
 	init(nibName: String, bundleId: String? = nil, estimatedHeight: CGFloat? = nil) {
-		viewSource = .nib(nibName, bundleId: bundleId)
-		cellEstimatedHeight = estimatedHeight ?? UITableViewAutomaticDimension
+		viewSource = .nib(name: nibName, bundleId: bundleId)
+		self.estimatedHeight = estimatedHeight ?? UITableViewAutomaticDimension
 	}
 
 
@@ -43,7 +43,7 @@ open class BaseCellItem: WorktableCellItem {
 	/// - Parameter estimatedHeight: Estimated height for the cell.
 	init(type: AnyClass, estimatedHeight: CGFloat? = nil) {
 		viewSource = .type(type)
-		cellEstimatedHeight = estimatedHeight ?? UITableViewAutomaticDimension
+		self.estimatedHeight = estimatedHeight ?? UITableViewAutomaticDimension
 	}
 
 

@@ -1,6 +1,6 @@
 import UIKit
 
-
+// TODO: remove unnecesary open inside
 open class WorktableViewController: UITableViewController {
 
 	private var sections = [[WorktableCellItem]]()
@@ -245,7 +245,7 @@ open class WorktableViewController: UITableViewController {
 		estimatedHeightForRowAt indexPath: IndexPath
 	) -> CGFloat {
 		let cellItem = getCellItem(at: indexPath)
-		return cellItem.cellEstimatedHeight
+		return cellItem.estimatedHeight
 	}
 
 
