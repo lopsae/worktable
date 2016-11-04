@@ -18,10 +18,10 @@ public protocol WorktableCellView {
 	func didEndDisplayingCell(_ controller: WorktableViewController)
 
 
-	func cellHightlightedWithItem(_ cellItem: WorktableCellItem)
+	func cellHighlightedWithItem(_ cellItem: WorktableCellItem)
 
 
-	func cellUnhightlightedWithItem(_ cellItem: WorktableCellItem)
+	func cellUnhighlightedWithItem(_ cellItem: WorktableCellItem)
 
 
 	func cellSelectedWithItem(_ cellItem: WorktableCellItem)

@@ -31,9 +31,11 @@ public protocol WorktableCellItem {
 	var cellEstimatedHeight: CGFloat { get }
 
 
+	// TODO: should cellView not be optional?
 	func cellSelectedWithView(_ cellview: WorktableCellView?)
 
-
+	
+	// TODO: should cellView not be optional?
 	func cellDeselectedWithView(_ cellview: WorktableCellView?)
 
 }

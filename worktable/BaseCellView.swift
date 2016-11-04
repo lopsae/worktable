@@ -102,12 +102,12 @@ open class BaseCellView: UITableViewCell, WorktableCellView {
 	}
 
 
-	open func cellHightlightedWithItem(_ cellItem: WorktableCellItem) {
+	open func cellHighlightedWithItem(_ cellItem: WorktableCellItem) {
 		// To override
 	}
 
 
-	open func cellUnhightlightedWithItem(_ cellItem: WorktableCellItem) {
+	open func cellUnhighlightedWithItem(_ cellItem: WorktableCellItem) {
 		// To override
 	}
 
