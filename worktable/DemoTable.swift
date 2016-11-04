@@ -5,20 +5,6 @@ class DemoTable: WorktableViewController {
 
 	init () {
 		super.init(style: .grouped)
-		navigationItem.title = "Demo table"
-
-//		let reloadButton = UIBarButtonItem(
-//			title: "Refresh",
-//			style: .Plain,
-//			target: self,
-//			action: "refreshTable"
-//		)
-
-		addRefreshIndicator()
-
-		refreshDidEnd = {_ in
-			self.removeRefreshIndicator()
-		}
 	}
 
 
@@ -35,7 +21,21 @@ class DemoTable: WorktableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		refreshEnabled = true
+		navigationItem.title = "Demo table"
+
+		// TODO: move refresh to a action sheet?
+		//		let reloadButton = UIBarButtonItem(
+		//			title: "Refresh",
+		//			style: .Plain,
+		//			target: self,
+		//			action: "refreshTable"
+		//		)
+
+		addRefreshIndicator()
+
+		refreshDidEnd = {_ in
+			self.removeRefreshIndicator()
+		}
 
 		pushCellItem(DefaultCellItem("cell 1"))
 		pushCellItem(AutolayoutCellItem(LoremIpsum.string(3), buttonText: "button one"))
