@@ -20,10 +20,10 @@ public protocol WorktableCellItem {
 	var estimatedHeight: CGFloat { get }
 
 
-	func cellSelectedWithView(_ cellview: WorktableCellView)
+	func cellSelected(with cellView: WorktableCellView)
 
 
-	func cellDeselectedWithView(_ cellview: WorktableCellView)
+	func cellDeselected(with cellView: WorktableCellView)
 
 }
 

@@ -6,7 +6,7 @@ public protocol WorktableCellView {
 	var cellHeight: CGFloat { get }
 
 
-	func updateWithCellItem(_ cellItem: WorktableCellItem)
+	func updateCell(with cellItem: WorktableCellItem)
 
 
 	func willReportCellHeight(_ controller: WorktableViewController)
@@ -18,15 +18,17 @@ public protocol WorktableCellView {
 	func didEndDisplayingCell(_ controller: WorktableViewController)
 
 
-	func cellHighlightedWithItem(_ cellItem: WorktableCellItem)
+// MARK: Hightlight and selection
+
+	func cellHighlighted(with cellItem: WorktableCellItem)
 
 
-	func cellUnhighlightedWithItem(_ cellItem: WorktableCellItem)
+	func cellUnhighlighted(with cellItem: WorktableCellItem)
 
 
-	func cellSelectedWithItem(_ cellItem: WorktableCellItem)
+	func cellSelected(with cellItem: WorktableCellItem)
 
 
-	func cellDeselectedWithItem(_ cellItem: WorktableCellItem)
+	func cellDeselected(with cellItem: WorktableCellItem)
 
 }

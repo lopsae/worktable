@@ -1,14 +1,14 @@
 import UIKit
 
 
-/**
-Base implementation of the WorktableCellView protocol. Provides default values,
-basic functionality, and empty method implementations to allow extending classes
-to only implement the functionality they need.
 
-As it is this cellView will create a UITableViewCell cellView with the default
-height and no content.
-*/
+/// Base implementation of the WorktableCellView protocol. Provides default
+/// values, basic functionality, and empty method implementations to allow
+/// extending classes to only implement the functionality they need.
+///
+/// The basic functionality implemented is:
+/// - Empty `UITableViewCell` with default height and no content.
+/// - When cell is selected or deselected, the updateCell(with:) method is called.
 open class BaseCellView: UITableViewCell, WorktableCellView {
 
 	private(set)
@@ -61,6 +61,7 @@ open class BaseCellView: UITableViewCell, WorktableCellView {
 		self.init(height: nil, style: style, reuseIdentifier: reuseIdentifier, coder: nil)!
 	}
 
+
 	required convenience public init?(coder: NSCoder) {
 		self.init(height: nil, style: nil, reuseIdentifier: nil, coder: coder)
 	}
@@ -71,6 +72,10 @@ open class BaseCellView: UITableViewCell, WorktableCellView {
 	}
 
 
+	/// Called after `self` is initialized.
+	///
+	/// Convenience method that allows extending classes to only override
+	/// `postInit` instead of all the required `init` methods.
 	open func postInit() {
 		// To override
 	}
@@ -82,7 +87,7 @@ open class BaseCellView: UITableViewCell, WorktableCellView {
 	}
 
 
-	open func updateWithCellItem(_ cellItem: WorktableCellItem) {
+	open func updateCell(with cellItem: WorktableCellItem) {
 		// To override
 	}
 
@@ -102,23 +107,23 @@ open class BaseCellView: UITableViewCell, WorktableCellView {
 	}
 
 
-	open func cellHighlightedWithItem(_ cellItem: WorktableCellItem) {
+	open func cellHighlighted(with cellItem: WorktableCellItem) {
 		// To override
 	}
 
 
-	open func cellUnhighlightedWithItem(_ cellItem: WorktableCellItem) {
+	open func cellUnhighlighted(with cellItem: WorktableCellItem) {
 		// To override
 	}
 
 
-	open func cellSelectedWithItem(_ cellItem: WorktableCellItem) {
-		updateWithCellItem(cellItem)
+	open func cellSelected(with cellItem: WorktableCellItem) {
+		updateCell(with: cellItem)
 	}
 
 
-	open func cellDeselectedWithItem(_ cellItem: WorktableCellItem) {
-		// To override
+	open func cellDeselected(with cellItem: WorktableCellItem) {
+		updateCell(with: cellItem)
 	}
 
 

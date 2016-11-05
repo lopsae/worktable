@@ -201,8 +201,10 @@ public class WorktableViewController: UITableViewController {
 	}
 
 
-	/// Creates and returns the cell-view for the cell-item at the given
-	/// `indexPath`. As cell-views are created or dequeued they are updated
+	/// Creates and returns the cell-view for the corresponding cell-item at 
+	/// `indexPath`.
+	///
+	/// As cell-views are created or dequeued these are updated
 	/// with the corresponding cell-item. The created cell-views are available
 	/// immediately through the `getCellView(at:)` method.
 	override open func tableView(
@@ -220,7 +222,7 @@ public class WorktableViewController: UITableViewController {
 		cellView?.frame.w = tableView.bounds.w
 
 		if let cellView = cellView as? WorktableCellView {
-			cellView.updateWithCellItem(cellItem)
+			cellView.updateCell(with: cellItem)
 			storeCellView(cellView, at: indexPath)
 		}
 
@@ -322,8 +324,8 @@ public class WorktableViewController: UITableViewController {
 			return
 		}
 
-		cellItem.cellSelectedWithView(cellView)
-		cellView.cellSelectedWithItem(cellItem)
+		cellItem.cellSelected(with: cellView)
+		cellView.cellSelected(with: cellItem)
 	}
 
 
@@ -339,8 +341,8 @@ public class WorktableViewController: UITableViewController {
 			return
 		}
 
-		cellItem.cellDeselectedWithView(cellView)
-		cellView.cellDeselectedWithItem(cellItem)
+		cellItem.cellDeselected(with: cellView)
+		cellView.cellDeselected(with: cellItem)
 	}
 
 
@@ -355,7 +357,7 @@ public class WorktableViewController: UITableViewController {
 		}
 
 		let cellItem = getCellItem(at: indexPath)
-		cellView.cellHighlightedWithItem(cellItem)
+		cellView.cellHighlighted(with: cellItem)
 	}
 
 
@@ -370,7 +372,7 @@ public class WorktableViewController: UITableViewController {
 		}
 
 		let cellItem = getCellItem(at: indexPath)
-		cellView.cellUnhighlightedWithItem(cellItem)
+		cellView.cellUnhighlighted(with: cellItem)
 	}
 
 

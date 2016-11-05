@@ -1,10 +1,12 @@
 import UIKit
 
 
-/// Example celItem for a cell that uses the `UITableCellView` as provided.
+/// Example cell-item for a cell that uses the `UITableCellView` as provided.
+///
+/// When the cell is selected the contained text is updated accordingly.
 class DefaultCellItem : BaseCellItem {
 
-	var baseText: String
+	let baseText: String
 	var text: String
 
 
@@ -15,8 +17,13 @@ class DefaultCellItem : BaseCellItem {
 	}
 
 
-	override func cellSelectedWithView(_ cellview: WorktableCellView?) {
-		text =  "\(baseText) selected"
+	override func cellSelected(with _: WorktableCellView) {
+		text =  "\(baseText) [selected]"
+	}
+
+
+	override func cellDeselected(with cellView: WorktableCellView) {
+		text = baseText
 	}
 
 }
