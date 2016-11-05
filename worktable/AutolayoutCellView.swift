@@ -9,10 +9,12 @@ class AutolayoutCellView: BaseCellView {
 
 	override func updateCell(with cellItem: WorktableCellItem) {
 		super.updateCell(with: cellItem)
-		if let cellItem = cellItem as? AutolayoutCellItem {
-			label?.text = cellItem.labelText
-			button?.setTitle(cellItem.buttonText, for: UIControlState())
+		guard let cellItem = cellItem as? AutolayoutCellItem else {
+			return
 		}
+
+		label?.text = cellItem.labelText
+		button?.setTitle(cellItem.buttonText, for: UIControlState())
 	}
 
 

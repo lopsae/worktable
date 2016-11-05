@@ -350,8 +350,6 @@ public class WorktableViewController: UITableViewController {
 		_: UITableView,
 		didHighlightRowAt indexPath: IndexPath
 	) {
-		debugPrint("highlighed at: \(indexPath.section),\(indexPath.row)")
-
 		guard let cellView = getCellView(at: indexPath) else {
 			return
 		}
@@ -365,8 +363,6 @@ public class WorktableViewController: UITableViewController {
 		_ tableView: UITableView,
 		didUnhighlightRowAt indexPath: IndexPath
 	) {
-		debugPrint("unhighlighed at: \(indexPath.section),\(indexPath.row)")
-
 		guard let cellView = getCellView(at: indexPath) else {
 			return
 		}

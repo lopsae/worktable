@@ -19,11 +19,13 @@ class VariableHeightCellView: BaseCellView {
 
 	override func updateCell(with cellItem: WorktableCellItem) {
 		super.updateCell(with: cellItem)
-		if let cellItem = cellItem as? VariableHeightCellItem {
-			updateCellHeight(cellItem.initialHeight)
-			initialHeight = cellItem.initialHeight
-			setNeedsLayout()
+		guard let cellItem = cellItem as? VariableHeightCellItem else {
+			return
 		}
+
+		updateCellHeight(cellItem.initialHeight)
+		initialHeight = cellItem.initialHeight
+		setNeedsLayout()
 	}
 
 
