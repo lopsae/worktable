@@ -5,8 +5,10 @@ TODO
 
 Implement:
 * Cell that toggles between two sizes upon user event (animated)
+* Cell that toggles between two sizes upon user event with content (text) constrained by autolayout (animated): expand and contract text
 * Cell that updates its size as soon as it appears, animated
 * Cell that updates its size as soon as it appears, no animated
+
 * Cell that can decide wheter it changes size with or without animation
 
 * Cell that defines its height through code
