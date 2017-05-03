@@ -28,11 +28,12 @@ class ConcentricView: UIView {
 			var startPoint = bounds.center
 			startPoint.x += currentRadius
 			circlesPath.move(to: startPoint)
-			circlesPath.addArc(withCenter: bounds.center,
-			                   radius: currentRadius,
-			                   startAngle: 0,
-			                   endAngle: CGFloat(M_PI)*2,
-			                   clockwise: true
+			circlesPath.addArc(
+				withCenter: bounds.center,
+			    radius: currentRadius,
+			    startAngle: 0,
+				endAngle: .pi * 2,
+				clockwise: true
 			)
 
 			currentRadius += 30

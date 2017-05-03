@@ -100,7 +100,7 @@ public class WorktableViewController: UITableViewController {
 			return String(describing: viewType)
 
 		case let .nib(nibName, bundleId):
-			if bundleId != nil {
+			if let bundleId = bundleId {
 				return "\(bundleId)#\(nibName)"
 			} else {
 				return nibName
