@@ -3,16 +3,31 @@ Style
 General rules for documentation.
 
 
-First sentence for methods
---------------------------
-First sentence always start with an simple present verb in which the subject is an ommited "the method".
-
-TODO: its called backtick
-Parameter are refered by name in `code formatting`, and usually refered as "the given `parameter`"
-TODO: what is a good example of a case that sounds better with "given `parameter`".
+Method descriptions
+-------------------
+First sentence of a method description always start with an simple present verb in which the subject is an ommited "The method", for example "[The method] fills up the array...":
 
 > Fills the array up to, but not including, the `fillIndex` position with
 the `filler` element.
+
+
+
+Parameters names in descriptions
+--------------------------------
+Parameters are referred by name in code formatting by surrounding with backticks.
+
+> Returns the given `string`.
+TODO: look for better example
+
+When the parameter name is used as a noun unmodified it is usually preceded by "the given `parameter`". Omit "the given" if it reads repetitive or if the parameter name is descriptive enough that it reads properly on its own. Using "the `parameter`" is generaly discouraged.
+
+> Returns the given `string` and increaces `counter` once.
+
+When the parameter name is used as a modifier of another noun use it in the form of "the `parameter` object".
+TODO: is "modifier" and "unmodified" correct terms?
+
+> Overwrites the first element of the array with the `newFirst` element.
+
 
 
 Conditional clauses
@@ -24,6 +39,7 @@ In cases where the method operation would vary the result is always stated first
 The inverse is discouraged since it leads to more ambiguous reading, and the focus should be in the change of behaviour.
 
 > Discouraged: If the array already contains `fillIndex` elements then no operation is performed.
+
 
 
 General verbs
