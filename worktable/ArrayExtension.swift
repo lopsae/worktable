@@ -83,7 +83,7 @@ extension Array {
 	/// When setting — overwrites the element at the `index` position if it
 	/// exists, otherwise the array is filled with `filler` elements until
 	/// the `newValue` element can be appended at the `index` position.
-	subscript(index: Int, filler filler: @autoclosure () -> Element) -> Element {
+	subscript(index: Index, filler filler: @autoclosure () -> Element) -> Element {
 		mutating get {
 			fill(to: index, filler: {_ in filler()})
 			return self[index]
@@ -118,7 +118,7 @@ extension Array {
 	/// exists, otherwise the array is filled with the elements returned by the
 	/// `filler` closure until the `newValue` element can be appended at the
 	/// `index` position.
-	subscript(index: Int, filler filler: (Int) -> Element) -> Element {
+	subscript(index: Index, filler filler: (Index) -> Element) -> Element {
 		mutating get {
 			fill(to: index, filler: filler)
 			return self[index]
@@ -145,7 +145,7 @@ extension Array {
 	- Note: `filler` is captured as a closure that will only be called once for
 	each appended element.
 	*/
-	mutating func fill(to fillIndex: Int, filler: @autoclosure () -> Element) {
+	mutating func fill(to fillIndex: Index, filler: @autoclosure () -> Element) {
 		while count < fillIndex {
 			append(filler())
 		}
@@ -159,7 +159,7 @@ extension Array {
 	No operation is performed if the array already contains `fillIndex`
 	elements.
 	*/
-	mutating func fill(to fillIndex: Int, filler: (Int) -> Element) {
+	mutating func fill(to fillIndex: Index, filler: (Index) -> Element) {
 		if count >= fillIndex {
 			return
 		}
