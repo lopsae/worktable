@@ -22,6 +22,7 @@ class ArrayExtension: XCTestCase {
 	filler string to return. Each call to the returned function will also call
 	`counter.increase()` once.
 	*/
+	//TODO: rename, makeFillerClosure?
 	func mockFiller(_ filler: String) -> (Int) -> String {
 		return counter.wrapIncrement(){
 			(_: Int) in
@@ -35,6 +36,7 @@ class ArrayExtension: XCTestCase {
 	the counter once. This method is intended for the autoclosure filler
 	methods.
 	*/
+	// TODO: rename, incrementAndReturn?
 	func mockFillerAuto(_ filler: String) -> String {
 		counter.increment()
 		return filler
@@ -74,38 +76,46 @@ class ArrayExtension: XCTestCase {
 
 
 	func testFiller() {
-		tester.fill(to: 0, filler: mockFillerAuto("once"))
+		tester.fill(to: 0, filler: mockFillerAuto("none"))
+		XCTAssertEqual(tester, [])
+		counter.assertCount(0)
+
+		tester.fill(to: 1, filler: mockFillerAuto("once"))
 		XCTAssertEqual(tester, ["once"])
 		counter.assertCount(1)
 
-		tester.fill(to: 2, filler: mockFillerAuto("twice"))
+		tester.fill(to: 3, filler: mockFillerAuto("twice"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(2)
 
-		tester.fill(to: 1, filler: mockFillerAuto("none"))
+		tester.fill(to: 0, filler: mockFillerAuto("none"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 
-		tester.fill(to: 2, filler: mockFillerAuto("none"))
+		tester.fill(to: 3, filler: mockFillerAuto("none"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 	}
 
 
 	func testFillerWithBlock() {
-		tester.fill(to: 0, filler: mockFiller("once"))
+		tester.fill(to: 0, filler: mockFiller("none"))
+		XCTAssertEqual(tester, [])
+		counter.assertCount(0)
+
+		tester.fill(to: 1, filler: mockFiller("once"))
 		XCTAssertEqual(tester, ["once"])
 		counter.assertCount(1)
 
-		tester.fill(to: 2, filler: mockFiller("twice"))
+		tester.fill(to: 3, filler: mockFiller("twice"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(2)
 
-		tester.fill(to: 1, filler: mockFiller("none"))
+		tester.fill(to: 0, filler: mockFiller("none"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 
-		tester.fill(to: 2, filler: mockFiller("none"))
+		tester.fill(to: 3, filler: mockFiller("none"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 	}
