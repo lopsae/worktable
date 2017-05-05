@@ -135,31 +135,36 @@ extension Array {
 	}
 
 
-	/// Fills the array up to the `index` position with the `filler` element.
-	///
-	/// Notice that `filler` is automatically captured as a closure which is
-	/// called as each `filler` element is created.
-	///
-	/// If the array already contains more elements that the `to` index then no
-	/// operation is performed.
+	/**
+	Fills the array up to, but not including, the `fillIndex` position with the
+	`filler` element.
+
+	No operation is performed if the array already contains `fillIndex`
+	elements.
+
+	- Note: `filler` is captured as a closure that will only be called once for
+	each appended element.
+	*/
 	mutating func fill(to fillIndex: Int, filler: @autoclosure () -> Element) {
-		while count <= fillIndex {
+		while count < fillIndex {
 			append(filler())
 		}
 	}
 
 
-	/// Fills the array up to the `index` position with the elements returned by
-	/// the `filler` closure.
-	///
-	/// If the array already contains more elements that the `to` index then no
-	/// operation is performed.
+	/**
+	Fills the array up to, but not including, the `fillIndex` position with the
+	elements returned by the `filler` closure.
+	
+	No operation is performed if the array already contains `fillIndex`
+	elements.
+	*/
 	mutating func fill(to fillIndex: Int, filler: (Int) -> Element) {
-		if count > fillIndex {
+		if count >= fillIndex {
 			return
 		}
 
-		for index in count...fillIndex {
+		for index in count ..< fillIndex {
 			append(filler(index))
 		}
 	}
