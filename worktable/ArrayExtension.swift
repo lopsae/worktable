@@ -2,25 +2,31 @@
 
 extension Array {
 
-	/// Overwrites the first element of the array with the `newFirst` element.
-	/// If the array is empty the `newFirst` element is appended.
+	/**
+	Overwrites the first element of the array with the `newFirst` element.
+
+	The `newFirst` element is appended if the array is empty.
+	*/
 	mutating func setFirst(_ newFirst: Element) {
 		if isEmpty {
 			append(newFirst)
 		} else {
-			// TODO use correct indexes
-			self[0] = newFirst
+			self[startIndex] = newFirst
 		}
 	}
 
 
-	/// Overwrites the last element of the array with the `newLast` element. If
-	/// the array is empty the `newFirst` element is appended.
+	/**
+	Overwrites the last element of the array with the `newLast` element.
+	
+	The `newFirst` element is appended if the array is empty.
+	*/
 	mutating func setLast(_ newLast: Element) {
 		if isEmpty {
 			append(newLast)
 		} else {
-			self[count - 1] = newLast
+			let beforeEnd = index(before: endIndex)
+			self[beforeEnd] = newLast
 		}
 	}
 
