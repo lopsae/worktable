@@ -8,6 +8,7 @@ extension Array {
 		if isEmpty {
 			append(newFirst)
 		} else {
+			// TODO use correct indexes
 			self[0] = newFirst
 		}
 	}
@@ -69,63 +70,46 @@ extension Array {
 	}
 
 
-	/// Returns or sets the element at the `index` position if it exists,
-	/// otherwise the array is filled with the `filler` element as as needed
-	/// until the element in the `index` position can be returned or set.
-	///
-	/// Notice that `filler` is automatically captured as a closure which is
-	/// called as each `filler` element is created.
-	///
-	/// When getting — returns the the element at the `index` if it exists,
-	/// otherwise the array is filled with `filler` elements up to the `index`
-	/// position and the last `filler` element is returned.
-	///
-	/// When setting — overwrites the element at the `index` position if it
-	/// exists, otherwise the array is filled with `filler` elements until
-	/// the `newValue` element can be appended at the `index` position.
+	/**
+	Access the element at the `index` position if it exists, otherwise the
+	array is filled with the `filler` element as as necesary until the element
+	in the `index` position can be accessed.
+
+	- Note: `filler` is captured as an autoclosure that will only be called
+	once for each appended element.
+	*/
 	subscript(index: Index, filler filler: @autoclosure () -> Element) -> Element {
 		mutating get {
-			fill(to: index, filler: {_ in filler()})
+			let afterIndex = self.index(after: index)
+			fill(to: afterIndex, filler: filler())
 			return self[index]
 		}
 
 		mutating set {
-			fill(to: index - 1, filler: {_ in filler()})
+			fill(to: index, filler: filler())
 			if count > index {
 				self[index] = newValue
 			} else {
 				append(newValue)
 			}
-			self[index] = newValue
 		}
 	}
 
 
-	/// Returns or sets the element at the `index` position if it exists,
-	/// otherwise the array is filled with the elements returned by the `filler`
-	/// closure as as needed until the element in the `index` position can be
-	/// returned or set.
-	///
-	/// The `filler` closure receives the index where the returned element will
-	/// be stored.
-	///
-	/// When reading — returns the the element at the `index` if it exists,
-	/// otherwise the array is filled with the elements returned by the `filler`
-	/// closure up to the `index` position and the last `filler` element is
-	/// returned.
-	///
-	/// When writing — overwrites the element at the `index` position if it
-	/// exists, otherwise the array is filled with the elements returned by the
-	/// `filler` closure until the `newValue` element can be appended at the
-	/// `index` position.
+	/**
+	Access the element at the `index` position if it exists, otherwise the
+	array is filled with elements returned by the `filler` closure until the
+	element in the `index` position can be accessed.
+	*/
 	subscript(index: Index, filler filler: (Index) -> Element) -> Element {
 		mutating get {
-			fill(to: index, filler: filler)
+			let afterIndex = self.index(after: index)
+			fill(to: afterIndex, filler: filler)
 			return self[index]
 		}
 
 		mutating set {
-			fill(to: index - 1, filler: filler)
+			fill(to: index, filler: filler)
 			if count > index {
 				self[index] = newValue
 			} else {
@@ -142,8 +126,8 @@ extension Array {
 	No operation is performed if the array already contains `fillIndex`
 	elements.
 
-	- Note: `filler` is captured as a closure that will only be called once for
-	each appended element.
+	- Note: `filler` is captured as an autoclosure that will only be called
+	once for each appended element.
 	*/
 	mutating func fill(to fillIndex: Index, filler: @autoclosure () -> Element) {
 		while count < fillIndex {
