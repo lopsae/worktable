@@ -4,26 +4,17 @@ import Foundation
 
 class ArrayExtension: XCTestCase {
 
-	var tester: [String] = []
-	var element: String? = nil
-	var counter = Counter()
-
-
-	override func setUp() {
-		super.setUp()
-		tester = []
-		element = nil
-		counter.reset()
-	}
-
-
 	/**
-	Convenience function to easily call filler functions by just providing the
-	filler string to return. Each call to the returned function will also call
-	`counter.increase()` once.
+	Returns a closure that returns the given `string` and increases the 
+	`counter` once.
 	*/
-	//TODO: rename, makeFillerClosure?
-	func mockFiller(_ filler: String) -> (Int) -> String {
+	func wrapDelivery(_ string: String, increment counter: Counter) -> (Int) -> String {
+		return counter.wrapIncrement() {
+			(_: Int) in
+			return string
+		}
+	}
+	func mockFiller(_ filler: String, counter: Counter) -> (Int) -> String {
 		return counter.wrapIncrement(){
 			(_: Int) in
 			return filler
@@ -32,142 +23,157 @@ class ArrayExtension: XCTestCase {
 
 
 	/**
-	Convenience function that returns the given `filler` string and increases
-	the counter once. This method is intended for the autoclosure filler
-	methods.
+	Returns the given `string` and increaces `counter` once.
 	*/
-	// TODO: rename, incrementAndReturn?
-	func mockFillerAuto(_ filler: String) -> String {
+	func deliver(_ string: String, increment counter: Counter) -> String {
 		counter.increment()
-		return filler
+		return string
 	}
 
 
 	func testSetFirst() {
-		// With emtpy array
-		tester.setFirst("one")
+		var tester: [String] = []
 
+		tester.setFirst("one")
 		XCTAssertEqual(tester.count, 1)
 		XCTAssertEqual(tester.first, "one")
 		XCTAssertEqual(tester.last, "one")
 
-		// With elements in array
-		tester = ["wrong", "two", "three"]
+		tester = ["nil", "two", "three"]
 		tester.setFirst("one")
 		XCTAssertEqual(tester.count, 3)
 		XCTAssertEqual(tester.first, "one")
-	}
-
-
-	func testSetLast() {
-		// With emtpy array
-		tester.setLast("one")
-
-		XCTAssertEqual(tester.count, 1)
-		XCTAssertEqual(tester.first, "one")
-		XCTAssertEqual(tester.last, "one")
-
-		// With elements in array
-		tester = ["one", "two", "wrong"]
-		tester.setLast("three")
-		XCTAssertEqual(tester.count, 3)
+		XCTAssertEqual(tester[1], "two")
 		XCTAssertEqual(tester.last, "three")
 	}
 
 
+	func testSetLast() {
+		var tester: [String] = []
+
+		tester.setLast("one")
+		XCTAssertEqual(tester.count, 1)
+		XCTAssertEqual(tester.first, "one")
+		XCTAssertEqual(tester.last, "one")
+
+		tester = ["one", "two", "nil"]
+		tester.setLast("three")
+		XCTAssertEqual(tester.count, 3)
+		XCTAssertEqual(tester.last, "three")
+		XCTAssertEqual(tester[1], "two")
+		XCTAssertEqual(tester.first, "one")
+	}
+
+
+	//TODO split tests of filling and correct closure calling?
 	func testFiller() {
-		tester.fill(to: 0, filler: mockFillerAuto("none"))
+		var tester: [String] = []
+		let counter = Counter()
+
+		tester.fill(to: 0, filler: deliver("none", increment: counter))
 		XCTAssertEqual(tester, [])
 		counter.assertCount(0)
 
-		tester.fill(to: 1, filler: mockFillerAuto("once"))
+		tester.fill(to: 1, filler: deliver("once", increment: counter))
 		XCTAssertEqual(tester, ["once"])
 		counter.assertCount(1)
 
-		tester.fill(to: 3, filler: mockFillerAuto("twice"))
+		tester.fill(to: 3, filler: deliver("twice", increment: counter))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(2)
 
-		tester.fill(to: 0, filler: mockFillerAuto("none"))
+		tester.fill(to: 0, filler: deliver("none", increment: counter))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 
-		tester.fill(to: 3, filler: mockFillerAuto("none"))
+		tester.fill(to: 3, filler: deliver("none", increment: counter))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 	}
 
 
+	//TODO rename testFillerWithClosure
 	func testFillerWithBlock() {
-		tester.fill(to: 0, filler: mockFiller("none"))
+		var tester: [String] = []
+		let counter = Counter()
+
+		tester.fill(to: 0, filler: wrapDelivery("none", increment: counter))
 		XCTAssertEqual(tester, [])
 		counter.assertCount(0)
 
-		tester.fill(to: 1, filler: mockFiller("once"))
+		tester.fill(to: 1, filler: wrapDelivery("once", increment: counter))
 		XCTAssertEqual(tester, ["once"])
 		counter.assertCount(1)
 
-		tester.fill(to: 3, filler: mockFiller("twice"))
+		tester.fill(to: 3, filler: wrapDelivery("twice", increment: counter))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(2)
 
-		tester.fill(to: 0, filler: mockFiller("none"))
+		tester.fill(to: 0, filler: wrapDelivery("none", increment: counter))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 
-		tester.fill(to: 3, filler: mockFiller("none"))
+		tester.fill(to: 3, filler: wrapDelivery("none", increment: counter))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 	}
 
 
 	func testSubscriptFiller() {
-		element = tester[1, filler: mockFillerAuto("first")]
+		var tester: [String] = []
+		let counter = Counter()
+		var element: String
+
+		element = tester[1, filler: deliver("first", increment: counter)]
 		XCTAssertEqual(element, "first")
 		XCTAssertEqual(tester, ["first", "first"])
 		counter.assertCount(2)
 
-		tester[1, filler: mockFillerAuto("none")] = "second"
+		tester[1, filler: deliver("none", increment: counter)] = "second"
 		XCTAssertEqual(tester, ["first", "second"])
 		counter.assertCount(0)
 
-		element = tester[2, filler: mockFillerAuto("third")]
+		element = tester[2, filler: deliver("third", increment: counter)]
 		XCTAssertEqual(element, "third")
 		XCTAssertEqual(tester, ["first", "second", "third"])
 		counter.assertCount(1)
 
-		element = tester[0, filler: mockFillerAuto("none")]
+		element = tester[0, filler: deliver("none", increment: counter)]
 		XCTAssertEqual(element, "first")
 		XCTAssertEqual(tester, ["first", "second", "third"])
 		counter.assertCount(0)
 
-		tester[4, filler: mockFillerAuto("fourth")] = "fifth"
+		tester[4, filler: deliver("fourth", increment: counter)] = "fifth"
 		XCTAssertEqual(tester, ["first", "second", "third", "fourth", "fifth"])
 		counter.assertCount(1)
 	}
 
 
 	func testSubscriptFillerWithBlock() {
-		element = tester[1, filler: mockFiller("first")]
+		var tester: [String] = []
+		let counter = Counter()
+		var element: String
+
+		element = tester[1, filler: wrapDelivery("first", increment: counter)]
 		XCTAssertEqual(element, "first")
 		XCTAssertEqual(tester, ["first", "first"])
 		counter.assertCount(2)
 
-		tester[1, filler: mockFiller("none")] = "second"
+		tester[1, filler: wrapDelivery("none", increment: counter)] = "second"
 		XCTAssertEqual(tester, ["first", "second"])
 		counter.assertCount(0)
 
-		element = tester[2, filler: mockFiller("third")]
+		element = tester[2, filler: wrapDelivery("third", increment: counter)]
 		XCTAssertEqual(element, "third")
 		XCTAssertEqual(tester, ["first", "second", "third"])
 		counter.assertCount(1)
 
-		element = tester[0, filler: mockFiller("none")]
+		element = tester[0, filler: wrapDelivery("none", increment: counter)]
 		XCTAssertEqual(element, "first")
 		XCTAssertEqual(tester, ["first", "second", "third"])
 		counter.assertCount(0)
 
-		tester[4, filler: mockFiller("fourth")] = "fifth"
+		tester[4, filler: wrapDelivery("fourth", increment: counter)] = "fifth"
 		XCTAssertEqual(tester, ["first", "second", "third", "fourth", "fifth"])
 		counter.assertCount(1)
 	}
