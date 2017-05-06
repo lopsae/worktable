@@ -14,12 +14,6 @@ class ArrayExtension: XCTestCase {
 			return string
 		}
 	}
-	func mockFiller(_ filler: String, counter: Counter) -> (Int) -> String {
-		return counter.wrapIncrement(){
-			(_: Int) in
-			return filler
-		}
-	}
 
 
 	/**
@@ -92,8 +86,7 @@ class ArrayExtension: XCTestCase {
 	}
 
 
-	//TODO rename testFillerWithClosure
-	func testFillerWithBlock() {
+	func testFillerWithClosure() {
 		var tester: [String] = []
 		let counter = Counter()
 
@@ -149,7 +142,7 @@ class ArrayExtension: XCTestCase {
 	}
 
 
-	func testSubscriptFillerWithBlock() {
+	func testSubscriptFillerWithClosure() {
 		var tester: [String] = []
 		let counter = Counter()
 		var element: String
