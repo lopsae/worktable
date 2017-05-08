@@ -18,20 +18,17 @@ class Counter {
 
 
 	/**
-	Asserts `expected` is equal to the current count, and by default resets the
-	instance.
+	Asserts that `expected` is equal to the current count.
 	*/
+	@discardableResult
 	func assertCount(
 		_ expected: Int,
-	    reset: Bool = true,
 	    _ message: @autoclosure () -> String = String(),
 	    file: StaticString = #file,
 	    line: UInt = #line
-	) {
+	) -> Self {
 		XCTAssertEqual(count, expected, message(), file: file, line: line)
-		if reset {
-			self.reset()
-		}
+		return self
 	}
 
 
@@ -39,8 +36,7 @@ class Counter {
 	Increments the counter and returns the given `delivery`.
 	
 	- Note:
-	This method is useful for testing that `autoclosure` parameters get called
-	only as necessary.
+	Method intended for testing calls of autoclosure parameters.
 	*/
 	func deliver<Return>(_ delivery: Return) -> Return {
 		increment()
