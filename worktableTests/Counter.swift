@@ -25,6 +25,19 @@ class Counter {
 	}
 
 
+	/**
+	Increments the counter and returns the given `delivery`.
+	
+	- Note:
+	This method is useful for testing that `autoclosure` parameters get called
+	only as necessary.
+	*/
+	func deliver<Return>(_ delivery: Return) -> Return {
+		increment()
+		return delivery
+	}
+
+
 	func wrapIncrement<Return>(_ f: @escaping () -> Return) -> () -> Return {
 		return {
 			[weak self] in

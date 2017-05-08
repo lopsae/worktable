@@ -50,33 +50,25 @@ class ArrayExtension: XCTestCase {
 	}
 
 
-	//TODO split tests of filling and correct closure calling?
 	func testFiller() {
 		var tester: [String] = []
 		let counter = Counter()
 
-		func deliver(_ string: String) -> String {
-			counter.increment()
-			return string
-		}
-
-		tester.fill(to: 0, filler: deliver("none"))
+		tester.fill(to: 0, filler: counter.deliver("none"))
 		XCTAssertEqual(tester, [])
 		counter.assertCount(0)
 
-		tester.fill(to: 1, filler: deliver("once"))
+		tester.fill(to: 1, filler: counter.deliver("once"))
 		XCTAssertEqual(tester, ["once"])
 		counter.assertCount(1)
 
-		tester.fill(to: 3, filler: deliver("twice"))
+		tester.fill(to: 3, filler: counter.deliver("twice"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(2)
 
-		tester.fill(to: 0, filler: deliver("none"))
-		XCTAssertEqual(tester, ["once", "twice", "twice"])
-		counter.assertCount(0)
-
-		tester.fill(to: 3, filler: deliver("none"))
+		tester.fill(to: 0, filler: counter.deliver("none"))
+		tester.fill(to: 1, filler: counter.deliver("none"))
+		tester.fill(to: 3, filler: counter.deliver("none"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 	}
