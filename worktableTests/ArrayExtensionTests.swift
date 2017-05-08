@@ -16,15 +16,6 @@ class ArrayExtension: XCTestCase {
 	}
 
 
-	/**
-	Returns the given `string` and increaces `counter` once.
-	*/
-	func deliver(_ string: String, increment counter: Counter) -> String {
-		counter.increment()
-		return string
-	}
-
-
 	func testSetFirst() {
 		var tester: [String] = []
 
@@ -64,23 +55,28 @@ class ArrayExtension: XCTestCase {
 		var tester: [String] = []
 		let counter = Counter()
 
-		tester.fill(to: 0, filler: deliver("none", increment: counter))
+		func deliver(_ string: String) -> String {
+			counter.increment()
+			return string
+		}
+
+		tester.fill(to: 0, filler: deliver("none"))
 		XCTAssertEqual(tester, [])
 		counter.assertCount(0)
 
-		tester.fill(to: 1, filler: deliver("once", increment: counter))
+		tester.fill(to: 1, filler: deliver("once"))
 		XCTAssertEqual(tester, ["once"])
 		counter.assertCount(1)
 
-		tester.fill(to: 3, filler: deliver("twice", increment: counter))
+		tester.fill(to: 3, filler: deliver("twice"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(2)
 
-		tester.fill(to: 0, filler: deliver("none", increment: counter))
+		tester.fill(to: 0, filler: deliver("none"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 
-		tester.fill(to: 3, filler: deliver("none", increment: counter))
+		tester.fill(to: 3, filler: deliver("none"))
 		XCTAssertEqual(tester, ["once", "twice", "twice"])
 		counter.assertCount(0)
 	}
@@ -117,26 +113,31 @@ class ArrayExtension: XCTestCase {
 		let counter = Counter()
 		var element: String
 
-		element = tester[1, filler: deliver("first", increment: counter)]
+		func deliver(_ string: String) -> String {
+			counter.increment()
+			return string
+		}
+
+		element = tester[1, filler: deliver("first")]
 		XCTAssertEqual(element, "first")
 		XCTAssertEqual(tester, ["first", "first"])
 		counter.assertCount(2)
 
-		tester[1, filler: deliver("none", increment: counter)] = "second"
+		tester[1, filler: deliver("none")] = "second"
 		XCTAssertEqual(tester, ["first", "second"])
 		counter.assertCount(0)
 
-		element = tester[2, filler: deliver("third", increment: counter)]
+		element = tester[2, filler: deliver("third")]
 		XCTAssertEqual(element, "third")
 		XCTAssertEqual(tester, ["first", "second", "third"])
 		counter.assertCount(1)
 
-		element = tester[0, filler: deliver("none", increment: counter)]
+		element = tester[0, filler: deliver("none")]
 		XCTAssertEqual(element, "first")
 		XCTAssertEqual(tester, ["first", "second", "third"])
 		counter.assertCount(0)
 
-		tester[4, filler: deliver("fourth", increment: counter)] = "fifth"
+		tester[4, filler: deliver("fourth")] = "fifth"
 		XCTAssertEqual(tester, ["first", "second", "third", "fourth", "fifth"])
 		counter.assertCount(1)
 	}
