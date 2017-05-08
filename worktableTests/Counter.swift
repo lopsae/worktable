@@ -17,8 +17,18 @@ class Counter {
 	}
 
 
-	func assertCount(_ expected: Int, reset: Bool = true) {
-		XCTAssertEqual(count, expected)
+	/**
+	Asserts `expected` is equal to the current count, and by default resets the
+	instance.
+	*/
+	func assertCount(
+		_ expected: Int,
+	    reset: Bool = true,
+	    _ message: @autoclosure () -> String = String(),
+	    file: StaticString = #file,
+	    line: UInt = #line
+	) {
+		XCTAssertEqual(count, expected, message(), file: file, line: line)
 		if reset {
 			self.reset()
 		}
