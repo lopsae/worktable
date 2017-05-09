@@ -21,8 +21,8 @@ class Counter {
 	Asserts that `expected` is equal to the current count.
 	*/
 	@discardableResult
-	func assertCount(
-		_ expected: Int,
+	func assert(
+		count expected: Int,
 	    _ message: @autoclosure () -> String = String(),
 	    file: StaticString = #file,
 	    line: UInt = #line

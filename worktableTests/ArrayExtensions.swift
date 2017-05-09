@@ -4,12 +4,12 @@ import XCTest
 extension Array {
 
 	func assert(
-		count: IndexDistance,
+		count expected: IndexDistance,
 		_ message: @autoclosure () -> String = String(),
 		file: StaticString = #file,
 		line: UInt = #line
 	) {
-		XCTAssertEqual(self.count, count, message(), file: file, line: line)
+		XCTAssertEqual(self.count, expected, message(), file: file, line: line)
 	}
 
 }
@@ -18,12 +18,12 @@ extension Array {
 extension Array where Element: Equatable {
 
 	func assert(
-		equal: Array,
+		equal expected: Array,
 		_ message: @autoclosure () -> String = String(),
 		file: StaticString = #file,
 		line: UInt = #line
 	) {
-		XCTAssertEqual(self, equal, message(), file: file, line: line)
+		XCTAssertEqual(self, expected, message(), file: file, line: line)
 	}
 
 }
