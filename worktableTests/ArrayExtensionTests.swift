@@ -20,13 +20,13 @@ class ArrayExtension: XCTestCase {
 		var tester: [String] = []
 
 		tester.setFirst("one")
-		XCTAssertEqual(tester.count, 1)
+		tester.assert(count: 1)
 		XCTAssertEqual(tester.first, "one")
 		XCTAssertEqual(tester.last, "one")
 
 		tester = ["nil", "two", "three"]
 		tester.setFirst("one")
-		XCTAssertEqual(tester.count, 3)
+		tester.assert(count: 3)
 		XCTAssertEqual(tester.first, "one")
 		XCTAssertEqual(tester[1], "two")
 		XCTAssertEqual(tester.last, "three")
@@ -37,13 +37,13 @@ class ArrayExtension: XCTestCase {
 		var tester: [String] = []
 
 		tester.setLast("one")
-		XCTAssertEqual(tester.count, 1)
+		tester.assert(count: 1)
 		XCTAssertEqual(tester.first, "one")
 		XCTAssertEqual(tester.last, "one")
 
 		tester = ["one", "two", "nil"]
 		tester.setLast("three")
-		XCTAssertEqual(tester.count, 3)
+		tester.assert(count: 3)
 		XCTAssertEqual(tester.last, "three")
 		XCTAssertEqual(tester[1], "two")
 		XCTAssertEqual(tester.first, "one")
@@ -55,21 +55,21 @@ class ArrayExtension: XCTestCase {
 		let counter = Counter()
 
 		tester.fill(to: 0, filler: counter.deliver("none"))
-		XCTAssertEqual(tester, [])
+		tester.assert(equal: [])
 		counter.assertCount(0).reset()
 
 		tester.fill(to: 1, filler: counter.deliver("once"))
-		XCTAssertEqual(tester, ["once"])
+		tester.assert(equal: ["once"])
 		counter.assertCount(1).reset()
 
 		tester.fill(to: 3, filler: counter.deliver("twice"))
-		XCTAssertEqual(tester, ["once", "twice", "twice"])
+		tester.assert(equal: ["once", "twice", "twice"])
 		counter.assertCount(2).reset()
 
 		tester.fill(to: 0, filler: counter.deliver("none"))
 		tester.fill(to: 1, filler: counter.deliver("none"))
 		tester.fill(to: 3, filler: counter.deliver("none"))
-		XCTAssertEqual(tester, ["once", "twice", "twice"])
+		tester.assert(equal: ["once", "twice", "twice"])
 		counter.assertCount(0).reset()
 	}
 
@@ -79,23 +79,23 @@ class ArrayExtension: XCTestCase {
 		let counter = Counter()
 
 		tester.fill(to: 0, filler: wrapDelivery("none", increment: counter))
-		XCTAssertEqual(tester, [])
+		tester.assert(equal: [])
 		counter.assertCount(0).reset()
 
 		tester.fill(to: 1, filler: wrapDelivery("once", increment: counter))
-		XCTAssertEqual(tester, ["once"])
+		tester.assert(equal: ["once"])
 		counter.assertCount(1).reset()
 
 		tester.fill(to: 3, filler: wrapDelivery("twice", increment: counter))
-		XCTAssertEqual(tester, ["once", "twice", "twice"])
+		tester.assert(equal: ["once", "twice", "twice"])
 		counter.assertCount(2).reset()
 
 		tester.fill(to: 0, filler: wrapDelivery("none", increment: counter))
-		XCTAssertEqual(tester, ["once", "twice", "twice"])
+		tester.assert(equal: ["once", "twice", "twice"])
 		counter.assertCount(0).reset()
 
 		tester.fill(to: 3, filler: wrapDelivery("none", increment: counter))
-		XCTAssertEqual(tester, ["once", "twice", "twice"])
+		tester.assert(equal: ["once", "twice", "twice"])
 		counter.assertCount(0).reset()
 	}
 
@@ -112,25 +112,25 @@ class ArrayExtension: XCTestCase {
 
 		element = tester[1, filler: deliver("first")]
 		XCTAssertEqual(element, "first")
-		XCTAssertEqual(tester, ["first", "first"])
+		tester.assert(equal: ["first", "first"])
 		counter.assertCount(2).reset()
 
 		tester[1, filler: deliver("none")] = "second"
-		XCTAssertEqual(tester, ["first", "second"])
+		tester.assert(equal: ["first", "second"])
 		counter.assertCount(0).reset()
 
 		element = tester[2, filler: deliver("third")]
 		XCTAssertEqual(element, "third")
-		XCTAssertEqual(tester, ["first", "second", "third"])
+		tester.assert(equal: ["first", "second", "third"])
 		counter.assertCount(1).reset()
 
 		element = tester[0, filler: deliver("none")]
 		XCTAssertEqual(element, "first")
-		XCTAssertEqual(tester, ["first", "second", "third"])
+		tester.assert(equal: ["first", "second", "third"])
 		counter.assertCount(0).reset()
 
 		tester[4, filler: deliver("fourth")] = "fifth"
-		XCTAssertEqual(tester, ["first", "second", "third", "fourth", "fifth"])
+		tester.assert(equal: ["first", "second", "third", "fourth", "fifth"])
 		counter.assertCount(1).reset()
 	}
 
@@ -142,25 +142,25 @@ class ArrayExtension: XCTestCase {
 
 		element = tester[1, filler: wrapDelivery("first", increment: counter)]
 		XCTAssertEqual(element, "first")
-		XCTAssertEqual(tester, ["first", "first"])
+		tester.assert(equal: ["first", "first"])
 		counter.assertCount(2).reset()
 
 		tester[1, filler: wrapDelivery("none", increment: counter)] = "second"
-		XCTAssertEqual(tester, ["first", "second"])
+		tester.assert(equal: ["first", "second"])
 		counter.assertCount(0).reset()
 
 		element = tester[2, filler: wrapDelivery("third", increment: counter)]
 		XCTAssertEqual(element, "third")
-		XCTAssertEqual(tester, ["first", "second", "third"])
+		tester.assert(equal: ["first", "second", "third"])
 		counter.assertCount(1).reset()
 
 		element = tester[0, filler: wrapDelivery("none", increment: counter)]
 		XCTAssertEqual(element, "first")
-		XCTAssertEqual(tester, ["first", "second", "third"])
+		tester.assert(equal: ["first", "second", "third"])
 		counter.assertCount(0).reset()
 
 		tester[4, filler: wrapDelivery("fourth", increment: counter)] = "fifth"
-		XCTAssertEqual(tester, ["first", "second", "third", "fourth", "fifth"])
+		tester.assert(equal: ["first", "second", "third", "fourth", "fifth"])
 		counter.assertCount(1).reset()
 	}
 

@@ -51,6 +51,7 @@
 		2DE0CC571B8EE11900BE16E5 /* ConcentricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC551B8EE11900BE16E5 /* ConcentricView.swift */; };
 		2DE0CC591B8EE30D00BE16E5 /* CGExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC581B8EE30D00BE16E5 /* CGExtension.swift */; };
 		2DE0CC5A1B8EE30D00BE16E5 /* CGExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC581B8EE30D00BE16E5 /* CGExtension.swift */; };
+		E5502F021EC1330C00682861 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502F011EC1330C00682861 /* ArrayExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		2DE0CC581B8EE30D00BE16E5 /* CGExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGExtension.swift; path = worktable/CGExtension.swift; sourceTree = "<group>"; };
 		2DF100F91AC231B300CCCB7F /* worktable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = worktable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF1010E1AC231B300CCCB7F /* worktableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = worktableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5502F011EC1330C00682861 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				2DC3FE431BAFC86A00C13B6F /* Counter.swift */,
+				E5502F011EC1330C00682861 /* ArrayExtensions.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				2DE0CC571B8EE11900BE16E5 /* ConcentricView.swift in Sources */,
 				2D46B5361B82F9BD00663A40 /* WorktableCellItem.swift in Sources */,
 				2D46B5301B82F9BD00663A40 /* DemoTable.swift in Sources */,
+				E5502F021EC1330C00682861 /* ArrayExtensions.swift in Sources */,
 				2D45EC4F1B853F510078567C /* AutolayoutCellView.swift in Sources */,
 				2DE0CC541B8EA7CC00BE16E5 /* VariableHeightCellView.swift in Sources */,
 				2DD7B53A1B9C16F000678ABF /* BaseCellView.swift in Sources */,
