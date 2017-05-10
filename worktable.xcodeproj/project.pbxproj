@@ -52,6 +52,7 @@
 		2DE0CC591B8EE30D00BE16E5 /* CGExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC581B8EE30D00BE16E5 /* CGExtension.swift */; };
 		2DE0CC5A1B8EE30D00BE16E5 /* CGExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC581B8EE30D00BE16E5 /* CGExtension.swift */; };
 		E5502F021EC1330C00682861 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502F011EC1330C00682861 /* ArrayExtensions.swift */; };
+		E58387501EC3957100F39FE7 /* EquatableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583874F1EC3957100F39FE7 /* EquatableExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		2DF100F91AC231B300CCCB7F /* worktable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = worktable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF1010E1AC231B300CCCB7F /* worktableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = worktableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5502F011EC1330C00682861 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		E583874F1EC3957100F39FE7 /* EquatableExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquatableExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			children = (
 				2DC3FE431BAFC86A00C13B6F /* Counter.swift */,
 				E5502F011EC1330C00682861 /* ArrayExtensions.swift */,
+				E583874F1EC3957100F39FE7 /* EquatableExtensions.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				E5502F021EC1330C00682861 /* ArrayExtensions.swift in Sources */,
 				2D45EC4F1B853F510078567C /* AutolayoutCellView.swift in Sources */,
 				2DE0CC541B8EA7CC00BE16E5 /* VariableHeightCellView.swift in Sources */,
+				E58387501EC3957100F39FE7 /* EquatableExtensions.swift in Sources */,
 				2DD7B53A1B9C16F000678ABF /* BaseCellView.swift in Sources */,
 				2DC3FE411BAF9EA300C13B6F /* ArrayExtensionTests.swift in Sources */,
 			);

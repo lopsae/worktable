@@ -21,7 +21,7 @@ class ArrayExtension: XCTestCase {
 
 		tester.setFirst("one")
 		tester.assert(count: 1)
-		XCTAssertEqual(tester.first, "one")
+		tester.first!.assert(equal: "one")
 		XCTAssertEqual(tester.last, "one")
 
 		tester = ["nil", "two", "three"]
