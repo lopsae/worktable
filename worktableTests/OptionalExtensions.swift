@@ -1,9 +1,15 @@
-//
-//  OptionalExtensions.swift
-//  worktable
-//
-//  Created by Maic Lopez Saenz on 5/10/17.
-//  Copyright © 2017 LopSae. All rights reserved.
-//
+import XCTest
 
-import Foundation
+
+extension Optional where Wrapped: Equatable {
+
+	func assert(
+		equals expected: Optional,
+		_ message: @autoclosure () -> String = String(),
+		file: StaticString = #file,
+		line: UInt = #line
+	) {
+		XCTAssertEqual(self, expected, message(), file: file, line: line)
+	}
+
+}

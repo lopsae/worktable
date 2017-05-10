@@ -18,10 +18,11 @@ class ArrayExtension: XCTestCase {
 
 	func testSetFirst() {
 		var tester: [String] = []
+		tester.first.assert(equals: nil)
 
 		tester.setFirst("one")
 		tester.assert(count: 1)
-		tester.first!.assert(equal: "one")
+		tester.first.assert(equals: "one")
 		XCTAssertEqual(tester.last, "one")
 
 		tester = ["nil", "two", "three"]
@@ -35,6 +36,7 @@ class ArrayExtension: XCTestCase {
 
 	func testSetLast() {
 		var tester: [String] = []
+		tester.last.assert(equals: nil)
 
 		tester.setLast("one")
 		tester.assert(count: 1)
