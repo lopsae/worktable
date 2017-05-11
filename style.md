@@ -16,15 +16,14 @@ Parameters names in descriptions
 --------------------------------
 Parameters are referred by name in code formatting by surrounding with backticks.
 
-> Returns the given `string`.
-TODO: look for better example
+> Increments the counter and returns the given `delivery`.
 
-When the parameter name is used as a noun unmodified it is usually preceded by "the given `parameter`". Omit "the given" if it reads repetitive or if the parameter name is descriptive enough that it reads properly on its own. Using "the `parameter`" is generaly discouraged.
+When the parameter name is used as a independent noun it is usually preceded by "the given `parameter`". Omit "the given" if it reads repetitive or if the parameter name is descriptive enough that it reads properly on its own. Using "the `parameter`" is generaly discouraged.
 
-> Returns the given `string` and increaces `counter` once.
+> Returns the given `string` and increases `counter` once.
 
-When the parameter name is used as a modifier of another noun use it in the form of "the `parameter` object".
-TODO: is "modifier" and "unmodified" correct terms?
+When the parameter name is used as a modifier of another noun use it in the form of "the `parameter` noun".
+TODO: is "modifier" and "independent" correct terms?
 
 > Overwrites the first element of the array with the `newFirst` element.
 
@@ -49,3 +48,9 @@ For getters methods the description should start with "Returns ..."
 For setters methods the description should start with "Sets ..."
 
 For getter/setter methods the description should start with "Access ..."
+
+
+
+TODO: add note about verb tenses in parameters
+optional.assert(equals expected:) // `equals` because it reads "assert that optional equals expected"
+array.assert(count expected:) // `count` because that is the name of the property to check, and reads "assert array's count property"
