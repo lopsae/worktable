@@ -5,8 +5,8 @@ import Foundation
 class ArrayExtension: XCTestCase {
 
 	/**
-	Returns a closure that returns the given `string` and increases the 
-	`counter` once.
+	Returns a closure that returns the given `string` and increases `counter`
+	once.
 	*/
 	func wrapDelivery(_ string: String, increment counter: Counter) -> (Int) -> String {
 		return counter.wrapIncrement() {

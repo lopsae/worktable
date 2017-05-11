@@ -3,7 +3,9 @@ import XCTest
 
 extension Equatable {
 
+	// TODO document reminder of why assert(equals:) needs to exists both here and in optional
 	func assert<T>(
+		// TODO rename to equals
 		equal expected: T,
 		_ message: @autoclosure () -> String = String(),
 		file: StaticString = #file,

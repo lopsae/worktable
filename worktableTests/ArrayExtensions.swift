@@ -18,6 +18,7 @@ extension Array {
 extension Array where Element: Equatable {
 
 	func assert(
+		// TODO rename to equals
 		equal expected: Array,
 		_ message: @autoclosure () -> String = String(),
 		file: StaticString = #file,
