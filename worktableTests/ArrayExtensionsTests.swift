@@ -179,11 +179,12 @@ class ArrayExtension: XCTestCase {
 			let indexReturn = multiDimentional.follow(path: IndexPath(indexes: path))
 
 			if arrayReturn == nil {
-				XCTAssertNil(arrayReturn)
-				XCTAssertNil(indexReturn)
+				arrayReturn.assertNil()
+				indexReturn.assertNil()
 			}
 
 			if arrayReturn is [String] {
+				// Todo, is there any way to assert a type is extended?
 				XCTAssertNotNil(indexReturn as? [String])
 				XCTAssertEqual(arrayReturn as! [String], indexReturn as! [String])
 			}
@@ -199,27 +200,27 @@ class ArrayExtension: XCTestCase {
 		// Test out of bounds since first index
 		// `9` will inmediately yield a nil
 		var pathReturn = assertIndexPathMatch([9, 9])
-		XCTAssertNil(pathReturn)
+		pathReturn.assertNil()
 
 		// Test out of bounds on a intenral array
 		// `1` will yield an array, `9` is out of bounds
 		pathReturn = assertIndexPathMatch([1, 9])
-		XCTAssertNil(pathReturn)
+		pathReturn.assertNil()
 
 		// Test path into a non array
 		// `1, 1` yields a string, which is not indexable
 		// TODO: or is there access to that index?
 		pathReturn = assertIndexPathMatch([1, 1, 1])
-		XCTAssertNil(pathReturn)
+		pathReturn.assertNil()
 
 		// Test partial path
 		let arrayAsAny = assertIndexPathMatch([2])
-		XCTAssertNotNil(arrayAsAny)
+		arrayAsAny.assertNotNil()
 		XCTAssertEqual(arrayAsAny as! [String], ["two,zero"])
 
 		// Test valid path
 		let stringAsAny = assertIndexPathMatch([0, 0])
-		XCTAssertNotNil(stringAsAny)
+		stringAsAny.assertNotNil()
 		XCTAssertEqual(stringAsAny as? String, "zero,zero")
 	}
 
