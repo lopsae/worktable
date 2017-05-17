@@ -51,5 +51,14 @@ class AssertsTests: XCTestCase {
 	}
 
 
+	func testOptionalsNil() {
+		var maybe: String? = "test"
+		maybe.assertNotNil()
+
+		maybe = nil
+		maybe.assertNil()
+	}
+
+
 }
 
