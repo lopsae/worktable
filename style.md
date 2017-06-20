@@ -56,6 +56,26 @@ For getter/setter methods the description should start with "Access ..."
 
 
 
+TODOs
+-----
+
 TODO: add note about verb tenses in parameters
 optional.assert(equals expected:) // `equals` because it reads "assert that optional equals expected"
 array.assert(count expected:) // `count` because that is the name of the property to check, and reads "assert array's count property"
+
+TODO: MUST clauses, examples:
+
+The `delegate` of a UICollectionView using a ColumnWaterfallLayout MUST implement this protocol.
+
+The `delegate` of a UICollectionView MUST implement this protocol in order to use a ColumnWaterfallLayout.
+
+Favorite:
+This protocol MUST be implemented by the `delegate` of the UICollectionView in order to use a ColumnWaterfallLayout.
+
+It is required that the delegate object used by the UICollectionView using this layout implements this protocol.
+
+TODO verbs after `otherwise` should have the same tense as initial verbs
+> Calls the given closure and returns `self` if `self` wraps a value, otherwise performs no operation and returns `self`.
+
+even if the second verb is also `returns`.
+> Returns `self` if `self` wraps a value, otherwise returns the result of the `ifNil` closure.
