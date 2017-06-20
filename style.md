@@ -54,6 +54,8 @@ For setters methods the description should start with "Sets ..."
 
 For getter/setter methods the description should start with "Access ..."
 
+For methods that primarily call a closure the description should start with "Calls ..."
+
 
 
 TODOs
