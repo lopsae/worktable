@@ -35,9 +35,14 @@ In cases where the method operation would vary the result is always stated first
 
 > No operation is performed if the array already contains `fillIndex` elements.
 
-The inverse is discouraged since it leads to more ambiguous reading, and the focus should be in the change of behaviour.
+The inverse is discouraged since the focus should be in the change of behaviour and it leads to more ambiguous reading.
 
-> Discouraged: If the array already contains `fillIndex` elements then no operation is performed.
+> Discouraged:
+> If the array already contains `fillIndex` elements then no operation is performed.
+
+In cases where more detail is added for the return value "Also returns..." can be used in order to avoid repetition.
+
+> Also returns `nil` if `self` is NaN or positive infinity.
 
 
 
