@@ -13,8 +13,13 @@ extension Array {
 	}
 
 
-	// TODO: add complete assert params
-	func assert<T>(elementIs _: T.Type) {
+	func assert<T>(
+		elementIs _: T.Type,
+		_ message: @autoclosure () -> String = String(),
+		file: StaticString = #file,
+		line: UInt = #line
+	) {
+		// TODO: do we want to check this or check against the contents of the array?
 		XCTAssert(Element.self is T.Type)
 	}
 

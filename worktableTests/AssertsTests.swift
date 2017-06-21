@@ -65,10 +65,26 @@ class AssertsTests: XCTestCase {
 		maybeString.assert(is: String.self)
 		maybeString.assert(is: type(of: "string"))
 
+		// typed optional for protocol
+		maybeString.assert(is: TextOutputStream.self)
+
 		// any optional with class
 		let maybeAny: Any? = UIButton()
 		maybeAny.assert(is: UIButton.self)
 		maybeAny.assert(is: type(of: UIButton()))
+
+		// any optional class extending
+		maybeAny.assert(is: UIControl.self)
+		maybeAny.assert(is: type(of: UIControl()))
+
+		let maybeControl: Any? = UIControl()
+		maybeAny.assert(is: type(of: maybeControl))
+
+		// Does not work because `Any.Type` cannot be used in the assert
+		// and the type of control cannot be inferred on compile time
+		// The type to check must be available at compile time
+		// let control: Any = UIControl()
+		// maybeAny.assert(is: type(of: control))
 
 		// any optional with struct with generic
 		let maybeArray: Any? = ["test"]
