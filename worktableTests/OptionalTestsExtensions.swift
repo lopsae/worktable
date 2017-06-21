@@ -20,6 +20,13 @@ extension Optional {
 		XCTAssertNotNil(self, message(), file: file, line: line)
 	}
 
+
+	// TODO add complete assert params
+	func assert<T>(is _: T.Type) {
+		assertNotNil()
+		XCTAssert(self is T)
+	}
+
 }
 
 

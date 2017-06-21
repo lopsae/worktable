@@ -3,7 +3,6 @@ import XCTest
 
 class AssertsTests: XCTestCase {
 
-	// TODO add lots of tests to try all these combinations
 	func testEquatableEquals() {
 		// equatable equals equatable
 		let string = "test"
@@ -26,7 +25,7 @@ class AssertsTests: XCTestCase {
 		// optional equals optional
 		maybe.assert(equals: maybe)
 
-		// optional-nil equals optional nil
+		// optional-nil equals optional-nil
 		maybe = nil
 		maybe.assert(equals: maybe)
 
@@ -36,13 +35,13 @@ class AssertsTests: XCTestCase {
 
 
 	func testImpossibleEquals() {
-		// Empty, to remember other impossible cases
+		// Empty method, to remember other impossible cases
 
 		// optional-nil equals equatable
 		// invalid, would never be equal
 
 		// literal-nil equals optional
-		// not valid, cannot infer type from `nil`
+		// invalid, cannot infer type from `nil`
 		// nil.assert(equals: maybe)
 
 		// literal-nil equals literal-nil
@@ -52,12 +51,49 @@ class AssertsTests: XCTestCase {
 
 
 	func testOptionalsNil() {
-		var maybe: String? = "test"
-		maybe.assertNotNil()
-
-		maybe = nil
+		var maybe: String?
 		maybe.assertNil()
+
+		maybe = "test"
+		maybe.assertNotNil()
 	}
+
+
+	func testOptionalType() {
+		// typed optional
+		let maybeString: String? = "test"
+		maybeString.assert(is: String.self)
+		maybeString.assert(is: type(of: "string"))
+
+		// any optional with class
+		let maybeAny: Any? = UIButton()
+		maybeAny.assert(is: UIButton.self)
+		maybeAny.assert(is: type(of: UIButton()))
+
+		// any optional with struct with generic
+		let maybeArray: Any? = ["test"]
+		maybeArray.assert(is: [String].self)
+		maybeArray.assert(is: type(of: ["string"]))
+	}
+
+
+	func testArray() {
+		let array = ["test"]
+		array.assert(elementIs: String.self)
+		array.assert(elementIs: type(of: "string"))
+
+		let emptyArray: [String] = []
+		emptyArray.assert(elementIs: String.self)
+		emptyArray.assert(elementIs: type(of: "string"))
+
+		// TODO: assert(elementIs: is checking for the type of the array, not for the type of the contained elements
+		// rename? is actually what is wanted?
+//		let arrayOfAny: [Any] = ["test"]
+//		arrayOfAny.assert(elementIs: String.self)
+	}
+
+
+
 
 
 }

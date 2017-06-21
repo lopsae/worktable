@@ -12,6 +12,12 @@ extension Array {
 		XCTAssertEqual(self.count, expected, message(), file: file, line: line)
 	}
 
+
+	// TODO: add complete assert params
+	func assert<T>(elementIs _: T.Type) {
+		XCTAssert(Element.self is T.Type)
+	}
+
 }
 
 
