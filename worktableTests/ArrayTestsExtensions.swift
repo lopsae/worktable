@@ -5,7 +5,7 @@ extension Array {
 
 	func assert(
 		count expected: IndexDistance,
-		_ message: @autoclosure () -> String = String(),
+		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
 	) {
@@ -15,7 +15,7 @@ extension Array {
 
 	func assert<T>(
 		elementIs _: T.Type,
-		_ message: @autoclosure () -> String = String(),
+		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
 	) {
@@ -30,7 +30,7 @@ extension Array where Element: Equatable {
 
 	func assert(
 		equals expected: Array,
-		_ message: @autoclosure () -> String = String(),
+		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
 	) {

@@ -6,7 +6,7 @@ extension Optional {
 	// TODO define type AutoMessage? MessageClosure
 
 	func assertNil(
-		_ message: @autoclosure () -> String = String(),
+		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
 	) {
@@ -15,7 +15,7 @@ extension Optional {
 
 
 	func assertNotNil(
-		_ message: @autoclosure () -> String = String(),
+		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
 	) {
@@ -25,7 +25,7 @@ extension Optional {
 
 	func assert<T>(
 		is _: T.Type,
-		_ message: @autoclosure () -> String = String(),
+		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
 	) {
@@ -56,7 +56,7 @@ extension Optional where Wrapped: Equatable {
 
 	func assert(
 		equals expected: Optional,
-		_ message: @autoclosure () -> String = String(),
+		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
 	) {

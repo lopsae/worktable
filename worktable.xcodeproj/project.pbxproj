@@ -55,6 +55,8 @@
 		E57244C31EC3A67B00DC4F44 /* AssertsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57244C21EC3A67B00DC4F44 /* AssertsTests.swift */; };
 		E583874E1EC3954500F39FE7 /* OptionalTestsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583874D1EC3954500F39FE7 /* OptionalTestsExtensions.swift */; };
 		E58387501EC3957100F39FE7 /* EquatableTestsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583874F1EC3957100F39FE7 /* EquatableTestsExtensions.swift */; };
+		E5A6FC711EFB04EC0053A5E3 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A6FC701EFB04EC0053A5E3 /* StringExtensions.swift */; };
+		E5A6FC721EFB04EC0053A5E3 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A6FC701EFB04EC0053A5E3 /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,7 @@
 		E57244C21EC3A67B00DC4F44 /* AssertsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssertsTests.swift; sourceTree = "<group>"; };
 		E583874D1EC3954500F39FE7 /* OptionalTestsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalTestsExtensions.swift; sourceTree = "<group>"; };
 		E583874F1EC3957100F39FE7 /* EquatableTestsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquatableTestsExtensions.swift; sourceTree = "<group>"; };
+		E5A6FC701EFB04EC0053A5E3 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = worktable/StringExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,7 @@
 				2D77592D1DB5C51D008177B1 /* OptionalExtensions.swift */,
 				2D45EC551B8982A90078567C /* LoremIpsum.swift */,
 				2DE0CC581B8EE30D00BE16E5 /* CGExtensions.swift */,
+				E5A6FC701EFB04EC0053A5E3 /* StringExtensions.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -362,6 +366,7 @@
 				2DE0CC501B8EA79F00BE16E5 /* VariableHeightCellItem.swift in Sources */,
 				2D46B53D1B82F9BD00663A40 /* WorktableViewController.swift in Sources */,
 				2D46B53B1B82F9BD00663A40 /* DefaultCellView.swift in Sources */,
+				E5A6FC711EFB04EC0053A5E3 /* StringExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +396,7 @@
 				2D45EC4F1B853F510078567C /* AutolayoutCellView.swift in Sources */,
 				2DE0CC541B8EA7CC00BE16E5 /* VariableHeightCellView.swift in Sources */,
 				E58387501EC3957100F39FE7 /* EquatableTestsExtensions.swift in Sources */,
+				E5A6FC721EFB04EC0053A5E3 /* StringExtensions.swift in Sources */,
 				2DD7B53A1B9C16F000678ABF /* BaseCellView.swift in Sources */,
 				2DC3FE411BAF9EA300C13B6F /* ArrayExtensionsTests.swift in Sources */,
 			);

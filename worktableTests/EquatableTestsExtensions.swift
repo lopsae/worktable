@@ -6,7 +6,7 @@ extension Equatable {
 	// TODO document reminder of why assert(equals:) needs to exists both here and in optional
 	func assert<T>(
 		equals expected: T?,
-		_ message: @autoclosure () -> String = String(),
+		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
 	) where T: Equatable {
