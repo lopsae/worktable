@@ -184,14 +184,14 @@ class ArrayExtension: XCTestCase {
 			}
 
 			if arrayReturn is [String] {
-				// Todo, is there any way to assert a type is extended?
-				XCTAssertNotNil(indexReturn as? [String])
-				XCTAssertEqual(arrayReturn as! [String], indexReturn as! [String])
+				// TODO: assert(is: can return the casted for some pretty chaining
+				indexReturn.assert(is: [String].self)
+				(arrayReturn as! [String]).assert(equals: indexReturn as! [String])
 			}
 
 			if arrayReturn is String {
-				XCTAssertNotNil(indexReturn as? String)
-				XCTAssertEqual(arrayReturn as! String, indexReturn as! String)
+				indexReturn.assert(is: String.self)
+				(arrayReturn as! String).assert(equals: indexReturn as? String)
 			}
 
 			return arrayReturn
@@ -216,12 +216,12 @@ class ArrayExtension: XCTestCase {
 		// Test partial path
 		let arrayAsAny = assertIndexPathMatch([2])
 		arrayAsAny.assertNotNil()
-		XCTAssertEqual(arrayAsAny as! [String], ["two,zero"])
+		(arrayAsAny as! [String]).assert(equals: ["two,zero"])
 
 		// Test valid path
 		let stringAsAny = assertIndexPathMatch([0, 0])
 		stringAsAny.assertNotNil()
-		XCTAssertEqual(stringAsAny as? String, "zero,zero")
+		(stringAsAny as? String).assert(equals: "zero,zero")
 	}
 
 }
