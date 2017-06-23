@@ -18,21 +18,6 @@ class Counter {
 
 
 	/**
-	Asserts that `expected` is equal to the current count.
-	*/
-	@discardableResult
-	func assert(
-		count expected: Int,
-	    _ message: @autoclosure () -> String = String(),
-	    file: StaticString = #file,
-	    line: UInt = #line
-	) -> Self {
-		XCTAssertEqual(count, expected, message(), file: file, line: line)
-		return self
-	}
-
-
-	/**
 	Increments the counter and returns the given `delivery`.
 	
 	- Note:
@@ -63,3 +48,24 @@ class Counter {
 	}
 
 }
+
+
+// MARK: - Asserts
+extension Counter {
+
+	/**
+	Asserts that `expected` is equal to the current count.
+	*/
+	@discardableResult
+	func assert(
+		count expected: Int,
+		_ message: @autoclosure () -> String = .empty,
+		file: StaticString = #file,
+		line: UInt = #line
+	) -> Self {
+		XCTAssertEqual(count, expected, message(), file: file, line: line)
+		return self
+	}
+
+}
+

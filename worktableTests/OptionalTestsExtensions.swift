@@ -3,8 +3,6 @@ import XCTest
 
 extension Optional {
 
-	// TODO define type AutoMessage? MessageClosure
-
 	func assertNil(
 		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
