@@ -58,6 +58,43 @@ For methods that primarily call a closure the description should start with "Cal
 
 
 
+Assert messages
+---------------
+The default XCTAssert outputs give the following characteristics:
+
+### Method name
+The assert method that raised the failure is printed in the output. All XCTAssert methods follow this pattern except XCTFail:
+
+> `XCTAssert(false)` prints:
+> `XCTAssertTrue failed -`
+> `XCTFail()` prints:
+> `failed -`
+
+### Dashes
+XCTAssert uses dashes to separate the message related to the assert from the message parameter provided to the assert:
+
+> `XCTAssert(false, "false will fail")` prints:
+> `XCTAssertTrue failed - false will fail`
+
+### Information and parameters
+Additional information is printed after a colon. Parameters are printed as their debug representation between parenthesis and quotes:
+
+> `XCTAssertEqual("some", "none", "not like the other")` prints:
+> `XCTAssertEqual failed: ("some") is not equal to ("none") - not like the other
+
+### Custom Messages
+
+Messages from custom asserts should:
++ User `XCTFail()` to output a cleaner message.
++ Print the method signature that raised the failure, the parameters including `message` and onwards should be omitted.
++ Print the type name if the assert belongs to an instance.
++ Print debug descriptions of parameters when available.
+
+> `maybeButton.assert(is: String.self, "a button is not a string")` should print:
+> `failed - Optional<Any>::assert(is:) failed: ("Optional(<UIButton:...>)") is not of type ("String") - a button is not a string
+
+
+
 TODOs
 -----
 
