@@ -14,13 +14,20 @@ extension Array {
 
 
 	func assert<T>(
-		elementIs _: T.Type,
+		allElementsAre _: T.Type,
 		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
-	) {
-		// TODO: do we want to check this or check against the contents of the array?
-		XCTAssert(Element.self is T.Type)
+	) -> [T]? {
+		XCTAssertFalse(isEmpty, "Array::assert(allElementsAre:) failed: empty array always fails assert - \(message())")
+		for element in self {
+			guard element is T else {
+				XCTFail("Array::assert(allElementsAre:) failed: found element (\"\(element)\") not of type (\"\(T.self)\") - \(message())")
+				return nil
+			}
+		}
+
+		return self as? [T]
 	}
 
 }

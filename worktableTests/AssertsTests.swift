@@ -115,18 +115,28 @@ class AssertsTests: XCTestCase {
 
 
 	func testArray() {
-		let array = ["test"]
-		array.assert(elementIs: String.self)
-		array.assert(elementIs: type(of: "string"))
+		// TODO separate chaining tests into its own method
 
-		let emptyArray: [String] = []
-		emptyArray.assert(elementIs: String.self)
-		emptyArray.assert(elementIs: type(of: "string"))
+		let array = ["test"]
+		array.assert(allElementsAre: String.self)?
+			// TODO: add an chaining assertNotNill here and bellow
+		.first!.assert(equals: "test")
+
+		array.assert(allElementsAre: type(of: "string"))?
+		.first!.assert(equals: "test")
 
 		// TODO: assert(elementIs: is checking for the type of the array, not for the type of the contained elements
 		// rename? is actually what is wanted?
-//		let arrayOfAny: [Any] = ["test"]
-//		arrayOfAny.assert(elementIs: String.self)
+		let arrayOfAny: [Any] = ["test"]
+		arrayOfAny.assert(allElementsAre: String.self)?
+		.first!.assert(equals: "test")
+
+		// TODO: how to test that an assert fails?
+		// have internal method that returns an assert result and that can
+		// be checked and raised if necesary? or raised if not expected and all that?
+		// let emptyArray: [String] = []
+		// emptyArray.assert(elementIs: String.self) // should fail
+		// emptyArray.assert(elementIs: type(of: "string")) // should fail
 	}
 
 
