@@ -60,36 +60,57 @@ class AssertsTests: XCTestCase {
 
 
 	func testOptionalType() {
+		// TODO separate chaining tests into its own method
+
 		// typed optional
 		let maybeString: String? = "test"
-		maybeString.assert(is: String.self)
-		maybeString.assert(is: type(of: "string"))
+		maybeString.assert(is: String.self)?
+		.assert(equals: "test")
+
+		maybeString.assert(is: type(of: "string"))?
+		.assert(equals: "test")
 
 		// typed optional for protocol
 		maybeString.assert(is: TextOutputStream.self)
 
 		// any optional with class
-		let maybeAny: Any? = UIButton()
-		maybeAny.assert(is: UIButton.self)
-		maybeAny.assert(is: type(of: UIButton()))
+		let button = UIButton()
+		button.titleLabel!.text = "testButton"
+		button.accessibilityLabel = "testLabel"
+
+		let maybeAny: Any? = button
+		maybeAny.assert(is: UIButton.self)?
+		.titleLabel!.text.assert(equals: "testButton")
+
+		maybeAny.assert(is: type(of: UIButton()))?
+		.titleLabel!.text.assert(equals: "testButton")
 
 		// any optional class extending
-		maybeAny.assert(is: UIControl.self)
-		maybeAny.assert(is: type(of: UIControl()))
+		maybeAny.assert(is: UIControl.self)?
+		.accessibilityLabel.assert(equals: "testLabel")
 
+		maybeAny.assert(is: type(of: UIControl()))?
+		.accessibilityLabel.assert(equals: "testLabel")
+
+		// Assert property but is a misleading case:
+		// type(of: maybeControl) returns Any?
+		// anything is Any? will always evaluate true
 		let maybeControl: Any? = UIControl()
 		maybeAny.assert(is: type(of: maybeControl))
+		maybeAny.assert(is: Any?.self)
+		maybeAny.assert(is: Any.self)
 
-		// Does not work because `Any.Type` cannot be used in the assert
-		// and the type of control cannot be inferred on compile time
-		// The type to check must be available at compile time
+		// For some reason the following does not work
+		// cannot invoke assert with list (is: Any.Type)
 		// let control: Any = UIControl()
 		// maybeAny.assert(is: type(of: control))
 
 		// any optional with struct with generic
 		let maybeArray: Any? = ["test"]
-		maybeArray.assert(is: [String].self)
-		maybeArray.assert(is: type(of: ["string"]))
+		maybeArray.assert(is: [String].self)?
+		.assert(equals: ["test"])
+		maybeArray.assert(is: type(of: ["string"]))?[0]
+		.assert(equals: "test")
 	}
 
 

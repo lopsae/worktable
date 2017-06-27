@@ -21,12 +21,13 @@ extension Optional {
 	}
 
 
+	@discardableResult
 	func assert<T>(
 		is _: T.Type,
 		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
-	) {
+	) -> T? {
 		// TODO: figure out how to systematize assert messages
 		let signature = "\(type(of: self))::\(#function)"
 		var action = "(\"\(self.debugDescription)\") is never of type (\"\(T.self)\")"
@@ -40,17 +41,19 @@ extension Optional {
 		// TODO: This assert ultimately should be printing:
 		// failed - Optional<Wrapped.self>::assert(is:) failed: ("self") is not of type ("T.self") - message
 
-
-
-		guard self != nil else { return }
+		guard self != nil else {
+			return nil
+		}
 
 		action = "(\"\(self.debugDescription)\") is not of type (\"\(T.self)\")"
 		assertMessage = "\(signature) failed: \(action)"
 
-		// Assert should check `self! is T`, checking for
-		// `Wrapped.self is T.type` is incorrect since that would check thei mean
-		// type of the optional generic, and not the wrapped object
+		// Assert must check `self! is T`, checking for
+		// `Wrapped.self is T.type` is incorrect since that would check the type
+		// of the generic variable or constant, and not the wrapped object
 		XCTAssert(self! is T, "\(assertMessage) - \(message())", file: file, line: line)
+
+		return self! as? T ?? nil
 	}
 
 }

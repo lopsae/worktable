@@ -183,15 +183,15 @@ class ArrayExtension: XCTestCase {
 				indexReturn.assertNil()
 			}
 
+			// TODO: think about using coalescing methods here
 			if arrayReturn is [String] {
-				// TODO: assert(is: can return the casted for some pretty chaining
-				indexReturn.assert(is: [String].self)
-				(arrayReturn as! [String]).assert(equals: indexReturn as! [String])
+				indexReturn.assert(is: [String].self)?
+				.assert(equals: indexReturn as! [String])
 			}
 
 			if arrayReturn is String {
-				indexReturn.assert(is: String.self)
-				(arrayReturn as! String).assert(equals: indexReturn as? String)
+				indexReturn.assert(is: String.self)?
+				.assert(equals: indexReturn as? String)
 			}
 
 			return arrayReturn
