@@ -198,7 +198,7 @@ class ArrayExtension: XCTestCase {
 		}
 
 		// Test out of bounds since first index
-		// `9` will inmediately yield a nil
+		// `9` will immediately yield a nil
 		var pathReturn = assertIndexPathMatch([9, 9])
 		pathReturn.assertNil()
 
@@ -215,13 +215,13 @@ class ArrayExtension: XCTestCase {
 
 		// Test partial path
 		let arrayAsAny = assertIndexPathMatch([2])
-		arrayAsAny.assertNotNil()
-		(arrayAsAny as! [String]).assert(equals: ["two,zero"])
+		arrayAsAny.assert(is: [String].self)?
+		.assert(equals: ["two,zero"])
 
 		// Test valid path
 		let stringAsAny = assertIndexPathMatch([0, 0])
-		stringAsAny.assertNotNil()
-		(stringAsAny as? String).assert(equals: "zero,zero")
+		stringAsAny.assert(is: String.self)?
+		.assert(equals: "zero,zero")
 	}
 
 }

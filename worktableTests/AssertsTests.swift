@@ -55,8 +55,8 @@ class AssertsTests: XCTestCase {
 		maybe.assertNil()
 
 		maybe = "test"
-		// TODO add chaining return to assertNotNil
-		maybe.assertNotNil()
+		maybe.assertNotNil()?
+		.assert(equals: "test")
 	}
 
 
@@ -148,12 +148,13 @@ class AssertsTests: XCTestCase {
 	func testArrayAllElementsAreChaining() {
 		let array = ["test"]
 		array.assert(allElementsAre: String.self)?
-		// TODO: add an chaining assertNotNill here and bellow
-		.first!.assert(equals: "test")
+		.first.assertNotNil()?
+		.assert(equals: "test")
 
 		let arrayOfAny: [Any] = ["test"]
 		arrayOfAny.assert(allElementsAre: String.self)?
-		.first!.assert(equals: "test")
+		.first.assertNotNil()?
+		.assert(equals: "test")
 	}
 
 

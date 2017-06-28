@@ -12,12 +12,14 @@ extension Optional {
 	}
 
 
+	@discardableResult
 	func assertNotNil(
 		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
-	) {
+	) -> Optional {
 		XCTAssertNotNil(self, message(), file: file, line: line)
+		return self
 	}
 
 
