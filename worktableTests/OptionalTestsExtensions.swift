@@ -68,7 +68,6 @@ extension Optional where Wrapped: Equatable {
 		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
-		// TODO add return for chaining
 	) {
 		XCTAssertEqual(self, expected, message(), file: file, line: line)
 	}

@@ -209,7 +209,6 @@ class ArrayExtension: XCTestCase {
 
 		// Test path into a non array
 		// `1, 1` yields a string, which is not indexable
-		// TODO: or is there access to that index?
 		pathReturn = assertIndexPathMatch([1, 1, 1])
 		pathReturn.assertNil()
 

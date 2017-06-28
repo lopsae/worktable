@@ -64,6 +64,9 @@ extension Array {
 			}
 
 			// Not last position, have to go deeper
+			// TODO if this could be checked as a random access collection
+			// then we could dig into it, that would allow the index path to dig
+			// into strings and different types of collections with the same index
 			guard let nextArray = currentElement as? Array<Any> else {
 				// No array to go deeper
 				return nil

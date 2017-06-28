@@ -9,7 +9,6 @@ extension Equatable {
 		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
-	// TODO add return value for chaining
 	) where T: Equatable {
 		guard let casted = expected as? Self
 		else {
