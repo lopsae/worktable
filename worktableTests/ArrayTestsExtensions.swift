@@ -13,6 +13,7 @@ extension Array {
 	}
 
 
+	@discardableResult
 	func assert<T>(
 		allElementsAre _: T.Type,
 		_ message: @autoclosure () -> String = .empty,
