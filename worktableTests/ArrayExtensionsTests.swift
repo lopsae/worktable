@@ -178,20 +178,24 @@ class ArrayExtension: XCTestCase {
 			let arrayReturn = multiDimentional.follow(path: path)
 			let indexReturn = multiDimentional.follow(path: IndexPath(indexes: path))
 
-			if arrayReturn == nil {
+			switch arrayReturn {
+			case nil:
 				arrayReturn.assertNil()
 				indexReturn.assertNil()
-			}
-
-			// TODO: think about using coalescing methods here
-			if arrayReturn is [String] {
-				indexReturn.assert(is: [String].self)?
-				.assert(equals: indexReturn as! [String])
-			}
-
-			if arrayReturn is String {
-				indexReturn.assert(is: String.self)?
-				.assert(equals: indexReturn as? String)
+			case is [String]:
+				arrayReturn.assert(is: [String].self)
+				.ifSome {
+					indexReturn.assert(is: [String].self)?
+					.assert(equals: $0)
+				}
+			case is String:
+				arrayReturn.assert(is: String.self)
+				.ifSome {
+					indexReturn.assert(is: String.self)?
+					.assert(equals: $0)
+				}
+			default:
+				XCTFail("invalid type found in assertIndexPathMatch(_:)")
 			}
 
 			return arrayReturn

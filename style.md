@@ -108,6 +108,8 @@ The `delegate` of a UICollectionView using a ColumnWaterfallLayout MUST implemen
 
 The `delegate` of a UICollectionView MUST implement this protocol in order to use a ColumnWaterfallLayout.
 
+This method MUST be called at least once before the instance is used.
+
 Favorite:
 This protocol MUST be implemented by the `delegate` of the UICollectionView in order to use a ColumnWaterfallLayout.
 

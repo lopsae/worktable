@@ -35,3 +35,38 @@ extension Optional : OptionalProtocol {
 	}
 
 }
+
+
+extension Optional {
+
+	/**
+	Returns `self` if `self` wraps a value, otherwise returns the result of the
+	`ifNil` closure.
+	*/
+	func coalesce(ifNil: () -> Wrapped) -> Wrapped {
+		switch self {
+		case .some(let wrapped):
+			return wrapped
+		case .none:
+			return ifNil()
+		}
+	}
+
+
+	/**
+	Calls the given closure `self` wraps a value, otherwise performs no
+	operation. Afterwards in both cases `self` is returned.
+	*/
+	@discardableResult
+	func ifSome(_ closure: (Wrapped) -> Void) -> Optional {
+		switch self {
+		case .some(let wrapped):
+			closure(wrapped)
+			return self
+		case .none:
+			return self
+		}
+	}
+
+}
+
