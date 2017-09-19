@@ -3,9 +3,11 @@ import XCTest
 
 extension Equatable {
 
-	// TODO document reminder of why assert(equals:) needs to exists both here and in optional
-	func assert<T>(
-		equals expected: T?,
+	/**
+	Assert that `self` is equal to `expected`.
+	*/
+	func assert(
+		equals expected: Self?,
 		_ message: @autoclosure () -> String = .empty,
 		file: StaticString = #file,
 		line: UInt = #line
@@ -18,6 +20,26 @@ extension Equatable {
 		}
 
 		XCTAssertEqual(self, casted, message(), file: file, line: line)
+	}
+
+}
+
+
+/**
+Mirror Equatable assert functions to make them available to Optionals.
+*/
+extension Optional where Wrapped: Equatable {
+
+	/**
+	Assert that `self` is equal to `expected`.
+	*/
+	func assert(
+		equals expected: Optional,
+		_ message: @autoclosure () -> String = .empty,
+		file: StaticString = #file,
+		line: UInt = #line
+		) {
+		XCTAssertEqual(self, expected, message(), file: file, line: line)
 	}
 
 }
