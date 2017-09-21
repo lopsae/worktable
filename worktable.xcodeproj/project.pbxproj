@@ -139,7 +139,7 @@
 			children = (
 				2DC3FE431BAFC86A00C13B6F /* Counter.swift */,
 			);
-			name = utils;
+			path = utils;
 			sourceTree = "<group>";
 		};
 		2DD7B5371B9C0EF100678ABF /* table */ = {
@@ -246,7 +246,7 @@
 				E583874D1EC3954500F39FE7 /* OptionalAssertExtensions.swift */,
 				E583874F1EC3957100F39FE7 /* EquatableAssertExtensions.swift */,
 			);
-			name = asserts;
+			path = asserts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
