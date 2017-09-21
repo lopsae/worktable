@@ -376,7 +376,7 @@ public class WorktableViewController: UITableViewController {
 
 	/// Method called when the `refreshControl` is activated through user
 	/// interaction.
-	internal func refreshWithUserDrag() {
+	@objc internal func refreshWithUserDrag() {
 		// TODO: dummy code to limit refresh
 		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
 			self.endRefresh()

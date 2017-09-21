@@ -65,7 +65,7 @@ class DemoTable: WorktableViewController {
 	}
 
 	// TODO: move this actions into an ActionSheet
-	func removeRefreshIndicator() {
+	@objc func removeRefreshIndicator() {
 		refreshEnabled = false
 
 		let removeRefreshControlButton = UIBarButtonItem(
@@ -78,7 +78,7 @@ class DemoTable: WorktableViewController {
 	}
 
 	// TODO: move this actions into an ActionSheet
-	func addRefreshIndicator() {
+	@objc func addRefreshIndicator() {
 		refreshEnabled = true
 
 		let removeRefreshControlButton = UIBarButtonItem(

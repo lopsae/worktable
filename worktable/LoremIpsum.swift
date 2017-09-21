@@ -26,7 +26,7 @@ class LoremIpsum {
 		// Remove the last space
 		substringIndex = LOREM.index(before: substringIndex)
 
-		return LOREM.substring(to: substringIndex)
+		return String(LOREM[LOREM.startIndex ... substringIndex])
 	}
 
 }

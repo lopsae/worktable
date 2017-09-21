@@ -57,9 +57,9 @@ class ConcentricView: UIView {
 		let labelFont = UIFont(name: "HelveticaNeue", size: 14)
 		let labelForeColor = UIColor.red
 
-		var labelAttributes = [String: AnyObject]()
-		labelAttributes[NSFontAttributeName] = labelFont
-		labelAttributes[NSForegroundColorAttributeName] = labelForeColor
+		var labelAttributes = [NSAttributedStringKey: AnyObject]()
+		labelAttributes[.font] = labelFont
+		labelAttributes[.foregroundColor] = labelForeColor
 
 		let label = NSAttributedString(
 			string: "\(bounds.size.width),\(bounds.size.height)",

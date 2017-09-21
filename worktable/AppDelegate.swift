@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 
-	func pushDemo() {
+	@objc func pushDemo() {
 		navController.pushViewController(demoTable, animated: true)
 	}
 
