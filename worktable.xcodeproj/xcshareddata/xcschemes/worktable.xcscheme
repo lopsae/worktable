@@ -38,6 +38,11 @@
                BlueprintName = "worktableTests"
                ReferencedContainer = "container:worktable.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "AssertsTests/testAssertionsPlayground()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
