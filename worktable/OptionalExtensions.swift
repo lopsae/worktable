@@ -37,6 +37,26 @@ extension Optional : OptionalProtocol {
 }
 
 
+// MARK:- String representations
+extension Optional {
+
+  /**
+   Returns the debug description of the wrapped element, otherwise returns
+   `nil`.
+   */
+  var unwrappedDebugDescription: String {
+    switch self {
+    case .some(let wrapped):
+      return String(reflecting: wrapped)
+    case .none:
+      return String(reflecting: self)
+    }
+  }
+
+}
+
+
+// MARK:- Operations with closures
 extension Optional {
 
 	/**

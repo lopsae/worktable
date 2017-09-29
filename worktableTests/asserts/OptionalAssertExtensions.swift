@@ -7,8 +7,23 @@ extension Optional {
     _ message: @autoclosure () -> String = .empty,
     file: StaticString = #file,
     line: UInt = #line
-    ) {
-    XCTAssertNil(self, message(), file: file, line: line)
+  ) {
+    makeAssertNil(file: file, line: line)
+      .run(message(), function: #function)
+  }
+
+
+  func makeAssertNil(
+    file: StaticString = #file,
+    line: UInt = #line,
+    function: String? = nil
+  ) -> Assertion {
+    return Assertion(
+      assert: self == nil,
+      description: "(\(self.unwrappedDebugDescription)) is not nil",
+      file: file,
+      line: line
+    )
   }
 
 
@@ -18,8 +33,23 @@ extension Optional {
     file: StaticString = #file,
     line: UInt = #line
   ) -> Optional {
-    XCTAssertNotNil(self, message(), file: file, line: line)
+    makeAssertNotNil(file: file, line: line)
+      .run(message(), function: #function)
     return self
+  }
+
+
+  func makeAssertNotNil(
+    file: StaticString = #file,
+    line: UInt = #line,
+    function: String? = nil
+  ) -> Assertion {
+    return Assertion(
+      assert: self != nil,
+      description: "self is nil",
+      file: file,
+      line: line
+    )
   }
 
 

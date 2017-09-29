@@ -60,6 +60,50 @@ class AssertsTests: XCTestCase {
 	}
 
 
+  // TODO playground for Assertion objects and how they will behave
+  // TODO make assert messages behave as desired
+  func testAssertionsPlayground() {
+    let maybeSome: String? = "test"
+    // good assert
+    maybeSome.assertNotNil()?
+      .assert(equals: "test")
+    // good make assert
+    maybeSome.makeAssertNotNil().assertSuccess()
+    maybeSome.makeAssertNil().assertFailure()
+    
+    // TODO: should fail with:
+    // failed - assertNil() failed: ("test") is not nil - deliberate failure
+    maybeSome.assertNil("deliberate failure")
+
+    // TODO: should fail with:
+    // failed - failed - assertSuccess() failed: assertion for assertNil() - deliberate failure
+    maybeSome.makeAssertNil().assertSuccess("deliberate failure")
+    // TODO: should fail with:
+    // failed - failed - assertFailure() failed: assertion for assertNotNil() - deliberate failure
+    maybeSome.makeAssertNotNil().assertFailure("deliberate failure")
+
+    XCTAssertEqual("cosa", "nostra", "deliberate failure")
+
+    let maybeNone: String? = nil
+    // good assert
+    maybeNone.assertNil()
+    // good make assert
+    maybeNone.makeAssertNil().assertSuccess()
+    maybeNone.makeAssertNotNil().assertFailure()
+
+    // TODO: should fail with:
+    // failed - assertNotNil() failed: self is nil - deliberate failure
+    maybeNone.assertNotNil("deliberate failure")
+
+    // TODO: should fail with:
+    // failed - assertSuccess() failed: assertion for assertNotNil() - deliberate failure
+    maybeNone.makeAssertNotNil().assertSuccess("deliberate failure")
+    // TODO: should fail with:
+    // failed - assertFailure() failed: assertion for assertNil() - deliberate failure
+    maybeNone.makeAssertNil().assertFailure("deliberate failure")
+  }
+
+
 	func testOptionalIsType() {
 		// typed optional
 		let maybeString: String? = "test"

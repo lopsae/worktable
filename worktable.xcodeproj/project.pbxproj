@@ -51,6 +51,7 @@
 		2DE0CC571B8EE11900BE16E5 /* ConcentricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC551B8EE11900BE16E5 /* ConcentricView.swift */; };
 		2DE0CC591B8EE30D00BE16E5 /* CGExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC581B8EE30D00BE16E5 /* CGExtensions.swift */; };
 		2DE0CC5A1B8EE30D00BE16E5 /* CGExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0CC581B8EE30D00BE16E5 /* CGExtensions.swift */; };
+		E522EB641F748D65000E168E /* Assertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522EB631F748D65000E168E /* Assertion.swift */; };
 		E5502F021EC1330C00682861 /* ArrayAssertExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502F011EC1330C00682861 /* ArrayAssertExtensions.swift */; };
 		E57244C31EC3A67B00DC4F44 /* AssertsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57244C21EC3A67B00DC4F44 /* AssertsTests.swift */; };
 		E583874E1EC3954500F39FE7 /* OptionalAssertExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583874D1EC3954500F39FE7 /* OptionalAssertExtensions.swift */; };
@@ -96,6 +97,7 @@
 		2DE0CC581B8EE30D00BE16E5 /* CGExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGExtensions.swift; path = worktable/CGExtensions.swift; sourceTree = "<group>"; };
 		2DF100F91AC231B300CCCB7F /* worktable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = worktable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF1010E1AC231B300CCCB7F /* worktableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = worktableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E522EB631F748D65000E168E /* Assertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assertion.swift; sourceTree = "<group>"; };
 		E5502F011EC1330C00682861 /* ArrayAssertExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayAssertExtensions.swift; sourceTree = "<group>"; };
 		E57244C21EC3A67B00DC4F44 /* AssertsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssertsTests.swift; sourceTree = "<group>"; };
 		E583874D1EC3954500F39FE7 /* OptionalAssertExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAssertExtensions.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				E5502F011EC1330C00682861 /* ArrayAssertExtensions.swift */,
 				E583874D1EC3954500F39FE7 /* OptionalAssertExtensions.swift */,
 				E583874F1EC3957100F39FE7 /* EquatableAssertExtensions.swift */,
+				E522EB631F748D65000E168E /* Assertion.swift */,
 			);
 			path = asserts;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 			files = (
 				2D46B52E1B82F9BD00663A40 /* ArrayExtensions.swift in Sources */,
 				2DC3FE441BAFC86A00C13B6F /* Counter.swift in Sources */,
+				E522EB641F748D65000E168E /* Assertion.swift in Sources */,
 				2D45EC541B8546260078567C /* AutolayoutCellItem.swift in Sources */,
 				E583874E1EC3954500F39FE7 /* OptionalAssertExtensions.swift in Sources */,
 				2D46B5411B84428000663A40 /* WorktableCellView.swift in Sources */,
